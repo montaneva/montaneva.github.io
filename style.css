@@ -330,8 +330,9 @@ Media queries
 @media (max-width:568px){
   
 }
-
-
+@media (max-width:330px){
+	h1 { display:none !important}
+}
 /* ========================================
 SKIN
 ========================================= */
