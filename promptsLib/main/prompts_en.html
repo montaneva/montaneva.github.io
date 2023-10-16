@@ -17,7 +17,7 @@
 		tr:nth-child(even), thead tr:first-child {background: #fff!important}
 		td:last-child, .search-link {text-transform: capitalize; display:inline;}
 		#footer {font-size:90%; margin:30px auto 0;border-top:1px dotted #444}
-		input{width:450px; padding:2px 5px; font-size:105%;color:steelblue}
+		input{width:450px; padding:2px 5px; margin-left:20px; font-size:105%;color:steelblue}
 		select{width:60px; height:2.5em}
 		.help {display:inline; border-bottom:1px dotted black}
 		.help:hover {cursor: help;}
@@ -152,7 +152,7 @@
     // DataTable plugin
     var table = $('#datatbl').DataTable({
       "responsive": false,
-      "lengthMenu": [[15, 30, -1], [15, 30, "Tot"]],
+      "lengthMenu": [[15, 30, -1], [15, 30, "all"]],
       "bJQueryUI": false,
       "bLengthChange": true,
       "bInfo": true,
@@ -187,7 +187,6 @@
     });
   });
 </script>
-
 
 </body>
 </html>
