@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Prompts library</title>
+    <meta name="robots" content="none">
+	<meta name="author" content="Eva Montané Esteva" />
+	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, width=device-width, viewport-fit=cover" />
+		
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.4/css/bulma.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/css/jquery.dataTables.min.css">
+
+	<style>
+		body{padding:1%}
+		table{padding-top:20px}
+		tr:nth-child(odd) {background: #f9f9f9 !important}
+		tr:nth-child(even), thead tr:first-child {background: #fff!important}
+		td:last-child, .search-link {text-transform: capitalize; display:inline;}
+		#footer {font-size:90%; margin:30px auto 0;border-top:1px dotted #444}
+		input{width:450px; padding:2px 5px; font-size:105%;color:steelblue}
+		select{width:60px; height:2.5em}
+		.help {display:inline; border-bottom:1px dotted black}
+		.help:hover {cursor: help;}
+	</style>
+
+</head>
+	
+<body>
+	<p class="has-text-left"><a href="prompts_en.html">English</a> | <a href="prompts_cat.html">Català</a>  | <a href="prompts_fr.html">Français</a> </p>		
+	<h1 class="has-text-centered">Prompts library</h1>
+
+	<table id="datatbl" class="datatbl">
+		<thead>
+			<tr>
+				<th>Prompt</th>
+				<th>Tags</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Improve the language and style of this text :</td>
+				<td><a href="#" class="search-link" data-search-term="arrange">arrange</a>, <a href="#" class="search-link" data-search-term="improve">improve</a>, <a href="#" class="search-link" data-search-term="enhance">enhance</a></td>      
+			</tr>
+			<tr>
+				<td>Review and edit this text just translated to English for accuracy, fluency, and cultural appropriateness, ensuring it reads naturally :</td>
+				<td><a href="#" class="search-link" data-search-term="arrange">arrange</a>, <a href="#" class="search-link" data-search-term="improve">improve</a>, <a href="#" class="search-link" data-search-term="enhance">enhance</a></td>		
+			</tr>
+			<tr>
+				<td>Expand the following English sentence into a more detailed and grammatically correct version :</td>
+				<td><a href="#" class="search-link" data-search-term="arrange">arrange</a>, <a href="#" class="search-link" data-search-term="improve">improve</a>, <a href="#" class="search-link" data-search-term="enhance">enhance</a></td>		
+			</tr>			
+			<tr>
+				<td>Can you explain the concept of [...] in simple terms ?</td>
+				<td><a href="#" class="search-link" data-search-term="explain">explain</a></td>		
+			</tr>
+			<tr>
+				<td>Refine and enhance this text for a more precise and effective ChatGPT user prompt :</td>
+				<td><a href="#" class="search-link" data-search-term="prompts">prompts</a></td>		
+			</tr>			
+			<tr>
+				<td>Refine this text to make it more concise and clear without losing its original meaning :</td>
+				<td><a href="#" class="search-link" data-search-term="optimize">optimize</a></td>		
+			</tr>			
+			<tr>
+				<td>Synthesized this information in a well-structured Markdown mindmap enclosed in a code block to improve both readability and compatibility with Markdown viewer applications.</td>
+				<td><a href="#" class="search-link" data-search-term="mindmap">mindmap</a></td>		
+			</tr>			
+			<tr>
+				<td>Extract the main insights and recommendations from this text :</td>
+				<td><a href="#" class="search-link" data-search-term="analyze">analyze</a></td>
+			</tr>
+			<tr>
+				<td>Below, you'll find the structure of an SQL table. I will be requesting assistance with crafting SQL queries in my upcoming prompts :</td>
+				<td><a href="#" class="search-link" data-search-term="SQL">SQL</a></td>
+			</tr>
+			<tr>
+				<td>Explain this SQL query:</td>
+				<td><a href="#" class="search-link" data-search-term="SQL">SQL</a></td>
+			</tr>
+			<tr>
+				<td>Enclosed in double quotes each value of the raw data provided below, and use a comma as the decimal delimiter :</td>
+				<td><a href="#" class="search-link" data-search-term="CSV">CSV</a></td>
+			</tr>
+			<tr>
+				<td>Explain the concept of [technical concept] in simple terms for a non-technical audience.</td>
+				<td><a href="#" class="search-link" data-search-term="explain">explain</a></td>
+			</tr>
+			<tr>
+				<td>Generate a comprehensive mind map outlining key concepts, ideas, and connections related to [insert topic].</td>
+				<td><a href="#" class="search-link" data-search-term="mindmap">mindmap</a></td>
+			</tr>
+			<tr>
+				<td>Construct a mind map to analyze and solve a specific problem or challenge related to [insert problem description].</td>
+				<td><a href="#" class="search-link" data-search-term="mindmap">mindmap</a></td>
+			</tr>
+			<tr>
+				<td>Conduct a pros and cons analysis of [insert topic], highlighting the advantages and disadvantages associated with it.</td>
+				<td><a href="#" class="search-link" data-search-term="assess">assess</a></td>
+			</tr>
+			<tr>
+				<td>Assess the strengths and weaknesses of [insert topic], offering insights into its features and areas for improvement.</td>
+				<td><a href="#" class="search-link" data-search-term="assess">assess</a></td>
+			</tr>
+			<tr>
+				<td>Provide 5 relevant ChatGPT prompt examples for establishing a repository of commonly recurring requests, with the aim of streamlining prompt formulation efficiency in the domain of [insert topic].</td>
+				<td><a href="#" class="search-link" data-search-term="prompts">prompts</a></td>
+			</tr>
+			<tr>
+				<td>Extract all [...] from this unstructured text data :</td>
+				<td><a href="#" class="search-link" data-search-term="extract">extract</a></td>
+			</tr>
+			<tr>
+				<td>Provide 5 different ways to gracefully ACCEPT an opportunity for [insert topic] while expressing appreciation.</td>
+				<td><a href="#" class="search-link" data-search-term="email">email</a></td>
+			</tr>
+			<tr>
+				<td>Provide 5 different ways to gracefully DECLINE an opportunity for [insert topic] while expressing appreciation.</td>
+				<td><a href="#" class="search-link" data-search-term="email">email</a></td>
+			</tr>
+			<tr>
+				<td>Assist me in creating a 10-slide engaging and informative presentation on [insert topic] with slide abstracts.</td>
+				<td><a href="#" class="search-link" data-search-term="powerpoint">powerpoint</a></td>
+			</tr>			
+			<tr>
+				<td>Provide a step-by-step guide on [insert topic]</td>
+				<td><a href="#" class="search-link" data-search-term="help">help</a><td>
+			</tr>
+			<tr>
+				<td>Use [ <span class="help" title="Conversational tone is friendly, informal, and resembles everyday spoken language. It’s suitable for casual interactions and discussions">Conversational</span> | <span class="help" title="Lighthearted tone adds a touch of humor, playfulness, and positivity to the content. It’s engaging and cheerful">Lighthearted</span> | <span class="help" title="Persuasive tone aims to convince or influence the reader. It uses compelling language to present arguments and opinions">Persuasive</span> | <span class="help" title=" Spartan tone is minimalist and to the point. It avoids unnecessary details and focuses on essential information">Spartan</span> |  <span class="help" title="Formal tone is professional, structured, and often used in academic or business contexts. It maintains a serious and respectful tone">Formal</span> | <span class="help" title="Firm tone is assertive and direct. It’s used when a clear and authoritative message needs to be conveyed">Firm</span> ] tone</td>
+				<td><a href="#" class="search-link" data-search-term="tones">tones</a> <td><a href="#" class="search-link" data-search-term="arrange">arrange</a></td>
+			</tr>
+		</tbody>
+	</table>
+
+	<div id="footer">
+		<p class="has-text-centered">
+			<span>2023 - EME</span><br />
+			<span><a target="ext" href="https://github.com/montaneva/promptsLib/blob/main/prompTable.html" title="" >Collaborate on editing this file on GitHub</a></span>
+		</p>
+	</div><!-- /footer-->		
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/jquery.dataTables.min.js"></script>				
+
+<script>
+  $(document).ready(function() {
+    // Add click event listeners to all <td> elements
+    const tdElements = document.querySelectorAll('td');
+    tdElements.forEach(td => {
+      td.addEventListener('click', selectTextInTD);
+    });
+
+    // DataTable plugin
+    var table = $('#datatbl').DataTable({
+      "responsive": false,
+      "lengthMenu": [[15, 30, -1], [15, 30, "Tot"]],
+      "bJQueryUI": false,
+      "bLengthChange": true,
+      "bInfo": true,
+      "bPaginate": true,
+      "bFilter": true,
+      "order": [[1, "asc"]],
+    });
+
+    $('input').focus();
+
+    // Function to select text within a <td> element when clicked
+    function selectTextInTD(event) {
+      const tdElement = event.target.closest('td'); // Find the closest <td> element
+      if (tdElement) {
+        const selection = window.getSelection();
+        const range = document.createRange();
+
+        // Set the range to select the text within the <td> element
+        range.selectNodeContents(tdElement);
+        selection.removeAllRanges();
+        selection.addRange(range);
+      }
+    }
+
+    // Add a click event handler to the search links
+    $(document).on('click', '.search-link', function(e) {
+      e.preventDefault();
+      var searchTerm = $(this).data('search-term');
+
+      // Set the search term and trigger the search
+      table.search(searchTerm).draw();
+    });
+  });
+</script>
+
+
+</body>
+</html>
