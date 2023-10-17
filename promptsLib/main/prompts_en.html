@@ -13,6 +13,7 @@
 
 	<style>
 		body {padding:1%}
+		h1 {margin:5px auto 15px}
 		table {padding-top:20px;width:100% !important}
 		tr:nth-child(odd) {background: #f9f9f9 !important}
 		thead tr:first-child {background: #fff !important}
@@ -24,10 +25,11 @@
 		.help:hover {cursor: help}
 			
 		@media only screen and (max-width:560px) {
+			input {width:80%;}	
 			tr:nth-child(even) {background: #ffffef !important}
 			td:nth-child(2) {visibility:hidden ;width:10%; max-width:10%;}
 			td a:nth-child(2), td a:nth-child(3) {display:none}		
-			td a {visibility:visible}
+			td a{visibility:visible}
 		}				
 	</style>
 
@@ -117,13 +119,22 @@
 				<td><a href="#" class="search-link" data-search-term="extract">extract</a></td>
 			</tr>
 			<tr>
-				<td>Provide 5 different ways to gracefully [ accept | decline ] an opportunity for [insert topic] while expressing appreciation.</td>
+				<td>Provide 5 different ways to gracefully [ ACCEPT | DECLINE ] an opportunity for [insert topic] while expressing appreciation.</td>
 				<td><a href="#" class="search-link" data-search-term="response">response</a>, <a href="#" class="search-link" data-search-term="email">email</a></td>
 			</tr>		
 			<tr>
 				<td>Provide a step-by-step guide on [insert topic]</td>
 				<td><a href="#" class="search-link" data-search-term="help">help</a></td>
-			</tr>			
+			</tr>	
+
+			<tr>
+				<td>Generate a [ EXCEL | GOOGLE SHEETS ] formula that [describe requirements]</td>
+				<td><a href="#" class="search-link" data-search-term="xls">XLS</a></td>
+			</tr>
+			<tr>
+				<td>Format the following raw data into a nice table :</td>
+				<td><a href="#" class="search-link" data-search-term="tables">tables</a></td>
+			</tr>				
 			<tr>
 				<td>Use [ <span class="help" title="Conversational tone is friendly, informal, and resembles everyday spoken language. It’s suitable for casual interactions and discussions">Conversational</span> | <span class="help" title="Lighthearted tone adds a touch of humor, playfulness, and positivity to the content. It’s engaging and cheerful">Lighthearted</span> | <span class="help" title="Persuasive tone aims to convince or influence the reader. It uses compelling language to present arguments and opinions">Persuasive</span> | <span class="help" title=" Spartan tone is minimalist and to the point. It avoids unnecessary details and focuses on essential information">Spartan</span> |  <span class="help" title="Formal tone is professional, structured, and often used in academic or business contexts. It maintains a serious and respectful tone">Formal</span> | <span class="help" title="Firm tone is assertive and direct. It’s used when a clear and authoritative message needs to be conveyed">Firm</span> ] tone</td>
 				<td><a href="#" class="search-link" data-search-term="tones">tones</a> <td><a href="#" class="search-link" data-search-term="arrange">arrange</a></td>
@@ -151,7 +162,7 @@
 
     // DataTable plugin
     var table = $('#datatbl').DataTable({
-      "responsive": false,
+      "responsive": true,
       "lengthMenu": [[15, 30, -1], [15, 30, "all"]],
       "bJQueryUI": false,
       "bLengthChange": true,
