@@ -28,7 +28,7 @@
 		thead tr:first-child {background: #fff !important}
 		td:nth-child(2) {max-width:15%}
 		#footer {border-top:1px dotted #999; padding-top:6px;margin:20px auto}
-		.help {display:inline; border-bottom:1px dotted black;font-size:100%;text-transform:uppercase}
+		.help {display:inline; border-bottom:1px dotted black; text-transform:uppercase}
 		.help:hover {cursor: help}
 			
 		@media only screen and (max-width:560px) {
@@ -45,8 +45,9 @@
 <body>
 
 	<ul class="left">
-		<li><a href="https://chat.openai.com/" target="ext" rel="external" title="open ChatGPT in a new browser window" >ChatGPT</a> &nbsp; | &nbsp; </li>
-		<li><a href="https://www.bing.com/search?q=Bing+AI&showconv=1&FORM=hpcodx&setlang=en" target="ext" rel="external" title="open Bing AI in a new browser window"  >Bing</a></li>		
+		<li><a href="https://chat.openai.com/" target="model" rel="external" title="open ChatGPT in a new browser window" >ChatGPT</a> &nbsp; | &nbsp; </li>
+		<li><a href="https://www.bing.com/search?q=Bing+AI&showconv=1&FORM=hpcodx&setlang=en" target="model" rel="external" title="open Bing AI in a new browser window"  >Bing</a></li>		
+		<li><a href="https://markmap.js.org/repl" target="mark" rel="external" title="Visualize your Markdown with mindmaps in a new browser window" >markmap</a></li>		
 	</ul>	
 	<ul class="right">
 		<li><a href="prompts_en.html" title="English version" >English</a></li>
@@ -83,7 +84,7 @@
 				<td><a href="#" class="search-link" data-search-term="optimize">optimize</a></td>		
 			</tr>			
 			<tr>
-				<td>Synthesized this information in a well-structured Markdown mindmap enclosed in a code block to improve both readability and compatibility with Markdown viewer applications.</td>
+				<td>Synthesized the information provided below in a well-structured Markdown mindmap enclosed in a code block to improve both readability and compatibility with Markdown viewer applications.</td>
 				<td><a href="#" class="search-link" data-search-term="mindmap">mindmap</a></td>		
 			</tr>			
 			<tr>
@@ -107,12 +108,12 @@
 				<td><a href="#" class="search-link" data-search-term="explain">explain</a></td>
 			</tr>
 			<tr>
-				<td>Generate a comprehensive mind map outlining key concepts, ideas, and connections related to [insert topic].</td>
-				<td><a href="#" class="search-link" data-search-term="mindmap">mindmap</a></td>
+				<td>Generate a comprehensive mind map outlining key concepts related to [insert topic]. Synthesized this information in a textual representation, for example a well-structured Markdown mindmap enclosed in a code block.</td>
+				<td><a href="#" class="search-link" data-search-term="mindmap">mindmap</a>, <a href="#" class="search-link" data-search-term="markdown">markdown</a></td>
 			</tr>
 			<tr>
 				<td>Construct a mind map to analyze and solve a specific problem or challenge related to [insert problem description].</td>
-				<td><a href="#" class="search-link" data-search-term="mindmap">mindmap</a></td>
+				<td><a href="#" class="search-link" data-search-term="mindmap">mindmap</a>, <a href="#" class="search-link" data-search-term="markdown">markdown</a></td>
 			</tr>
 			<tr>
 				<td>Conduct a pros and cons analysis of [insert topic], highlighting the advantages and disadvantages associated with it.</td>
@@ -123,7 +124,7 @@
 				<td><a href="#" class="search-link" data-search-term="assess">assess</a></td>
 			</tr>
 			<tr>
-				<td>Provide 5 relevant ChatGPT prompt examples for establishing a repository of commonly recurring requests, with the aim of streamlining prompt formulation efficiency in the domain of [insert topic].</td>
+				<td>Provide 5 relevant ChatGPT prompts intended to create a repository of frequently recurring requests, in order to optimize the efficiency of prompt formulation within the domain of [insert topic].</td>
 				<td><a href="#" class="search-link" data-search-term="prompts">prompts</a></td>
 			</tr>
 			<tr>
@@ -137,8 +138,7 @@
 			<tr>
 				<td>Provide a comprehensive step-by-step guide on [insert topic]</td>
 				<td><a href="#" class="search-link" data-search-term="help">help</a></td>
-		</tr>	
-
+			</tr>	
 			<tr>
 				<td>Generate a [ EXCEL | GOOGLE SHEETS ] formula that [describe requirements]</td>
 				<td><a href="#" class="search-link" data-search-term="xls">XLS</a></td>
