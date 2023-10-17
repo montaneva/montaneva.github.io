@@ -12,16 +12,23 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/css/jquery.dataTables.min.css">
 
 	<style>
-		body{padding:1%}
-		table{padding-top:20px;width:100% !important}
+		body {padding:1%}
+		table {padding-top:20px;width:100% !important}
 		tr:nth-child(odd) {background: #f9f9f9 !important}
-		tr:nth-child(even), thead tr:first-child {background: #fff!important}
-		td:last-child, .search-link {text-transform: capitalize; display:inline;}
+		thead tr:first-child {background: #fff !important}
+		td:nth-child(2) {max-width:15%}
 		#footer {font-size:90%; margin:30px auto 0;border-top:1px dotted #444}
-		input{width:450px; padding:2px 5px; margin-right:30px; font-size:105%;color:steelblue}
-		select{width:60px; height:2.5em}
+		input {width:450px; padding:2px 5px; margin-right:30px; font-size:105%;color:steelblue}
+		select {width:60px; height:2.5em}
 		.help {display:inline; border-bottom:1px dotted black}
-		.help:hover {cursor: help;}
+		.help:hover {cursor: help}
+			
+		@media only screen and (max-width:560px) {
+			tr:nth-child(even) {background: #ffffef !important}
+			td:nth-child(2) {visibility:hidden ;width:10%; max-width:10%;}
+			td a:nth-child(2), td a:nth-child(3) {display:none}		
+			td a{visibility:visible}
+		}				
 	</style>
 
 </head>
