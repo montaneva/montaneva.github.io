@@ -31,7 +31,8 @@
 		.help {display:inline; border-bottom:1px dotted black; text-transform:uppercase}
 		.help:hover {cursor: help}
 			
-		body {margin:0;padding:0 2px}		
+		@media only screen and (max-width:560px) {
+			body {margin:0;padding:0 2px}		
 			td {max-width:25%}
 			table * {font-size:90%}
 			#datatbl_filter{line-height:2em}
