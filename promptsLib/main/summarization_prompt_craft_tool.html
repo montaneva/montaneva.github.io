@@ -60,7 +60,7 @@
     var wordsCountMin = $('#wordsCountMin').val();
     
     // Generate the prompt with a range of words
-    var prompt = `Condense my ${wordsCount}-word article introduction into a succinct summary of ${wordsCountMin}-${wordsCountExpected} words. Emphasize essential insights for maximum impact, crafting an independent version devoid of direct references to the original. Prioritize precision and effectiveness by focusing on key points. Include the word count at the conclusion of the summary :\n"${originalText}"`;
+    var prompt = `Condense my ${wordsCount}-word text into a succinct summary of ${wordsCountMin}-${wordsCountExpected} words. Emphasize essential insights for maximum impact, crafting an independent version devoid of direct references to the original. Prioritize precision and effectiveness by focusing on key points. Include the word count at the conclusion of the summary :\n"${originalText}"`;
 
     // Display word count
     $('#wordsCount').text(wordsCount);
