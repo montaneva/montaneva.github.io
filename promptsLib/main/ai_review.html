@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="robots" content="none">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <title>Artificially Intelligent Reviewer</title>
+  <style>
+	h1 {font-size: 130%; margin: 20px auto; color:salmon}
+	textarea { white-space:pre; width: 100%; height: 40px; margin:10px auto}
+    footer { position: absolute; bottom: 0; width: 100%; background-color: #f8f9fa; text-align: center; padding: 10px; }
+  </style> 
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Smooth Review</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" target="bing" href="https://www.bing.com/search?q=Bing+AI&showconv=1&FORM=hpcodx">Bing AI</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" target="detector" href="https://gptzero.me/">AI Detector</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" target="prompts" href="https://montaneva.github.io/promptsLib/main/prompts_en.html">Prompt Library</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <h1 class="text-center">Artificially Intelligent Reviewer</h1>
+
+  <!-- Textarea -->
+  <div class="container mt-4">
+    <textarea id="myTextarea" class="form-control" rows="6">
+
+I want you to act as a skilled article reviewer and perform a 'Basic Review' on my upcoming prompts. Your focus should be on refining auxiliary verbs, adjusting personal pronouns, and enhancing the use of basic English prepositions. You are not required to conduct an in-depth review of the vocubalary or the existing syntax of the phrases. Your task includes to maintain the human-like quality of the text and minimize the risk that it may be tagged as AI-generated content.
+
+Strict adherence to the  following guidelines is mandatory:
+
+a) If it significantly enhances the sentence's clarity, you are allowed and welcome to:
+ - Correct misuse of personal pronouns or prepositions of time.
+ - Eliminate unnecessary words up to three word within a phrase.
+ - Replace a specific word with a closely related synonym.
+ - Rearrange the order of words within a phrase.
+ - Modify the punctuation.
+
+b) You are strictly prohibited from:
+ - paraphrasing the text.
+ - altering any included quotes and citations.
+ - making substantial changes to the employed tenses, such as transposing past phrases into the present tense.
+
+c) Requiered presentation of your response:
+ - Maintain the formatting of the original text, including line breaks and indentation.
+ - Also very important: highlight the changes made, including punctuation, by using bold text.
+
+Do you fully understand the expected task and the specified guidelines?
+
+	</textarea>
+  </div>
+
+  <!-- Copy to Clipboard Button -->
+  <div class="container mt-2">
+    <button id="copyButton" class="btn btn-primary">Copy to Clipboard</button>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2023 <a href="https://github.com/montaneva" target="github" title="Eva Montané on GitHub" >@montaneva</a></p>
+  </footer>
+  
+  <!-- jQuery and Bootstrap JS scripts -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <!-- Clipboard Copy Script -->
+  <script>
+    $(document).ready(function(){
+      $("#copyButton").click(function(){
+        var textarea = document.getElementById("myTextarea");
+        textarea.select();
+        document.execCommand("copy");
+        alert("Text copied to clipboard!");
+      });
+    });
+  </script>
+
+</body>
+</html>
