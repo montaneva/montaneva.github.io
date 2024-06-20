@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robot" content="noindex">
+    <meta name="author" content="Dra. Eva Montané">
+    <meta name="generator" content="ChatGPT">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statistics Calculator</title>
+    <meta name="description" content="Statistical Analysis Tool for comprehensive data insights. Calculate mean, median, mode, standard deviation, variance, quartiles, and more." />
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body>
+
+    <a href="./index.html" class="fixed-top-left mt-3 ml-3">Index</a>
+	
+    <div class="row justify-content-center">
+
+        <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-4">
+            <h4 class="text-center mt-3 mb-4">Statistics Calculator</h4>
+
+			<form id="statsForm" class="row justify-content-center">
+				<label for="data">
+					Enter dataset (',' or ';' separated) values (e.g. : <span>18, 12, 34, 78, 74, 12</span> )
+				</label><br>
+				<textarea id="data" name="data" rows="4" cols="60"></textarea>
+				
+                <div class="text-center mt-3 mb-2">
+					<button type="button" class="btn btn-primary" onclick="calculateStats()">Get Stats</button> &nbsp;
+					<button type="reset" class="btn btn-light">Reset</button>
+				</div>
+			</form>
+
+			<div id="results" style="display:none;">
+				<table class="table">
+					<thead style="display:none">
+						<tr>
+							<th>Statistic</th>
+							<th>Value</th>
+						</tr>
+					</thead>
+					<tbody id="resultsBody">
+						<!-- Results will be inserted here -->
+					</tbody>
+				</table>
+			</div>
+
+            <div id="guidelines">
+                <div>
+                    <div id="headingOne" class="text-center mt-3 mb-1">
+                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            Guidelines
+                        </button>
+                    </div>
+
+                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#guidelines">
+                        <div class="card-body">
+                            <ul id="guidelinesList" style="font-size:85%; padding:0">
+								<li><strong>Mean</strong>: The average of all data points.</li>
+								<li><strong>Median</strong>: The middle value when data points are sorted in ascending order.</li>
+								<li><strong>Mode</strong>: The most frequently occurring value in the dataset.</li>
+								<li><strong>Standard deviation</strong>: A measure of the amount of variation or dispersion in the data.</li>
+								<li><strong>95% Confidence Interval</strong>: The range within which the true mean is expected to lie with 95% confidence, calculated using the t-distribution.</li>
+								<li><strong>Min</strong>: The smallest value in the dataset.</li>
+								<li><strong>Max</strong>: The largest value in the dataset.</li>
+								<li><strong>Range (Min-Max)</strong>: The difference between the maximum and minimum values.</li>
+								<li><strong>Q1 (First Quartile)</strong>: The value below which 25% of the data fall.</li>
+								<li><strong>Q2 (Median)</strong>: The value below which 50% of the data fall.</li>
+								<li><strong>Q3 (Third Quartile)</strong>: The value below which 75% of the data fall.</li>
+								<li><strong>IQR (Interquartile Range)</strong>: The difference between the third quartile (Q3) and the first quartile (Q1).</li>
+								<li><strong>Count</strong>: The total number of data points.</li>
+								<li><strong>Sum</strong>: The total sum of all data points.</li>
+								<li><strong>Variance</strong>: The average of the squared differences from the mean.</li>
+								<li><strong>Standard error</strong>: An estimate of the standard deviation of the sample mean.</li>
+								<li><strong>Skewness</strong>: A measure of the asymmetry of the data distribution.</li>
+								<li><strong>Kurtosis</strong>: A measure of the "tailedness" of the data distribution.</li>
+								<li><strong>Coefficient of variation (%)</strong>: The ratio of the standard deviation to the mean, expressed as a percentage.</li>
+								<li><strong>Distribution</strong>: A summary of the frequency of each unique value in the dataset.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+			<hr />
+			
+            <div id="footer">
+                <p class="text-center">
+                    2023 - <a href="https://es.linkedin.com/in/montaneva" target="ext" rel="external" title="open in a new browser window">Eva Montané</a><br />
+                    <a target="ext" href="https://github.com/montaneva/promptsLib/blob/main/prompTable.html" title="">Collaborate on editing this file on GitHub</a>
+                </p>        
+            </div>
+        </div>
+    </div>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    function quartile(data, percentile) {
+        data.sort((a, b) => a - b);
+        const index = (data.length - 1) * percentile;
+        const lower = Math.floor(index);
+        const upper = lower + 1;
+        const weight = index % 1;
+
+        if (upper >= data.length) return data[lower];
+        return data[lower] * (1 - weight) + data[upper] * weight;
+    }
+
+    function formatNumber(num) {
+        return Number.isInteger(num) ? num.toString() : num.toFixed(2);
+    }
+
+    function calculateStats() {
+        const dataInput = document.getElementById('data').value;
+        const data = dataInput.split(/[,;]/).map(Number).filter(n => !isNaN(n));
+
+        if (data.length < 2) {
+            alert('Invalid data: Data should be an array with at least two numeric elements.');
+            return;
+        }
+
+        data.sort((a, b) => a - b);
+        const count = data.length;
+        const sum = data.reduce((acc, val) => acc + val, 0);
+        const mean = sum / count;
+        const stdDev = Math.sqrt(data.reduce((acc, val) => acc + (val - mean) ** 2, 0) / (count - 1));
+        const variance = stdDev ** 2;
+        const sem = stdDev / Math.sqrt(count);
+
+        // Calculate critical t-value and confidence interval
+        const df = count - 1; // degrees of freedom
+        const confidenceLevel = 0.95; // 95% confidence level
+        const tCritical = studentTCriticalValue(df, confidenceLevel);
+        const marginOfError = tCritical * sem;
+        const lowerBound = mean - marginOfError;
+        const upperBound = mean + marginOfError;
+
+        const q1 = quartile(data, 0.25);
+        const q2 = quartile(data, 0.50);
+        const q3 = quartile(data, 0.75);
+
+        const min = Math.min(...data);
+        const max = Math.max(...data);
+        const range = max - min;
+        const iqr = q3 - q1;
+
+        const dataDistrib = {};
+        data.forEach(num => dataDistrib[num] = (dataDistrib[num] || 0) + 1);
+        const maxOccurrence = Math.max(...Object.values(dataDistrib));
+        const modes = Object.keys(dataDistrib).filter(key => dataDistrib[key] === maxOccurrence);
+        const mode = modes.length === 1 ? modes[0] : 'Undefined';
+
+        const skewness = data.reduce((acc, val) => acc + ((val - mean) / stdDev) ** 3, 0) / count;
+        const kurtosis = data.reduce((acc, val) => acc + ((val - mean) / stdDev) ** 4, 0) / count - 3;
+        const cv = (stdDev / mean) * 100;
+
+        const distribution = Object.entries(dataDistrib).map(([value, count]) => `${value} (${count})`).join(' - ');
+
+        const statistics = {
+            'Mean': mean,
+            'Median': q2,
+            'Mode': mode,
+            'Standard deviation': stdDev,
+            '95% Confidence Interval': `${formatNumber(lowerBound)} - ${formatNumber(upperBound)}`,
+            'Min.': min,
+            'Max.': max,
+            'Range (Min-Max)': range,
+            'Q1': q1,
+            'Q2 (Median)': q2,
+            'Q3': q3,
+            'IQR (Q3-Q1)': iqr,
+            'Count': count,
+            'Sum': sum,
+            'Variance': variance,
+            'Standard error': sem,
+            'Skewness': skewness,
+            'Kurtosis': kurtosis,
+            'Coefficient of variation (%)': cv,
+            'Distribution': distribution,
+        };
+
+        const resultsBody = document.getElementById('resultsBody');
+        resultsBody.innerHTML = '';
+        for (const [stat, value] of Object.entries(statistics)) {
+            const row = document.createElement('tr');
+            const statCell = document.createElement('td');
+            const valueCell = document.createElement('td');
+            statCell.textContent = stat;
+            valueCell.textContent = (typeof value === 'number') ? formatNumber(value) : value;
+            row.appendChild(statCell);
+            row.appendChild(valueCell);
+            resultsBody.appendChild(row);
+        }
+
+        document.getElementById('results').style.display = 'block';
+    }
+
+    // Function to calculate the critical t-value using T-distribution
+    function studentTCriticalValue(df, confidenceLevel) {
+        // Critical t-value lookup from t-distribution table or function (e.g., t-distribution function)
+        // For simplicity, using a fixed critical value for df = 18 and confidence level = 95%
+        // You can replace this with a more precise calculation or a lookup function
+        return 2.101; // For df = 18 and confidence level = 95%
+    }
+
+    // Add event listener for accordion functionality
+    document.addEventListener('click', function(event) {
+        const target = event.target;
+        if (target.matches('[data-toggle="collapse"]')) {
+            const collapseId = target.getAttribute('data-target');
+            const collapseElement = document.querySelector(collapseId);
+            const isExpanded = collapseElement.classList.contains('show');
+
+            // Close all other open accordions
+            const accordionGroup = collapseElement.closest('.accordion');
+            const openAccordions = accordionGroup.querySelectorAll('.collapse.show');
+            openAccordions.forEach(acc => {
+                if (acc !== collapseElement) {
+                    acc.classList.remove('show');
+                }
+            });
+
+            // Toggle current accordion
+            if (isExpanded) {
+                collapseElement.classList.remove('show');
+            } else {
+                collapseElement.classList.add('show');
+            }
+        }
+    });
+</script>
+
+</body>
+
+</html>
+

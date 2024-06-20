@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robot" content="noindex">
+    <meta name="author" content="Dra. Eva Montané">
+    <meta name="generator" content="ChatGPT">
+    <meta name="robot" content="noindex">
+    <meta name="description" content="Odds Ratios calculator">
+    <title>Odds Ratio Calculator</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body>
+
+    <a href="./index.html" class="fixed-top-left mt-3 ml-3">Index</a>
+
+    <div class="row justify-content-center">
+        <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-4">
+    <h4 class="text-center mt-3 mb-4">Odds Ratio Calculator</h4>
+    
+    <form id="oddsForm">
+        <div class="form-group">
+            <label for="a">Sample A (<span class="text-danger">Exposed</span> & <span class="text-danger">Event):</label>
+            <input type="number" class="form-control" id="a" min="0" required>
+        </div>
+        <div class="form-group">
+            <label for="b">Sample B (<span class="text-danger">Exposed</span> & <span class="text-success">No Event</span>):</label>
+            <input type="number" class="form-control" id="b" min="0" required>
+        </div>
+        <div class="form-group">
+            <label for="c">Sample C (<span class="text-success">Not Exposed</span> & <span class="text-danger">Event</span>):</label>
+            <input type="number" class="form-control" id="c" min="0" required>
+        </div>
+        <div class="form-group">
+            <label for="d">Sample D (<span class="text-success">Not Exposed</span> & <span class="text-success">No Event</span>):</label>
+            <input type="number" class="form-control" id="d" min="0" required>
+        </div>
+		
+        <div class="text-center mb-4 mt-4">
+			<button type="button" class="btn btn-primary" onclick="calculateOddsRatio()">Calculate</button>
+			<button type="reset" class="btn btn-light" onclick="resetForm()">Reset</button>
+        </div>
+    </form>
+
+    <div id="results" style="display: none;">
+
+        <table class="table table-bordered text-center mb-5">
+            <thead>
+                <tr>
+                    <th style="background:limegreen; color:white"><big>OR: <span id="oddsRatio"></span></big></th>
+                    <th>Exposed</th>
+                    <th>Not Exposed</th>
+                </tr>
+            </thead>
+            <tbody id="resultsTableBody">
+                <tr id="rowEvent">
+                    <th>Event</th>
+                    <td id="cellA"></td>
+                    <td id="cellC"></td>
+                </tr>
+                <tr id="rowNoEvent">
+                    <th>No Event</th>
+                    <td id="cellB"></td>
+                    <td id="cellD"></td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+            <div id="guidelines">
+                <div>
+                    <div id="headingOne" class="text-center mb-2">
+                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            About Odds Ratio
+                        </button>
+                    </div>
+    
+                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#guidelines">
+                        <div class="card-body">
+							<ul id="guidelinesList" style="font-size: 85%; padding: 0;">
+								<li><strong>Interpretation:</strong> The odds ratio (OR) measures the strength of association between exposure and outcome. An OR > 1 suggests higher odds of the event in the exposed group compared to the unexposed.</li>
+								<li><strong>Calculation:</strong> OR = (A * D) / (B * C), where A = exposed & event, B = exposed & no event, C = not exposed & event, D = not exposed & no event.</li>
+								<li><strong>Significance:</strong> An OR significantly different from 1 indicates a statistically significant association between exposure and outcome.</li>
+								<li><strong>Limitations:</strong> OR can overestimate effect size in case-control studies and should be used cautiously in cross-sectional studies.</li>
+								<li><strong>Usage:</strong> Useful in epidemiology and medical research to understand the impact of risk factors on disease occurrence.</li>
+							</ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <hr />
+            
+            <div id="footer">
+                <p class="text-center">
+                    2023 - <a href="https://es.linkedin.com/in/montaneva" target="ext" rel="external" title="open in a new browser window">Eva Montané</a><br />
+                    <a target="ext" href="https://github.com/montaneva/promptsLib/blob/main/prompTable.html" title="">Collaborate on editing this file on GitHub</a>
+                </p>        
+            </div>
+        </div>
+    </div>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<!-- Additional Javascript -->
+<script>
+    function calculateOddsRatio() {
+        const a = parseInt(document.getElementById('a').value);
+        const b = parseInt(document.getElementById('b').value);
+        const c = parseInt(document.getElementById('c').value);
+        const d = parseInt(document.getElementById('d').value);
+
+        // Validate input
+        if (isNaN(a) || isNaN(b) || isNaN(c) || isNaN(d) || a < 0 || b < 0 || c < 0 || d < 0) {
+            alert('Please enter valid non-negative numbers for all samples.');
+            return;
+        }
+
+        // Calculate odds ratio
+        const oddsRatio = (a * d) / (b * c);
+        document.getElementById('oddsRatio').innerText = oddsRatio.toFixed(2);
+
+        // Update results table
+        document.getElementById('cellA').innerText = a;
+        document.getElementById('cellB').innerText = b;
+        document.getElementById('cellC').innerText = c;
+        document.getElementById('cellD').innerText = d;
+
+        document.getElementById('rowEvent').style.display = (a > 0 || c > 0) ? '' : 'none';
+        document.getElementById('rowNoEvent').style.display = (b > 0 || d > 0) ? '' : 'none';
+
+        document.getElementById('results').style.display = 'block';
+    }
+
+    function resetForm() {
+        document.getElementById('results').style.display = 'none';
+    }
+</script>
+
+</body>
+
+</html>

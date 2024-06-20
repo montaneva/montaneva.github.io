@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robot" content="noindex">
+    <meta name="author" content="Dra. Eva Montané">
+    <meta name="generator" content="ChatGPT">
+    <meta name="description" content="Calculate proportions in percentages.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proportion Calculator</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <a href="./index.html" class="fixed-top-left mt-3 ml-3">Index</a>
+	
+    <div class="row justify-content-center">
+        <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-4">
+            <h4 class="text-center mt-3">Proportion Calculator</h4>
+            <h6 class="text-center mb-5">Calculate Proportions in Percentages</h6>
+
+            <form id="proportionForm" class="mb-4">
+                <div class="form-group">
+                    <label for="population"><b>Base</b> (n)</label>
+                    <input type="number" id="population" name="population" class="form-control" required max="999999999999">
+                </div>
+
+                <div class="form-group">
+                    <label for="samples1">Value #1</label>
+                    <input type="number" id="samples1" name="samples1" class="form-control" required max="999999999999">
+                </div>
+                
+                <div class="form-group">
+                    <label for="samples2">Value #2</label>
+                    <input type="number" id="samples2" name="samples2" class="form-control" value="0" max="999999999999" onclick="clearDefaultValue(this)">
+                </div>
+                
+                <div class="form-group">
+                    <label for="samples3">Value #3</label>
+                    <input type="number" id="samples3" name="samples3" class="form-control" value="0" max="999999999999" onclick="clearDefaultValue(this)">
+                </div>
+                
+                <div class="form-group">
+                    <label for="samples4">Value #4</label>
+                    <input type="number" id="samples4" name="samples4" class="form-control" value="0" max="999999999999" onclick="clearDefaultValue(this)">
+                </div>
+                
+                <div class="form-group">
+                    <label for="samples5">Value #5</label>
+                    <input type="number" id="samples5" name="samples5" class="form-control" value="0" max="999999999999" onclick="clearDefaultValue(this)">
+                </div>
+                
+                <div class="text-center mb-5">
+                    <button type="button" class="btn btn-primary" onclick="calculateProportions()">Get results</button> &nbsp;
+                    <button type="reset" class="btn btn-light">Reset</button>
+                </div>
+            </form>
+
+            <div id="results"></div>
+   
+            <hr />
+            
+            <div id="footer">
+                <p class="text-center">
+                    2023 - <a href="https://es.linkedin.com/in/montaneva" target="ext" rel="external" title="open in a new browser window">Eva Montané</a><br />
+                    <a target="ext" href="https://github.com/montaneva/promptsLib/blob/main/prompTable.html" title="">Collaborate on editing this file on GitHub</a>
+                </p>        
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function clearDefaultValue(input) {
+            if (input.value === "0") {
+                input.value = "";
+            }
+        }
+
+        function calculateProportions() {
+            const population = parseInt(document.getElementById('population').value);
+            const samples = [
+                parseInt(document.getElementById('samples1').value),
+                parseInt(document.getElementById('samples2').value),
+                parseInt(document.getElementById('samples3').value),
+                parseInt(document.getElementById('samples4').value),
+                parseInt(document.getElementById('samples5').value)
+            ];
+
+            if (population > 0 && Math.min(...samples) >= 0 && Math.max(...samples) <= population) {
+                let resultsHtml = `<h4 class='mb-4 text-center'>Base: ${population}</h4>`;
+                resultsHtml += `<table class='table table-bordered text-center'><thead class='thead-dark'><tr><th>Sample</th><th>Proportion (%)</th></tr></thead><tbody>`;
+                
+                samples.forEach((sample, index) => {
+                    if (sample > 0) { // Only include rows with non-zero samples
+                        const proportion = (sample / population) * 100;
+                        resultsHtml += `<tr><td>${sample}</td><td>${proportion.toFixed(2)}</td></tr>`;
+                    }
+                });
+
+                resultsHtml += `</tbody></table><div class="text-center mb-4"><button type="button" class="btn btn-primary mt-1" onclick="resetForm()">New Calc</button></div>`;
+                document.getElementById('results').innerHTML = resultsHtml;
+            } else {
+                document.getElementById('results').innerHTML = "<p class='text-danger'>Invalid input. Please make sure the number of samples is between 0 and the Base, and the population is greater than 0.</p>";
+            }
+        }
+
+        function resetForm() {
+            document.getElementById('proportionForm').reset();
+            document.getElementById('results').innerHTML = '';
+        }
+    </script>
+	
+</body>
+
+</html>

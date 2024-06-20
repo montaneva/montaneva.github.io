@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robot" content="noindex">
+    <meta name="author" content="Dra. Eva Montané">
+    <meta name="generator" content="ChatGPT">
+    <meta name="description" content="Calculate 95% confidence intervals for sample data using the Wilson score interval method.">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>95% Confidence Interval Calculator</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body>
+
+    <a href="./index.html" class="fixed-top-left mt-3 ml-3">Index</a>
+	
+    <div class="row justify-content-center">
+        <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-4">
+            <h4 class="text-center mt-3">95% Confidence Interval Calculator</h4>
+            <h6 class="text-center mb-3">Wilson Score Interval Method</h6>
+
+            <form id="ciForm" class="mb-4">
+                <div class="form-group">
+                    <label for="population"><b>Total Population</b></label>
+                    <input type="number" id="population" name="population" class="form-control" required max="999999999999">
+                </div>
+
+                <div class="form-group">
+                    <label for="samples1">Sample #1</label>
+                    <input type="number" id="samples1" name="samples1" class="form-control" required max="999999999999">
+                </div>
+                
+                <div class="form-group">
+                    <label for="samples2">Sample #2</label>
+                    <input type="number" id="samples2" name="samples2" class="form-control" value="0" max="999999999999" onclick="clearDefaultValue(this)">
+                </div>
+                
+                <div class="form-group">
+                    <label for="samples3">Sample #3</label>
+                    <input type="number" id="samples3" name="samples3" class="form-control" value="0" max="999999999999" onclick="clearDefaultValue(this)">
+                </div>
+                
+                <div class="form-group">
+                    <label for="samples4">Sample #4</label>
+                    <input type="number" id="samples4" name="samples4" class="form-control" value="0" max="999999999999" onclick="clearDefaultValue(this)">
+                </div>
+                
+                <div class="form-group">
+                    <label for="samples5">Sample #5</label>
+                    <input type="number" id="samples5" name="samples5" class="form-control" value="0" max="999999999999" onclick="clearDefaultValue(this)">
+                </div>
+                
+                <div class="text-center mb-3">
+                    <button type="button" class="btn btn-primary" onclick="calculateCI()">Get 95% CI</button> &nbsp;
+                    <button type="reset" class="btn btn-light">Reset</button>
+                </div>
+            </form>
+
+            <div id="results"></div>
+            
+            <div id="guidelines">
+                <div>
+                    <div id="headingOne" class="text-center mb-2">
+                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            About the Wilson score interval
+                        </button>
+                    </div>
+
+                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#guidelines">
+                        <div class="card-body">
+                            <p id="guidelinesList">
+                                <a href="https://en.wikipedia.org/wiki/Binomial_proportion_confidence_interval#Wilson_score_interval" target="_blank" rel="external">The Wilson score interval</a> is a method used to calculate confidence intervals for proportions, particularly in cases where the sample size is small or the proportion is close to 0 or 1.
+                                It provides a more accurate estimate than methods like the normal approximation interval when dealing with such cases.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+   
+			<hr />
+			
+            <div id="footer">
+                <p class="text-center">
+                    2023 - <a href="https://es.linkedin.com/in/montaneva" target="ext" rel="external" title="open in a new browser window">Eva Montané</a><br />
+                    <a target="ext" href="https://github.com/montaneva/promptsLib/blob/main/prompTable.html" title="">Collaborate on editing this file on GitHub</a>
+                </p>        
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function clearDefaultValue(input) {
+            if (input.value === "0") {
+                input.value = "";
+            }
+        }
+
+        function calculateCI() {
+            const z = 1.96; // 1.96 for 95% confidence level
+            const population = parseInt(document.getElementById('population').value);
+            const samples = [
+                parseInt(document.getElementById('samples1').value),
+                parseInt(document.getElementById('samples2').value),
+                parseInt(document.getElementById('samples3').value),
+                parseInt(document.getElementById('samples4').value),
+                parseInt(document.getElementById('samples5').value)
+            ];
+
+            if (population > 0 && Math.min(...samples) >= 0 && Math.max(...samples) <= population) {
+                let resultsHtml = `<h4 class='mb-4 text-center'>Total Population: ${population}</h4>`;
+                resultsHtml += `<table class='table table-bordered text-center'><thead class='thead-dark'><tr><th>Sample</th><th>Prevalence (%)</th><th>95% CI (%)</th></tr></thead><tbody>`;
+                
+                samples.forEach(sample => {
+                    if (sample > 0) { // Only include rows with non-zero samples
+                        const prevalence = (sample / population) * 100;
+                        const p = sample / population;
+                        const n = population;
+
+                        const center = (p + (z * z) / (2 * n)) / (1 + (z * z) / n);
+                        const margin = z * Math.sqrt((p * (1 - p) + (z * z) / (4 * n)) / n) / (1 + (z * z) / n);
+
+                        const ci_lower_percent = (center - margin) * 100;
+                        const ci_upper_percent = (center + margin) * 100;
+
+                        resultsHtml += `<tr><td>${sample}</td><td>${prevalence.toFixed(2)}</td><td>(${ci_lower_percent.toFixed(2)} - ${ci_upper_percent.toFixed(2)})</td></tr>`;
+                    }
+                });
+
+                resultsHtml += `</tbody></table><div class="text-center mb-4"><button type="button" class="btn btn-primary mt-1" onclick="resetForm()">New Calc</button></div>`;
+                document.getElementById('results').innerHTML = resultsHtml;
+            } else {
+                document.getElementById('results').innerHTML = "<p class='text-danger'>Invalid input. Please make sure the number of samples is between 0 and the total population, and the population is greater than 0.</p>";
+            }
+        }
+
+        function resetForm() {
+            document.getElementById('ciForm').reset();
+            document.getElementById('results').innerHTML = '';
+        }
+    </script>
+
+</body>
+
+</html>
