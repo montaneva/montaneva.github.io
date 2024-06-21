@@ -16,12 +16,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <html lang="en">
     <meta charset="UTF-8">
     <meta name="robot" content="noindex">
+    <title>Odds Ratio Calculator</title>
+	<meta name="description" content="Calculate Odds Ratios with 95% confidence intervals and Chi-Square method P-value.">
     <meta name="author" content="Dra. Eva Montané">
     <meta name="generator" content="Code generated using OpenAI's ChatGPT">
-    <meta name="description" content="Odds Ratios calculator">
-    <title>Odds Ratio Calculator</title>
+
     <!-- Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jstat/1.9.3/jstat.min.js"></script>
+	<style>
+	table * {border-color:#fff !important; padding:0px}
+	tbody * {border-color:#aaa !important; line-height:1em}
+	th {border-bottom:1px solid #aaa !important; font-weight:normal;}
+	tfoot {border-color:#aaa !important; line-height:0.8em; font-size:110%}
+	</style>
 </head>
 <body>
     <a href="./index.html" class="fixed-top-left mt-3 ml-3">Index</a>
@@ -54,7 +62,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 <table class="table table-bordered text-center mb-4">
                     <thead>
                         <tr>
-                            <th style="background:limegreen; color:white"><big>OR: <span id="oddsRatio"></span></big></th>
+                            <th></th>
                             <th>Exposed</th>
                             <th>Not Exposed</th>
                         </tr>
@@ -62,45 +70,59 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                     <tbody id="resultsTableBody">
                         <tr id="rowEvent">
                             <th>Event</th>
-                            <td id="cellA"></td>
+                            <td id="cellA" style="color:red"></td>
                             <td id="cellC"></td>
                         </tr>
                         <tr id="rowNoEvent">
                             <th>No Event</th>
                             <td id="cellB"></td>
-                            <td id="cellD"></td>
+                            <td id="cellD" style="color:limegreen"></td>
                         </tr>
                     </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="3"><br /><strong>Odds ratio: <span id="oddsRatio"></span><strong></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">95% Confidence Interval: <span id="confidenceInterval"></span></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">P-value: <span id="pValue"></span></td>
+                        </tr>
+                    </tfoot>
                 </table>
                 <div class="text-center">
-                    <p><strong>95% Confidence Interval: <span id="confidenceInterval"></span></strong></p>
+                    
                 </div>
             </div>
-            <div id="guidelines">
-                <div>
-                    <div id="headingOne" class="text-center mb-2">
-                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                            About Odds Ratio
-                        </button>
-                    </div>
-                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#guidelines">
-                        <div class="card-body">
-                            <ul id="guidelinesList" style="font-size: 85%; padding: 0;">
-                                <li><strong>Interpretation:</strong> The odds ratio (OR) measures the strength of association between exposure and outcome. An OR > 1 suggests higher odds of the event in the exposed group compared to the unexposed.</li>
-                                <li><strong>Calculation:</strong> OR = (A * D) / (B * C), where A = exposed & event, B = exposed & no event, C = not exposed & event, D = not exposed & no event.</li>
-                                <li><strong>Significance:</strong> An OR significantly different from 1 indicates a statistically significant association between exposure and outcome.</li>
-                                <li><strong>Limitations:</strong> OR can overestimate effect size in case-control studies and should be used cautiously in cross-sectional studies.</li>
-                                <li><strong>Usage:</strong> Useful in epidemiology and medical research to understand the impact of risk factors on disease occurrence.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+			<div id="guidelines">
+				<div>
+					<div id="headingOne" class="text-center mb-2">
+						<button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+							Guidelines
+						</button>
+					</div>
+					<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#guidelines">
+						<div class="card-body">
+							<ul id="guidelinesList" style="font-size: 85%; padding: 0;">
+								<li><strong>Usage:</strong> Useful in epidemiology and medical research to understand the impact of risk factors on disease occurrence.</li>
+								<li><strong>Interpretation:</strong> The odds ratio (OR) measures the strength of association between exposure and outcome. An OR > 1 suggests higher odds of the event in the exposed group compared to the unexposed.</li>
+								<li><strong>Calculation:</strong> OR = (A * D) / (B * C), where A = exposed & event, B = exposed & no event, C = not exposed & event, D = not exposed & no event.</li>
+								<li><strong>Significance:</strong> An OR significantly different from 1 indicates a statistically significant association between exposure and outcome.</li>
+								<li><strong>Limitations:</strong> OR can overestimate effect size in case-control studies and should be used cautiously in cross-sectional studies.</li>
+								<li><strong>Confidence Interval:</strong> The 95% confidence interval provides a range of values within which we can be 95% confident that the true odds ratio lies, reflecting the precision of our estimate.</li>
+								<li><strong>P-value (Chi-Square Method):</strong> The P-value assesses the statistical significance of the odds ratio. It is calculated using Chi-Square's method based on the observed and expected frequencies of the exposure and outcome categories.</li>
+						</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+
             <hr />
             <div id="footer">
                 <p class="text-center">
-                    2024 - <a href="https://es.linkedin.com/in/montaneva" target="ext" rel="external" title="open in a new browser window">Eva Montané</a><br />
-                    <a target="ext" href="https://github.com/montaneva/BasicStatPack" title="">Collaborate on editing this tool on GitHub</a>
+                    2024 - <a href="https://es.linkedin.com/in/montaneva" target="ext" rel="external" title="open in a new browser window">@montaneva</a><br />
                 </p>
             </div>
         </div>
@@ -111,46 +133,48 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <!-- Additional Javascript -->
     <script>
-        function calculateOddsRatio() {
-            const a = parseInt(document.getElementById('a').value);
-            const b = parseInt(document.getElementById('b').value);
-            const c = parseInt(document.getElementById('c').value);
-            const d = parseInt(document.getElementById('d').value);
+function calculateOddsRatio() {
+    const a = parseInt(document.getElementById('a').value);
+    const b = parseInt(document.getElementById('b').value);
+    const c = parseInt(document.getElementById('c').value);
+    const d = parseInt(document.getElementById('d').value);
+    console.log(`Values: a=${a}, b=${b}, c=${c}, d=${d}`);
 
-            // Validate input
-            if (isNaN(a) || isNaN(b) || isNaN(c) || isNaN(d) || a < 0 || b < 0 || c < 0 || d < 0) {
-                alert('Please enter valid non-negative numbers for all samples.');
-                return;
-            }
+    // Validate input
+    if (isNaN(a) || isNaN(b) || isNaN(c) || isNaN(d) || a < 0 || b < 0 || c < 0 || d < 0) {
+        alert('Please enter valid non-negative numbers for all samples.');
+        return;
+    }
 
-            // Calculate odds ratio
-            const oddsRatio = (a * d) / (b * c);
-            document.getElementById('oddsRatio').innerText = oddsRatio.toFixed(2);
+    // Calculate odds ratio
+    const oddsRatio = (a * d) / (b * c);
+    document.getElementById('oddsRatio').innerText = oddsRatio.toFixed(2);
 
-            // Calculate the confidence interval
-            const lnOR = Math.log(oddsRatio);
-            const SE_lnOR = Math.sqrt((1 / a) + (1 / b) + (1 / c) + (1 / d));
-            const z = 1.96; // for 95% confidence interval
-            const CI_lower = Math.exp(lnOR - z * SE_lnOR);
-            const CI_upper = Math.exp(lnOR + z * SE_lnOR);
-            const confidenceInterval = `(${CI_lower.toFixed(2)}, ${CI_upper.toFixed(2)})`;
-            document.getElementById('confidenceInterval').innerText = confidenceInterval;
+    // Calculate the confidence interval
+    const lnOR = Math.log(oddsRatio);
+    const SE_lnOR = Math.sqrt((1 / a) + (1 / b) + (1 / c) + (1 / d));
+    const z = 1.96; // for 95% confidence interval
+    const CI_lower = Math.exp(lnOR - z * SE_lnOR);
+    const CI_upper = Math.exp(lnOR + z * SE_lnOR);
+    const confidenceInterval = `(${CI_lower.toFixed(2)} - ${CI_upper.toFixed(2)})`;
+    document.getElementById('confidenceInterval').innerText = confidenceInterval;
 
-            // Update results table
-            document.getElementById('cellA').innerText = a;
-            document.getElementById('cellB').innerText = b;
-            document.getElementById('cellC').innerText = c;
-            document.getElementById('cellD').innerText = d;
+    // Calculate the p-value
+    const chiSquare = Math.pow(a*d - b*c, 2) * (a + b + c + d) / ((a + b) * (c + d) * (a + c) * (b + d));
+    const pValue = 1 - jStat.chisquare.cdf(chiSquare, 1); // 1 degree of freedom
+    document.getElementById('pValue').innerText = pValue.toFixed(4);
 
-            document.getElementById('rowEvent').style.display = (a > 0 || c > 0) ? '' : 'none';
-            document.getElementById('rowNoEvent').style.display = (b > 0 || d > 0) ? '' : 'none';
+    // Update results table
+    document.getElementById('cellA').innerText = a;
+    document.getElementById('cellB').innerText = b;
+    document.getElementById('cellC').innerText = c;
+    document.getElementById('cellD').innerText = d;
 
-            document.getElementById('results').style.display = 'block';
-        }
+    document.getElementById('rowEvent').style.display = (a > 0 || c > 0) ? '' : 'none';
+    document.getElementById('rowNoEvent').style.display = (b > 0 || d > 0) ? '' : 'none';
 
-        function resetForm() {
-            document.getElementById('results').style.display = 'none';
-        }
+    document.getElementById('results').style.display = 'block';
+}
     </script>
 </body>
 </html>
