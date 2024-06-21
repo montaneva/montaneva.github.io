@@ -50,7 +50,7 @@ A valid html template could be:
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 	
 	<!-- Additionnal styling rules --> 
-	  <style>
+    <style>
     </style>
 	
  </head>
@@ -60,7 +60,7 @@ A valid html template could be:
             <h4 class="text-center mt-3 mb-3"><!-- Title --></h4>
 
             <form id="calcForm" class="mb-4">
-			        <!-- The main form goes here-->
+		 <!-- The main form goes here-->
             </form>
 
             <div id="results"></div>
@@ -83,7 +83,7 @@ A valid html template could be:
                 </div>
             </div>
 
-			<hr />
+            <hr />
 			
             <div id="footer">
                 <p class="text-center">
