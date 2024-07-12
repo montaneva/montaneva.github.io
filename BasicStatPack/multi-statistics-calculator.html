@@ -20,46 +20,66 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <meta name="author" content="Dra. Eva Montané">
     <meta name="generator" content="ChatGPT">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statistics Calc</title>
+    <meta name="description" content="Statistical Analysis Tool for comprehensive data insights. Calculate mean, median, mode, standard deviation, variance, quartiles, and more." />
+    <!-- Bootstrap CSS -->
     <title>Statistics Calculator</title>
     <meta name="description" content="Statistical Analysis Tool for comprehensive data insights. Calculate mean, median, mode, standard deviation, variance, quartiles, and more." />
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
+    <style>
+        body {
+            margin: 20px;
+        }
+        #results {
+            display: none;
+            width: 530px; /* Adjust width as needed */
+            max-width: 100%;
+            margin-left: 90px; /* Adjust margin for centering */
+        }
+		
+		.card-body {
+		     margin-left: 100px; /* Adjust margin for centering */
+        }
+		
+    </style>
+	
 </head>
 <body>
 
     <a href="./index.html" class="fixed-top-left mt-3 ml-3">Index</a>
-	
+    
     <div class="row justify-content-center">
 
         <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-4">
             <h4 class="text-center mt-3 mb-4">Statistics Calculator</h4>
 
-			<form id="statsForm" style="width:75%; margin:auto; white-space: nowrap;">
-				<label for="data" >
-					Enter dataset (',' or ';' separated) values. &nbsp;<span style="color:coral">(e.g. : 18, 12, 34, 78, 34 )</span>
-				</label><br>
-				<textarea id="data" name="data" rows="4" cols="60"></textarea>
+            <form id="statsForm" style="width:75%; margin:auto; white-space: nowrap;">
+                <label for="data" >
+                    Enter dataset (',' or ';' separated) values. &nbsp;<span style="color:coral">(e.g. : 18, 12, 34, 78, 34 )</span>
+                </label><br>
+                <textarea id="data" name="data" rows="4" cols="60"></textarea>
 
-				<div class="text-center mt-3 mb-2">			
-					<button type="button" class="btn btn-primary" onclick="calculateStats()">Get Stats</button> &nbsp;
-					<button type="reset" class="btn btn-light">Reset</button>
-				</div>
-			</form>
+                <div class="text-center mt-3 mb-2">            
+                    <button type="button" class="btn btn-primary" onclick="calculateStats()">Get Stats</button> &nbsp;
+                    <button type="reset" class="btn btn-light">Reset</button>
+                </div>
+            </form>
 
-			<div id="results" style="display:none;">
-				<table class="table">
-					<thead style="display:none">
-						<tr>
-							<th>Statistic</th>
-							<th>Value</th>
-						</tr>
-					</thead>
-					<tbody id="resultsBody">
-						<!-- Results will be inserted here -->
-					</tbody>
-				</table>
-			</div>
+            <div id="results" class="table-responsive" style="display:none;">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Statistic</th>
+                            <th>Value</th>
+                        </tr>
+                    </thead>
+                    <tbody id="resultsBody">
+                        <!-- Results will be inserted here -->
+                    </tbody>
+                </table>
+            </div>
 
             <div id="guidelines">
                 <div>
@@ -72,34 +92,34 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                     <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#guidelines">
                         <div class="card-body">
                             <ul id="guidelinesList" style="font-size:85%; padding:0">
-								<li><strong>Mean</strong>: The average of all data points.</li>
-								<li><strong>Median</strong>: The middle value when data points are sorted in ascending order.</li>
-								<li><strong>Mode</strong>: The most frequently occurring value in the dataset.</li>
-								<li><strong>Standard deviation</strong>: A measure of the amount of variation or dispersion in the data.</li>
-								<li><strong>95% Confidence Interval</strong>: The range within which the true mean is expected to lie with 95% confidence, calculated using the t-distribution.</li>
-								<li><strong>Min</strong>: The smallest value in the dataset.</li>
-								<li><strong>Max</strong>: The largest value in the dataset.</li>
-								<li><strong>Range (Min-Max)</strong>: The difference between the maximum and minimum values.</li>
-								<li><strong>Q1 (First Quartile)</strong>: The value below which 25% of the data fall.</li>
-								<li><strong>Q2 (Median)</strong>: The value below which 50% of the data fall.</li>
-								<li><strong>Q3 (Third Quartile)</strong>: The value below which 75% of the data fall.</li>
-								<li><strong>IQR (Interquartile Range)</strong>: The difference between the third quartile (Q3) and the first quartile (Q1).</li>
-								<li><strong>Count</strong>: The total number of data points.</li>
-								<li><strong>Sum</strong>: The total sum of all data points.</li>
-								<li><strong>Variance</strong>: The average of the squared differences from the mean.</li>
-								<li><strong>Standard error</strong>: An estimate of the standard deviation of the sample mean.</li>
-								<li><strong>Skewness</strong>: A measure of the asymmetry of the data distribution.</li>
-								<li><strong>Kurtosis</strong>: A measure of the "tailedness" of the data distribution.</li>
-								<li><strong>Coefficient of variation (%)</strong>: The ratio of the standard deviation to the mean, expressed as a percentage.</li>
-								<li><strong>Distribution</strong>: A summary of the frequency of each unique value in the dataset.</li>
+                                <li><strong>Mean</strong>: The average of all data points.</li>
+                                <li><strong>Median</strong>: The middle value when data points are sorted in ascending order.</li>
+                                <li><strong>Mode</strong>: The most frequently occurring value in the dataset.</li>
+                                <li><strong>Standard deviation</strong>: A measure of the amount of variation or dispersion in the data.</li>
+                                <li><strong>95% Confidence Interval</strong>: The range within which the true mean is expected to lie with 95% confidence, calculated using the t-distribution.</li>
+                                <li><strong>Min</strong>: The smallest value in the dataset.</li>
+                                <li><strong>Max</strong>: The largest value in the dataset.</li>
+                                <li><strong>Range (Min-Max)</strong>: The difference between the maximum and minimum values.</li>
+                                <li><strong>Q1 (First Quartile)</strong>: The value below which 25% of the data fall.</li>
+                                <li><strong>Q2 (Median)</strong>: The value below which 50% of the data fall.</li>
+                                <li><strong>Q3 (Third Quartile)</strong>: The value below which 75% of the data fall.</li>
+                                <li><strong>IQR (Interquartile Range)</strong>: The difference between the third quartile (Q3) and the first quartile (Q1).</li>
+                                <li><strong>Count</strong>: The total number of data points.</li>
+                                <li><strong>Sum</strong>: The total sum of all data points.</li>
+                                <li><strong>Variance</strong>: The average of the squared differences from the mean.</li>
+                                <li><strong>Standard error</strong>: An estimate of the standard deviation of the sample mean.</li>
+                                <li><strong>Skewness</strong>: A measure of the asymmetry of the data distribution.</li>
+                                <li><strong>Kurtosis</strong>: A measure of the "tailedness" of the data distribution.</li>
+                                <li><strong>Coefficient of variation (%)</strong>: The ratio of the standard deviation to the mean, expressed as a percentage.</li>
+                                <li><strong>Distribution</strong>: A summary of the frequency of each unique value in the dataset.</li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
 
-			<hr />
-			
+            <hr />
+            
             <div id="footer">
                 <p class="text-center">
                     2024 - <a href="https://es.linkedin.com/in/montaneva" target="ext" rel="external" title="open in a new browser window">@montaneva</a><br />
@@ -128,14 +148,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         return Number.isInteger(num) ? num.toString() : num.toFixed(2);
     }
 
+    function validateData(data) {
+        if (!data || data.length < 2 || data.some(isNaN)) {
+            alert('Invalid data: Data should be an array with at least two numeric elements.');
+            return false;
+        }
+        return true;
+    }
+
     function calculateStats() {
         const dataInput = document.getElementById('data').value;
         const data = dataInput.split(/[,;]/).map(Number).filter(n => !isNaN(n));
-
-        if (data.length < 2) {
-            alert('Invalid data: Data should be an array with at least two numeric elements.');
-            return;
-        }
+        
+        if (!validateData(data)) return;
 
         data.sort((a, b) => a - b);
         const count = data.length;
