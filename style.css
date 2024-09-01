@@ -385,7 +385,7 @@ a.scrollup{background:#35A49C}
 }
 
 @media (max-width: 600px) {
-	#contactDetails {padding-left:60px}
+	#contactDetails {padding-left:50px}
 	.detailsImg {display:none}
 	.nophone {display:none}
 }	
