@@ -321,7 +321,7 @@ Media queries
 
  /* iPad mini P->768px  L->1024px */
 @media (max-width:768px){
-h6 {margin-top:50px}
+h6 {margin-top:40px}
 .notablet {display:none}
 }
     
