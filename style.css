@@ -25,7 +25,7 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{font-family:'Lato',sa
 h1, h3, h4, h5, h6{color:#222}
 h1, h2, h3, h4, h5, h6{font-style:normal; margin:0 0 20px 0}
 h1{font-size:40px; line-height:30px}
-h2{font-size:30px; color:#70B9B0}
+h2{font-size:30px; color:#70B9B0} /* 35a49c */
 h3{font-size:24px}
 h4{font-size:18px}
 h5{font-size:16px}
@@ -321,12 +321,14 @@ Media queries
 
  /* iPad mini P->768px  L->1024px */
 @media (max-width:768px){
-h6 {margin-top:40px}
-.notablet {display:none}
+h6 {margin-top:15px; font-size:105%}
+
+.navbar .navbar-collapse ul.nav {
+	border-bottom:1px solid #aaa;
+	position:absolute;
+	right:0;
 }
-    
-@media (max-width:640px){
-h6 {font-size:105%}
+	
 }
 
 /* iPhone 5S, 6SE P->320px  L->568px */
