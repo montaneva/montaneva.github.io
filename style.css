@@ -29,6 +29,7 @@ h2{font-size:30px; color:#70B9B0}
 h3{font-size:24px}
 h4{font-size:18px}
 h5{font-size:16px}
+h6{font-size:130%; font-weight:bold; color:#fff} 
 .txt-light{font-weight:300}
 .txt-regular{font-weight:400}
 .txt-bold{font-weight:700}
@@ -320,11 +321,12 @@ Media queries
 
  /* iPad mini P->768px  L->1024px */
 @media (max-width:768px){
+h6 {margin-top:50px}
 .notablet {display:none}
 }
     
 @media (max-width:640px){
-
+h6 {font-size:105%}
 }
 
 /* iPhone 5S, 6SE P->320px  L->568px */
@@ -385,7 +387,7 @@ a.scrollup{background:#35A49C}
 }
 
 @media (max-width: 600px) {
-	#contactDetails {padding-left:50px}
+	#contactDetails {padding-left:50px;margin-top:-20px}
 	.detailsImg {display:none}
 	.nophone {display:none}
 }	
