@@ -301,6 +301,7 @@ Media queries
 }
 
 @media (max-width: 767px) {
+	h1 {padding-left:10px}
 	.navbar.navbar-fixed-top {
 		background-color:rgba(0,0,0,1);
 	}
