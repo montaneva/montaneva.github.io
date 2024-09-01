@@ -35,8 +35,7 @@
 					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 						<span class="fa fa-bars color-white"></span>
 					</button>
-					<h1> <a class="navbar-brand" href="#start" data-0="line-height:90px;" data-300="line-height:50px;">
-					Eva Montané, MD, PhD</a></h1>
+					<h1> <a class="navbar-brand" href="#start" data-0="line-height:90px;" data-300="line-height:50px;"> Eva Montané, MD, PhD</a></h1>
 				</div>
 				<div class="navbar-collapse collapse">
 					<ul class="nav navbar-nav" data-0="margin-top:20px;" data-300="margin-top:5px;">
@@ -351,91 +350,89 @@
 	<a href="#header" class="scrollup"><i class="fa fa-chevron-up"></i></a>	
 	
 	<script src="https://use.fontawesome.com/3ae8bbd92e.js"></script>
-	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/skrollr/0.6.30/skrollr.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script> <!-- original 2.6.2 -->
+	<script
+		src="https://code.jquery.com/jquery-1.12.4.min.js"
+		integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+		crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/skrollr/0.6.30/skrollr.min.js"></script>		
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-scrollTo/2.1.2/jquery.scrollTo.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-localScroll/1.4.0/jquery.localScroll.min.js"></script>
-
-
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/stellar.js/0.6.2/jquery.stellar.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.appear/0.3.3/jquery.appear.min.js"></script>
    
-	<script>
-	(function ($) {
-		// Cache frequently accessed elements
-		var $window = $(window),
-			$scrollup = $('.scrollup'),
-			$navbar = $('.navbar'),
-			$appear = $('.appear'),
-			$parallax1 = $('#parallax1'),
-			$parallax2 = $('#parallax2'),
-			$testimonials = $('#testimonials');
+   <script>   
+   (function ($) {
 
-		// Scroll-to-top button
-		$window.on('scroll', function () {
-			if ($window.scrollTop() > 100) {
-				$scrollup.fadeIn();
+	$(window).scroll(function(){
+		if ($(this).scrollTop() > 100) {
+			$('.scrollup').fadeIn();
 			} else {
-				$scrollup.fadeOut();
+				$('.scrollup').fadeOut();
 			}
 		});
-
-		$scrollup.on('click', function () {
+		$('.scrollup').click(function(){
 			$("html, body").animate({ scrollTop: 0 }, 1000);
-			return false;
+				return false;
 		});
+	
+	// local scroll
+	jQuery('.navbar').localScroll({hash:true, offset: {top: 0},duration: 800, easing:'easeInOutExpo'});
 
-		// Local scroll for navbar
-		$navbar.localScroll({
-			hash: true,
-			offset: { top: 0 },
-			duration: 800,
-			easing: 'easeInOutExpo'
-		});
 
-		// Apply skrollr only on non-mobile devices
-		if (!Modernizr.mq("screen and (max-width: 1024px)")) {
-			skrollr.init({
-				mobileDeceleration: 1,
-				edgeStrategy: 'set',
-				forceHeight: true,
-				smoothScrolling: true,
-				smoothScrollingDuration: 300,
+	if (Modernizr.mq("screen and (max-width:1024px)")) {
+			jQuery("body").toggleClass("body");
+			
+	} else {
+		var s = skrollr.init({
+			mobileDeceleration: 1,
+			edgeStrategy: 'set',
+			forceHeight: true,
+			smoothScrolling: true,
+			smoothScrollingDuration: 300,
 				easing: {
 					WTF: Math.random,
-					inverted: function (p) {
-						return 1 - p;
+					inverted: function(p) {
+						return 1-p;
 					}
 				}
-			});
-		} else {
-			$("body").toggleClass("body");
-		}
+			});	
+	}
 
-		// Scroll menu appearance and activation
-		$appear.appear();
-		$appear.on("appear", function () {
+	//scroll menu
+	jQuery('.appear').appear();
+	jQuery(".appear").on("appear", function(data) {
 			var id = $(this).attr("id");
-			$('.nav li').removeClass('active');
-			$(".nav a[href='#" + id + "']").parent().addClass("active");
+			jQuery('.nav li').removeClass('active');
+			jQuery(".nav a[href='#" + id + "']").parent().addClass("active");					
 		});
 
-		// Parallax effect
-		var isMobile = Modernizr.mq('only all and (max-width: 1024px)');
-		if (!isMobile && ($parallax1.length || $parallax2.length || $testimonials.length)) {
-			$window.stellar({
-				responsive: true,
-				scrollProperty: 'scroll',
-				parallaxElements: false,
-				horizontalScrolling: false,
-				horizontalOffset: 0,
-				verticalOffset: 0
-			});
-		}
 
-	})(jQuery);
-	</script>
+		//parallax
+        var isMobile = false;
+
+        if (Modernizr.mq('only all and (max-width: 1024px)')) {
+            isMobile = true;
+        }
+
+        if (isMobile == false && ($('#parallax1').length || isMobile == false && $('#parallax2').length || isMobile == false && $('#testimonials').length)) {
+
+            $(window).stellar({
+                responsive: true,
+                scrollProperty: 'scroll',
+                parallaxElements: false,
+                horizontalScrolling: false,
+                horizontalOffset: 0,
+                verticalOffset: 0
+            });
+
+        }
+   
+
+})(jQuery);  
+   </script>
     
 </body>
 </html>
