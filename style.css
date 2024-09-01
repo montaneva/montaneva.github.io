@@ -257,6 +257,7 @@ a.scrollup:hover{opacity:1; color:#fff}
 .social-network a.icoRss:hover{background-color:#F56505}
 .social-network a.icoFacebook:hover{background-color:#3B5998}
 .social-network a.icoTwitter:hover{background-color:#3cf}
+.social-network a.icoGitHub:hover{background-color:#333}
 .social-network a.icoGoogle:hover{background-color:#BD3518}
 .social-network a.icoVimeo:hover{background-color:#0590B8}
 .social-network a.icoLinkedin:hover{background-color:#007bb7}
@@ -368,4 +369,24 @@ a img:hover  {opacity:1}
 /* footer */
 .social-circle li a{background:#35A49C}
 a.scrollup{background:#35A49C}
+
+
+/* Contact details */
+.detailsImg {float:left; height:203px; padding:0 25px 0 50px}
+@media (max-width: 1200px) {
+	.detailsImg {height:195px; padding:0 15px 0 0;}
+	.notablet {display:none}
+}	
+@media (max-width: 979px) {
+	.detailsImg {height:203px; padding:0 25px 0 150px}
+}
+@media (max-width: 768px) {
+	.detailsImg {padding:0 20px 0 90px}
+}
+
+@media (max-width: 600px) {
+	#contactDetails {padding-left:120px}
+	.detailsImg {display:none}
+	.nophone {display:none}
+}	
 
