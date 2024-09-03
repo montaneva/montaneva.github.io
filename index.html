@@ -78,6 +78,9 @@
 						<a class="nav-link" href="#research">RESEARCH</a>
 					</li>
 					<li class="nav-item">
+						<a class="nav-link" href="#awards">AWARDS</a>
+					</li>
+					<li class="nav-item">
 						<a class="nav-link" href="#contact">CONTACT <i class="fa-regular fa-envelope" style="color:#70B9B0"></i></a> 
 					</li>
 				</ul>
@@ -216,7 +219,7 @@
 
 
 	<!-- AWARD -->
-	<section class="py-5 text-center" style="background-color: #fff;">
+	<section id="awards"  class="py-5 text-center" style="background-color: #fff;">
 		<div class="container">
 			<div class="section-header mb-5">
 				<h2>Awards</h2>
@@ -276,13 +279,12 @@
 				
 				<div class="col-md-4 mb-3">
 					<p>
-						<span class="d-none d-md-inline"><br></span>Eva MONTANÉ i ESTEVA<br>
+						Eva MONTANÉ i ESTEVA<br>
 						Hospital Germans Trias i Pujol<br>
 						Servei de Farmacologia Clínica<br>
 						Ctra de Canyet s/n<br>
 						08916 Badalona <span class="d-none d-md-inline">(BARCELONA)</span> - SPAIN<br>
 						Phone: +34 93 497 88 65<br>
-						<span class="d-none d-sm-inline">Fax: +34 93 497 88 64<br></span>
 						<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#101;&#109;&#111;&#110;&#116;&#97;&#110;&#101;&#46;&#103;&#101;&#114;&#109;&#97;&#110;&#115;&#116;&#114;&#105;&#97;&#115;&#64;&#103;&#101;&#110;&#99;&#97;&#116;&#46;&#99;&#97;&#116;" title="Email address of Eva MONTANÉ" rel="external">
 							emontane.germanstrias&#64;gencat.cat
 						</a>
@@ -290,8 +292,8 @@
 				</div>
 				
 		
-				<div class="col-10 col-md-2">
-					<img class="img-fluid rounded" alt="Eva Montané" src="img/qr.png" />
+				<div class="col-md-3">
+					<img class="img-fluid rounded mb-4" alt="QR code to evamontane.com" src="img/qr.png" style="width:150px" />
 				</div>
 	
 			</div>
@@ -305,8 +307,8 @@
 
     <!-- Footer -->
     <footer class="text-light text-center py-4">
-        <p class="fs-6">&copy; www.evamontane.com</p>
-        <p class="fs-6">Last update: Sept 1, 2024</p>
+        <p class="fs-6">&copy; <a href="http://evamontane.com" class="me-4" rel="self" title="wwww.evamontane.com" style="color:#fff;text-decoration:none">evamontane.com</a></p>
+        <p class="fs-6">Last update: Sept 3, 2024</p>
     </footer>
 
     <button id="scrollTopBtn"><i class="fas fa-arrow-up"></i></button>
@@ -318,47 +320,57 @@
     <!-- Bootstrap JavaScript CDN -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js" integrity="sha512-ykZ1QQr0Jy/4ZkvKuqWn4iF3lqPZyij9iRv6sGqLRdTPkY69YX6+7wvVGmsdBbiIfN/8OdsI7HABjvEok6ZopQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
  
-	<!-- JavaScript for smooth scrolling functionality -->
-	<script>
-	
-		$(document).ready(function () {
+	<!-- JavaScript for smooth scrolling functionality --><script>
+  $(function () {
 
-			const $scrollTopBtn = $('#scrollTopBtn');
-			const $window = $(window);
+    const $scrollTopBtn = $('#scrollTopBtn');
+    const $window = $(window);
+    const $navbarToggler = $('.navbar-toggler');
+    const SCROLL_THRESHOLD = 1000;
+    let isScrolling;
 
-			// Show/Hide the Scroll to Top button
-			$window.scroll(function () {
-				if ($(this).scrollTop() > 1000) {
-					$scrollTopBtn.fadeIn();
-				} else {
-					$scrollTopBtn.fadeOut();
-				}
-			});
+    // Show/Hide the Scroll to Top button
+    const toggleScrollTopBtn = () => {
+      $scrollTopBtn.toggle($window.scrollTop() > SCROLL_THRESHOLD);
+    };
 
-			// Scroll to top when button is clicked
-			$scrollTopBtn.on('click', function () {
-				$('html, body').animate({ scrollTop: 0 }, 1000);
-			});
+    // Debounced scroll event to improve performance
+    $window.on('scroll', function () {
+      clearTimeout(isScrolling);
+      isScrolling = setTimeout(toggleScrollTopBtn, 100);
+    });
 
-			// Smooth scroll for navigation links
-			$('nav a').on('click', function (event) {
-				// Check if the link has a hash (an anchor link)
-				if (this.hash !== "") {
-					event.preventDefault();
-					const hash = this.hash;
+    // Scroll to top when button is clicked
+    $scrollTopBtn.on('click', function () {
+      $('html, body').animate({ scrollTop: 0 }, 1000);
+    });
 
-					// Animate smooth scroll to the target section
-					$('html, body').animate({
-						scrollTop: $(hash).offset().top
-					}, 1000, function () {
-						// Optionally, add hash to the URL after scrolling
-						window.location.hash = hash;
-					});
-				}
-			});
-		});
-		
-	</script>
-	
+    // Smooth scroll for navigation links
+    $('nav').on('click', 'a', function (event) {
+      const hash = this.hash;
+      if (hash) {
+        event.preventDefault();
+        $('html, body').animate({
+          scrollTop: $(hash).offset().top
+        }, 1000, function () {
+          window.location.hash = hash;
+        });
+      }
+    });
+
+    // Collapses the menu when an anchor is clicked
+    $('.navbar-nav').on('click', '.nav-link', function () {
+      if ($navbarToggler.is(':visible')) {
+        $navbarToggler.click();
+      }
+    });
+
+    // Initial call to handle page load
+    toggleScrollTopBtn();
+
+  });
+</script>
+
+
 </body>
 </html>
