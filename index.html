@@ -320,57 +320,60 @@
     <!-- Bootstrap JavaScript CDN -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js" integrity="sha512-ykZ1QQr0Jy/4ZkvKuqWn4iF3lqPZyij9iRv6sGqLRdTPkY69YX6+7wvVGmsdBbiIfN/8OdsI7HABjvEok6ZopQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
  
-	<!-- JavaScript for smooth scrolling functionality --><script>
-  $(function () {
+	<!-- JavaScript for smooth scrolling functionality -->
+	
+	<script>
+	
+	  $(function () {
 
-    const $scrollTopBtn = $('#scrollTopBtn');
-    const $window = $(window);
-    const $navbarToggler = $('.navbar-toggler');
-    const SCROLL_THRESHOLD = 1000;
-    let isScrolling;
+		const $scrollTopBtn = $('#scrollTopBtn');
+		const $window = $(window);
+		const $navbarToggler = $('.navbar-toggler');
+		const SCROLL_THRESHOLD = 1000;
+		let isScrolling;
 
-    // Show/Hide the Scroll to Top button
-    const toggleScrollTopBtn = () => {
-      $scrollTopBtn.toggle($window.scrollTop() > SCROLL_THRESHOLD);
-    };
+		// Show/Hide the Scroll to Top button
+		const toggleScrollTopBtn = () => {
+		  $scrollTopBtn.toggle($window.scrollTop() > SCROLL_THRESHOLD);
+		};
 
-    // Debounced scroll event to improve performance
-    $window.on('scroll', function () {
-      clearTimeout(isScrolling);
-      isScrolling = setTimeout(toggleScrollTopBtn, 100);
-    });
+		// Debounced scroll event to improve performance
+		$window.on('scroll', function () {
+		  clearTimeout(isScrolling);
+		  isScrolling = setTimeout(toggleScrollTopBtn, 100);
+		});
 
-    // Scroll to top when button is clicked
-    $scrollTopBtn.on('click', function () {
-      $('html, body').animate({ scrollTop: 0 }, 1000);
-    });
+		// Scroll to top when button is clicked
+		$scrollTopBtn.on('click', function () {
+		  $('html, body').animate({ scrollTop: 0 }, 1000);
+		});
 
-    // Smooth scroll for navigation links
-    $('nav').on('click', 'a', function (event) {
-      const hash = this.hash;
-      if (hash) {
-        event.preventDefault();
-        $('html, body').animate({
-          scrollTop: $(hash).offset().top
-        }, 1000, function () {
-          window.location.hash = hash;
-        });
-      }
-    });
+		// Smooth scroll for navigation links
+		$('nav').on('click', 'a', function (event) {
+		  const hash = this.hash;
+		  if (hash) {
+			event.preventDefault();
+			$('html, body').animate({
+			  scrollTop: $(hash).offset().top
+			}, 1000, function () {
+			  window.location.hash = hash;
+			});
+		  }
+		});
 
-    // Collapses the menu when an anchor is clicked
-    $('.navbar-nav').on('click', '.nav-link', function () {
-      if ($navbarToggler.is(':visible')) {
-        $navbarToggler.click();
-      }
-    });
+		// Collapses the menu when an anchor is clicked
+		$('.navbar-nav').on('click', '.nav-link', function () {
+		  if ($navbarToggler.is(':visible')) {
+			$navbarToggler.click();
+		  }
+		});
 
-    // Initial call to handle page load
-    toggleScrollTopBtn();
+		// Initial call to handle page load
+		toggleScrollTopBtn();
 
-  });
-</script>
-
+	  });
+  
+	</script>
 
 </body>
 </html>
