@@ -9,7 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
     <link rel="canonical" href="https://montaneva.github.io/" />
-    <link rel="shortcut icon" sizes="24x24" type="image/png" href="img/favicon.png" />
+	<link rel="shortcut icon" type="image/png" sizes="24x24" href="imgs/eme/24x24.png" />
+	<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="imgs/eme/180x180.png" />
 
     <!-- Font Awesome 6 CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
@@ -22,34 +23,35 @@
 		 a{ color:#70B9B0}
 		 a:hover{ color:#4e817b}
 		 a i:hover{ opacity:0.8}
-		 h2{ color:#4e817b;  font-weight:bold;  font-size:200%}
-		 h5{ line-height:0.9em;  padding-bottom:10px}
+		 h2{ color:#4e817b; font-weight:bold; font-size:200%}
+		 h5{ line-height:0.9em}
 		 footer{ position:relative; background-color:#444}
 		 #cover h3, #cover p{ color:#fafafa}
 		 #interests p{ color:#999}
-		 #nav{ width:75%;  margin:10px auto}
-		 #profileImg{ margin-top:90px;  border-radius:50%}
+		 #nav{ width:75%; margin:10px auto}
+		 #profileImg{ margin-top:90px; border-radius:50%}
+		 #research{ background-color:#f9f9f9}
 		 #research figure{ margin:0}
 		 #research h5{ font-size:110%}
-		 #research img{height:150px; width:150px;  border-radius:50%}
-		 #research{ background-color:#f9f9f9}
+		 #research img{ border-radius:50%}
+		 #research img:hover{ opacity:0.8}
 		 #scrollTopBtn:hover{ background-color:#4e817b}
-		 #scrollTopBtn{ display:none;  position:fixed;  bottom:20px;  right:20px;  z-index:100;  font-size:18px;  background-color:#70B9B0;  color:white;  border:none;  padding:8px 15px;  border-radius:50%;  cursor:pointer}
+		 #scrollTopBtn{ display:none; position:fixed; bottom:20px; right:20px; z-index:100; font-size:18px; background-color:#70B9B0; color:white; border:none; padding:8px 15px; border-radius:50%; cursor:pointer}
 		 .navbar li a{ color:#fafafa}
-		 .navbar{ width:100%;  position:fixed !important;  background-color:#4e817b}
-		 .social-links a{ font-size:220%;  color:#444}
+		 .navbar{ width:100%; position:fixed !important; background-color:#4e817b}
+		 .social-links a{ font-size:220%; color:#444}
 		 .social-links{ margin-top:25px}
 
 		/* Media Queries for Smaller Screens */
 		 @media (max-width:768px){ 
-			#nav{ width:99%;  margin:auto}
+			#nav{ width:99%; margin:auto}
 			#profileImg{ margin-top:60px}
 			.mobileSmall {font-size:95%}
 			.navbar{ padding-bottom:0}
 			.navbar a{ padding-left:15px}
 			.navbar-toggler:hover{ background-color:#70B9B0}
-			.navbar div{ padding-right:0;  padding-left:0;  margin-bottom:0}
-			.navbar-collapse ul{ margin-top:15px;  border-top:1px solid #aaa}
+			.navbar div{ padding-right:0; padding-left:0; margin-bottom:0}
+			.navbar-collapse ul{ margin-top:15px; border-top:1px solid #aaa}
 			.navbar-collapse li{ background-color:#666; border-bottom:1px solid #aaa}
 			.navbar-nav li:hover{ background-color:#4e817b}
 
@@ -92,16 +94,16 @@
     <!-- Cover  -->
     <section id="cover" class="featured text-center py-5"  style="background-color: #70B9B0">
         <div class="container py-4">
-            <img id="profileImg" src="img/team/member3.jpg" alt="Profile Picture" class="rounded-circle img-fluid mb-4">
-            <h3>Clinical Pharmacologist</h3>
+            <img id="profileImg" src="imgs/eme/200x200.png" alt="Eva Montané" class="rounded-circle img-fluid mb-4">
+            <h3 class="my-1">Clinical Pharmacologist</h3>
             <p>Hospital Universitari Germans Trias i Pujol <span class="d-none d-sm-inline">(HUGTiP)</span></p>
-            <p class="fw-bold" style="line-height:0.1em">-</p>
-            <h3>Tenured Professor</h3>
+            <p class="fw-bold" style="line-height:0.5em"><span style="color:#4e817b">&</span></p>
+            <h3 class="my-1">Tenured Professor</h3>
             <p>Universitat Autònoma de Barcelona <span class="d-none d-sm-inline">(UAB)</span></p>
             <div class="social-links">
-                <a href="https://www.linkedin.com/in/montaneva/" class="me-4" target="external" title="@montaneva on LinkedIn" style="color:#0a66c2"><i class="fa-brands fa-linkedin"></i></a>
-                <a href="https://x.com/montaneva" class="me-4" target="external" title="@montaneva on X"><i class="fa-brands fa-square-x-twitter"></i></a>
-                <a href="https://github.com/montaneva?tab=repositories" class="me-4" target="external" title="@montaneva on GitHub"><i class="fa-brands fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/montaneva/" target="external" title="@montaneva on LinkedIn" style="color:#0a66c2"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="https://x.com/montaneva" class="mx-4" target="external" title="@montaneva on X"><i class="fa-brands fa-square-x-twitter"></i></a>
+                <a href="https://github.com/montaneva?tab=repositories" target="external" title="@montaneva on GitHub"><i class="fa-brands fa-github"></i></a>
             </div>
         </div>
     </section>
@@ -115,28 +117,28 @@
 			</div>
 			<div class="row">
 				<div class="col-lg-4 col-md-6 text-center mb-4">
-					<i class="fa fa-warning fa-5x mb-3" style="color:#70B9B0;"></i>
-					<h5>Pharmacovigilance<br>-<br>Pharmacoepidemiology</h5>
+					<i class="fa-solid fa-triangle-exclamation fa-5x mb-3" style="color:#70B9B0;"></i>
+					<h5 class="mb-3">Pharmacovigilance<br>-<br>Pharmacoepidemiology</h5>
 					<p>Drug-induced Death<br>Drug-induced Hepatitis<br>Severe Cutaneous ADRs</p>
 				</div>
 				<div class="col-lg-4 col-md-6 text-center mb-4">
 					<i class="fa-solid fa-pills fa-5x mb-3" style="color:#70B9B0;"></i>
-					<h5>Prescription<br>-<br>Deprescription</h5>
+					<h5 class="mb-3">Prescription<br>-<br>Deprescription</h5>
 					<p>Benefit-Risk Assessment<br>NNT / NNH Approach<br>Cost Effectiveness</p>
 				</div>
 				<div class="col-lg-4 col-md-6 text-center mb-4">
 					<i class="fa fa-university fa-5x mb-3" style="color:#70B9B0;"></i>
-					<h5>Academy<br>-<br>Teaching</h5>
+					<h5 class="mb-3">Academy<br>-<br>Teaching</h5>
 					<p>Associate Dean, UAB Student Exchange Program<br>Tenured Professor<br>Thesis/Master Supervision</p>
 				</div>
 				<div class="col-lg-4 col-md-6 text-center mb-4">
 					<i class="fa-solid fa-chart-simple fa-5x mb-3" style="color:#70B9B0;"></i>
-					<h5>Data Collection<br>-<br>Data Analysis<br></h5>
+					<h5 class="mb-3">Data Collection<br>-<br>Data Analysis<br></h5>
 					<p>Data Wrangling<br>Descriptive Statistics<br>SQL, SPSS, R, Python<br></p>
 				</div>
 				<div class="col-lg-4 col-md-6 text-center mb-4">
 					<i class="fa fa-cogs fa-5x mb-3" style="color:#70B9B0;"></i>
-					<h5>Prediction Models<br>-<br>Drug Safety AI</h5>
+					<h5 class="mb-3">Prediction Models<br>-<br>Drug Safety AI</h5>
 					<p>Hospital PV Automation<br>AI-Driven ADR Detection<br>
 						Member of <a href="https://www.evidencio.com/contributors" target="external"
 							rel="noopener">EVIDENCIO</a> Scientific <span class="d-none d-sm-inline">Advisory</span> Board
@@ -144,7 +146,7 @@
 				</div>
 				<div class="col-lg-4 col-md-6 text-center mb-4">
 					<i class="fa-brands fa-creative-commons fa-5x mb-3" style="color:#70B9B0;"></i>
-					<h5>Collaborative Science<br>-<br>Knowledge Sharing</h5>
+					<h5 class="mb-3">Collaborative Science<br>-<br>Knowledge Sharing</h5>
 					<p>Open Source Approach<br>Method & Tools Sharing<br>Open Repositories</p>
 				</div>
 			</div>
@@ -156,62 +158,62 @@
 	<section id="research" class="featured text-center py-5"> 
 		<div class="container">
 			<div class="section-header text-center mb-5">
-				<h2><span class="d-none d-sm-inline">Research & </span>Publications Hubs</h2>
+				<h2><span class="d-none d-sm-inline">Research & </span>Publication Hubs</h2>
 			</div>
 
 			<div class="row">
 				<div class="col-lg-4 col-md-6 text-center mb-4">
 					<figure>
-						<a href="https://pubmed.ncbi.nlm.nih.gov/?term=montane+E%5BAuthor%5D+OR+montane+E%5BInvestigator%5D+OR+montaner+E%5BInvestigator%5D+NOT+Toulouse+%5BAffiliation%5D&sort=date" target="external">
-							<img src="img/platform/pubmed.jpg" alt="PubMed" class="img-fluid mb-3" />
+						<a href="https://pubmed.ncbi.nlm.nih.gov/?term=montane+E%5BAuthor%5D+OR+montane+E%5BInvestigator%5D+OR+montaner+E%5BInvestigator%5D+NOT+Toulouse+%5BAffiliation%5D&sort=date" target="external" title="PubMed">
+							<img src="imgs/portals/pubmed.png" alt="PubMed" class="img-fluid mb-3" />
 						</a>
 					</figure>
-					<h5><a href="https://pubmed.ncbi.nlm.nih.gov/?term=montane+E%5BAuthor%5D+OR+montane+E%5BInvestigator%5D+OR+montaner+E%5BInvestigator%5D+NOT+Toulouse+%5BAffiliation%5D&sort=date" target="external" rel="external">PubMed</a></h5>
+					<h5 class="mb-3"><a href="https://pubmed.ncbi.nlm.nih.gov/?term=montane+E%5BAuthor%5D+OR+montane+E%5BInvestigator%5D+OR+montaner+E%5BInvestigator%5D+NOT+Toulouse+%5BAffiliation%5D&sort=date" target="external" rel="external" title="PubMed">PubMed</a></h5>
 				</div>
 
 				<div class="col-lg-4 col-md-6 text-center mb-4">
 					<figure>
-						<a href="https://www.researchgate.net/profile/Eva_Montane" target="external" rel="external">
-							<img src="img/platform/rg.jpg" alt="ResearchGate" class="img-fluid mb-3" />
+						<a href="https://www.researchgate.net/profile/Eva_Montane" target="external" rel="external" title="ResearchGate">
+							<img src="imgs/portals/rg.png" alt="ResearchGate" class="img-fluid mb-3" />
 						</a>
 					</figure>
-					<h5><a href="https://www.researchgate.net/profile/Eva_Montane" target="external" rel="external">ResearchGate</a></h5>
+					<h5 class="mb-3"><a href="https://www.researchgate.net/profile/Eva_Montane" target="external" rel="external"  title="ResearchGate">ResearchGate</a></h5>
 				</div>
 
 				<div class="col-lg-4 col-md-6 text-center mb-4">
 					<figure>
-						<a href="https://orcid.org/0000-0002-1691-7652" target="external" rel="external">
-							<img src="img/platform/orcid.jpg" alt="ORCID" class="img-fluid mb-3" />
+						<a href="https://orcid.org/0000-0002-1691-7652" target="external" rel="external" title="ORCID">
+							<img src="imgs/portals/orcid.png" alt="ORCID" class="img-fluid mb-3" />
 						</a>
 					</figure>
-					<h5><a href="https://orcid.org/0000-0002-1691-7652" target="external" rel="external">ORCID</a></h5>
+					<h5 class="mb-3"><a href="https://orcid.org/0000-0002-1691-7652" target="external" rel="external" title="ORCID">ORCID</a></h5>
 				</div>
 
 				<div class="col-lg-4 col-md-6 text-center mb-4">
 					<figure>
-						<a href="https://portalrecerca.uab.cat/en/persons/eva-montane-esteva-2/publications/" target="external" rel="external">
-							<img src="img/platform/uab.png" alt="Portal UAB" class="img-fluid mb-3" />
+						<a href="https://portalrecerca.uab.cat/en/persons/eva-montane-esteva-2/publications/" target="external" rel="external" title="Portal UAB">
+							<img src="imgs/portals/uab.png" alt="Portal UAB" class="img-fluid mb-3" />
 						</a>
 					</figure>
-					<h5><a href="https://portalrecerca.uab.cat/en/persons/eva-montane-esteva-2/publications/" target="external" rel="external">Portal UAB</a></h5>
+					<h5 class="mb-3"><a href="https://portalrecerca.uab.cat/en/persons/eva-montane-esteva-2/publications/" target="external" rel="external" title="Portal UAB">Portal UAB</a></h5>
 				</div>
 
 				<div class="col-lg-4 col-md-6 text-center mb-4">
 					<figure>
-						<a href="https://portalrecerca.csuc.cat/orcid/0000-0002-1691-7652?locale=en" target="external">
-							<img src="img/platform/cora2.png" alt="Portal CORA-CSUC" class="img-fluid mb-3" />
+						<a href="https://portalrecerca.csuc.cat/orcid/0000-0002-1691-7652?locale=en" target="external" title="Portal CORA-CSUC">
+							<img src="imgs/portals/cora.png" alt="Portal CORA-CSUC" class="img-fluid mb-3" />
 						</a>
 					</figure>
-					<h5><a href="https://portalrecerca.csuc.cat/orcid/0000-0002-1691-7652?locale=en" title="Portal CORAL(Consorci de Serveis Universitaris de Catalunya)" target="external" rel="external">Portal CORA-CSUC</a></h5>
+					<h5 class="mb-3"><a href="https://portalrecerca.csuc.cat/orcid/0000-0002-1691-7652?locale=en" title="Portal CORAL(Consorci de Serveis Universitaris de Catalunya)" target="external" rel="external">Portal CORA-CSUC</a></h5>
 				</div>
 
 				<div class="col-lg-4 col-md-6 text-center mb-4">
 					<figure>
-						<a href="https://ddd.uab.cat/search?c=Dip%C3%B2sit+Digital+de+Documents+de+la+UAB&ln=en&of=hb&p=eva+montane&rg=10&so=d&sc=1" target="external" rel="external">
-							<img src="img/platform/pd.png" alt="UAB Digital Repository" class="img-fluid mb-3" />
+						<a href="https://ddd.uab.cat/search?c=Dip%C3%B2sit+Digital+de+Documents+de+la+UAB&ln=en&of=hb&p=eva+montane&rg=10&so=d&sc=1" target="external" rel="external" title="UAB Digital Repository">
+							<img src="imgs/portals/ddd.png" alt="UAB Digital Repository" class="img-fluid mb-3" />
 						</a>
 					</figure>
-					<h5><a href="https://ddd.uab.cat/search?c=Dip%C3%B2sit+Digital+de+Documents+de+la+UAB&ln=en&of=hb&p=eva+montane&rg=10&so=d&sc=1" target="external" rel="external">UAB Digital Repository</a></h5>
+					<h5 class="mb-3"><a href="https://ddd.uab.cat/search?c=Dip%C3%B2sit+Digital+de+Documents+de+la+UAB&ln=en&of=hb&p=eva+montane&rg=10&so=d&sc=1" target="external" rel="external" title="UAB Digital Repository">UAB Digital Repository</a></h5>
 				</div>
 			</div>
 		</div>
@@ -231,14 +233,14 @@
 						<abbr title="Agencia Española de Medicamentos y Productos Sanitarios">AEMPS</abbr>
 					</h5>                    
 					<p><a class="mobileSmall" href="https://www.aemps.gob.es/la-aemps/xiii-jornadas-de-farmacovigilancia-40o-aniversario-del-sefv-h" target="_blank" rel="noopener noreferrer">P<span class="d-none d-sm-inline">harmaco</span>V<span class="d-none d-sm-inline">igilance</span> Award</a></p>
-					<p><img class="mb-3" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Logo_AEMPS.svg/800px-Logo_AEMPS.svg.png" alt="AEMPS logo" width="150"><br><i>(2024 edition)</i></p>
+					<p><img class="mb-2" src="imgs/logos/aemps.png" alt="AEMPS logo" style="padding-top:8px"><br><small><i>(2024 edition)</i></small></p>
 				</div>
 				<div class="col">
 					<h5 style="display:none">
 						<abbr title="Col·legi Oficial de Metges de Barcelona">CoMB</abbr>
 					</h5>            
 					<p><a class="mobileSmall" href="https://www.comb.cat/ca/comb/premis-excelencia/any-edicio-2023/Eva-Montan%C3%A9" target="_blank" rel="noopener noreferrer"><span class="d-none d-sm-inline">Professional </span>Excellence Award</a></p>
-					<p><img class="mb-2" src="https://www.comb.cat/images/logo-comb.svg" alt="CoMB logo" width="150"><br><i>(2023 edition)</i></p>
+					<p><img class="mb-2" src="imgs/logos/comb.png" alt="CoMB logo"><br><small><i>(2023 edition)</i></small></p>
 				</div>
 			</div>
 		</div>
@@ -293,19 +295,20 @@
 				
 		
 				<div class="col-md-3">
-					<img class="img-fluid rounded mb-4" alt="QR code to evamontane.com" src="img/qr.png" style="width:150px" />
+					<img class="img-fluid rounded mb-4" alt="QR code to evamontane.com" src="imgs/qr/green.png" />
 				</div>
 	
 			</div>
 
-			<div class="text-center social-links">
-				<a href="https://www.linkedin.com/in/montaneva/" class="me-4" target="external" title="@montaneva on LinkedIn" style="color:#0a66c2"><i class="fa-brands fa-linkedin"></i></a>
-				<a href="https://x.com/montaneva" class="me-4" target="external" title="@montaneva on X"><i class="fa-brands fa-square-x-twitter"></i></a>
-				<a href="https://github.com/montaneva?tab=repositories" class="me-4" target="external" title="@montaneva on GitHub"><i class="fa-brands fa-github"></i></a>
-			</div>
+            <div class="social-links text-center">
+                <a href="https://www.linkedin.com/in/montaneva/" target="external" title="@montaneva on LinkedIn" style="color:#0a66c2"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="https://x.com/montaneva" class="mx-4" target="external" title="@montaneva on X"><i class="fa-brands fa-square-x-twitter"></i></a>
+                <a href="https://github.com/montaneva?tab=repositories" target="external" title="@montaneva on GitHub"><i class="fa-brands fa-github"></i></a>
+            </div>
 			
 		</div>
 	</section>
+
 
     <!-- Footer -->
     <footer class="text-light text-center py-4">
