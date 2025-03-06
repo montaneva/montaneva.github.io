@@ -1,12 +1,12 @@
 <!--
  * @name		segadd.html
  * @version		1.0 - Last modified: 06-03-2025
- * @copyright	2025 - Eva MONTANÉ
+ * @copyright		2025 - Eva MONTANÉ
  * @license		GPLv3. GNU GENERAL PUBLIC LICENSE - Version 3, 29 June 2007
- * @description	Cercador de Fàrmacs Subjectes a Seguiment Addicional.
-				Font: AEMPS/CIMA
- 				Per més informació sobre l'API de la AEMPS, consultar:
- 				https://sede.aemps.gob.es/docs/CIMA-REST-API_1_19.pdf
+ * @description		Cercador de Fàrmacs Subjectes a Seguiment Addicional.
+			Font: AEMPS/CIMA
+ 			Per més informació sobre l'API de la AEMPS, consultar:
+ 			https://sede.aemps.gob.es/docs/CIMA-REST-API_1_19.pdf
  -->
  
 <!DOCTYPE html>
@@ -34,11 +34,12 @@
 		li a, li a:visited { color: #ddd; text-decoration: underline; }
 		li a:hover { color: #fff; text-decoration: none; }
 		td { font-size: 125%; text-transform: lowercase; }
-		input { width: 100%; max-width: 450px; padding: 5px; margin-right: 30px; font-size: 110%; color: steelblue; }
+		input { width: 100%; max-width: 400px; padding: 5px; margin-right: 180px; font-size: 110%; color: steelblue;}
 		select { width: 60px; height: 2.5em; }
 		tr:nth-child(odd) { background: #f9f9f9 !important; }
 		thead tr:first-child { background: #fff !important; }
-		#datatbl_wrapper { width: 920px; margin: auto; }
+		table {padding-top:25px}
+		#datatbl_wrapper { width: 950px; margin: auto; }
 		#footer { border-top: 1px dotted #999; padding-top: 6px; margin: 20px auto; }
 		.help { display: inline; border-bottom: 1px dotted black; text-transform: uppercase; }
 		.help:hover { cursor: help; }
@@ -132,9 +133,9 @@
 		  // Initialize DataTable with optimized configuration
 		  var dataTable = $('#datatbl').DataTable({
 			responsive: false,
-			lengthMenu: [[12, 25, 50, -1], [12, 25, 50, "Tots"]],
+			lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "Tots"]],
 			order: [[0, "asc"]],
-			pageLength: 12,
+			pageLength: 10,
 			language: {
 			  processing: "Processant...",
 			  lengthMenu: "Mostrar _MENU_ fàrmacs",
