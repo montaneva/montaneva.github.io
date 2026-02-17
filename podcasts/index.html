@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="ca">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="none">
+	<meta name="author" content="Eva Montané.">
+	<meta name="description" content="Aprèn farmacologia escoltant! Podcasts dels cursos de Farmacologia General i Clínica de la UAB. Material de suport creat amb IA per Eva Montané.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="theme-color" content="#5B9BD5">
+    <meta name="msapplication-TileColor" content="#5B9BD5">
+    <meta name="apple-mobile-web-app-title" content="FarmacoCasts">
+    <link rel="shortcut icon" type="image/png" sizes="24x24" href="icon-24.png" />
+	<link rel="apple-touch-icon" type="image/png" sizes="192x192" href="icon-192.png">
+    <link rel="apple-touch-icon" type="image/png" sizes="512x512" href="icon-512.png"> 
+
+    <title>FarmacoCasts</title>
+    <style>*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent} :root{--safe-area-inset-top:env(safe-area-inset-top);--safe-area-inset-bottom:env(safe-area-inset-bottom);--primary-color:#5B9BD5;--primary-dark:#4A7FB0;--gradient-start:#5B9BD5;--gradient-end:#8BB4D9;--text-primary:#333;--text-secondary:#555;--text-light:#999;--bg-light:#f8f9fa;--border-radius:16px;--shadow-sm:0 2px 8px rgba(0,0,0,0.08);--shadow-md:0 2px 12px rgba(0,0,0,0.1);--shadow-lg:0 4px 20px rgba(0,0,0,0.15)} body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,sans-serif;background:linear-gradient(135deg,var(--gradient-start) 0%,var(--gradient-end) 100%);min-height:100vh;min-height:-webkit-fill-available;display:flex;flex-direction:column;overflow-x:hidden;padding-top:var(--safe-area-inset-top);padding-bottom:var(--safe-area-inset-bottom)} html{height:-webkit-fill-available} .container{background:rgba(255,255,255,0.98);flex:1;display:flex;flex-direction:column;width:100%;max-width:100%;overflow-y:auto;-webkit-overflow-scrolling:touch} .header{background:linear-gradient(135deg,var(--gradient-start) 0%,var(--gradient-end) 100%);color:white;padding:20px 20px 24px;text-align:center;box-shadow:var(--shadow-md);position:relative} .beta-badge{position:absolute;top:12px;right:12px;background:rgba(255,255,255,0.25);backdrop-filter:blur(10px);padding:4px 12px;border-radius:20px;font-size:11px;font-weight:600;letter-spacing:0.5px;text-transform:uppercase;border:1px solid rgba(255,255,255,0.3)} h1{font-size:26px;margin-bottom:6px;font-weight:700;letter-spacing:-0.5px} .track-info{font-size:14px;opacity:0.95;font-weight:400} .content-wrapper{flex:1;padding:20px;display:flex;flex-direction:column;gap:20px}  .search-container{background:white;border-radius:var(--border-radius);padding:12px 16px;box-shadow:var(--shadow-sm);display:flex;align-items:center;gap:10px;transition:all 0.3s} .search-container:focus-within{box-shadow:0 2px 16px rgba(91,155,213,0.2);transform:translateY(-1px)} .search-icon{font-size:18px;color:var(--primary-color)} #searchInput{flex:1;border:none;outline:none;font-size:15px;color:var(--text-primary);background:transparent} #searchInput::placeholder{color:var(--text-light)} .clear-search{background:var(--bg-light);border:none;width:24px;height:24px;border-radius:50%;cursor:pointer;display:none;align-items:center;justify-content:center;font-size:14px;color:var(--text-secondary);transition:all 0.2s} .clear-search.visible{display:flex} .clear-search:active{transform:scale(0.9);background:#e9ecef}  .podcast-selector{background:white;border-radius:var(--border-radius);padding:20px;box-shadow:var(--shadow-sm)} .section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px} .podcast-selector h3{color:var(--text-primary);font-size:17px;display:flex;align-items:center;gap:8px;font-weight:600} .podcast-count{background:var(--bg-light);padding:4px 10px;border-radius:12px;font-size:12px;font-weight:600;color:var(--text-secondary)} .podcast-list{max-height:200px;overflow-y:auto;background:var(--bg-light);border-radius:12px;padding:8px;-webkit-overflow-scrolling:touch} .podcast-list::-webkit-scrollbar{width:4px} .podcast-list::-webkit-scrollbar-track{background:rgba(0,0,0,0.05);border-radius:10px} .podcast-list::-webkit-scrollbar-thumb{background:rgba(91,155,213,0.5);border-radius:10px;transition:background 0.2s} .podcast-list::-webkit-scrollbar-thumb:hover{background:rgba(91,155,213,0.7)} .podcast-list{scrollbar-width:thin;scrollbar-color:rgba(91,155,213,0.5) rgba(0,0,0,0.05)} .podcast-item{padding:16px 18px;margin-bottom:8px;background:white;border:2px solid transparent;border-radius:12px;cursor:pointer;transition:all 0.2s ease;display:flex;align-items:center;gap:14px;touch-action:manipulation;text-decoration:none;color:var(--text-primary);position:relative;overflow:hidden} .podcast-item::before{content:'';position:absolute;left:0;top:0;height:100%;width:4px;background:linear-gradient(135deg,var(--gradient-start) 0%,var(--gradient-end) 100%);opacity:0;transition:opacity 0.3s} .podcast-item:hover::before{opacity:1} .podcast-item:active{transform:scale(0.98)} .podcast-item.active{background:linear-gradient(135deg,var(--gradient-start) 0%,var(--gradient-end) 100%);color:white;box-shadow:0 4px 12px rgba(91,155,213,0.3);border-color:transparent} .podcast-item.active::before{opacity:0} .podcast-icon{font-size:22px;flex-shrink:0} .podcast-content{flex:1;min-width:0} .podcast-name{font-size:15px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-bottom:2px} .podcast-meta{font-size:12px;opacity:0.7;display:flex;align-items:center;gap:8px} .podcast-badge{background:rgba(91,155,213,0.15);padding:2px 8px;border-radius:8px;font-size:11px;font-weight:600} .podcast-item.active .podcast-badge{background:rgba(255,255,255,0.25)} .no-results{text-align:center;padding:40px 20px;color:var(--text-light)} .no-results-icon{font-size:48px;margin-bottom:12px;opacity:0.5} .no-results-text{font-size:15px;font-weight:500}  .info-section{background:white;border-radius:var(--border-radius);padding:20px;box-shadow:var(--shadow-sm)} .info-section h3{color:var(--text-primary);margin-bottom:16px;font-size:17px;font-weight:600;display:flex;align-items:center;gap:8px} .info-options{display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap} .info-btn{flex:1;min-width:fit-content;background:var(--bg-light);color:var(--primary-color);border:2px solid transparent;padding:12px 16px;border-radius:10px;cursor:pointer;font-size:14px;font-weight:600;transition:all 0.2s ease;touch-action:manipulation} .info-btn:hover{background:#e9ecef} .info-btn.active{background:linear-gradient(135deg,var(--gradient-start) 0%,var(--gradient-end) 100%);color:white;box-shadow:0 2px 8px rgba(91,155,213,0.3);border-color:transparent} .info-btn:active{transform:scale(0.96)} .info-info{font-size:14px;color:var(--text-secondary);line-height:1.7;padding:18px;background:var(--bg-light);border-radius:12px} .info-info p{margin-bottom:14px} .info-info p:last-child{margin-bottom:0} .info-info strong{color:var(--text-primary);font-weight:600} .info-info a{color:var(--primary-color);text-decoration:none;font-weight:500;transition:color 0.2s} .info-info a:hover{color:var(--primary-dark);text-decoration:underline} .info-info ul{margin:14px 0;padding-left:20px} .info-info ul li{margin-bottom:10px} .info-info ul ul{margin-top:8px} .info-info center{margin:20px 0} .info-info img{max-width:200px;border-radius:12px;box-shadow:var(--shadow-sm)} .info-content{display:none} .info-content.active{display:block;animation:fadeIn 0.3s ease-in-out} @keyframes fadeIn{from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }  .loading{text-align:center;padding:40px;color:var(--primary-color);font-size:14px} .loading-spinner{width:40px;height:40px;margin:0 auto 16px;border:3px solid var(--bg-light);border-top:3px solid var(--primary-color);border-radius:50%;animation:spin 1s linear infinite} @keyframes spin{0%{transform:rotate(0deg)} 100%{transform:rotate(360deg)} }  .install-prompt{background:linear-gradient(135deg,var(--gradient-start) 0%,var(--gradient-end) 100%);color:white;padding:16px 20px;border-radius:var(--border-radius);display:none;align-items:center;gap:16px;box-shadow:var(--shadow-lg);margin-bottom:20px} .install-prompt.visible{display:flex} .install-prompt-icon{font-size:32px;flex-shrink:0} .install-prompt-content{flex:1} .install-prompt-title{font-size:15px;font-weight:600;margin-bottom:4px} .install-prompt-text{font-size:13px;opacity:0.9} .install-prompt-btn{background:white;color:var(--primary-color);border:none;padding:10px 20px;border-radius:8px;font-weight:600;font-size:14px;cursor:pointer;transition:all 0.2s} .install-prompt-btn:active{transform:scale(0.95)} .close-prompt{background:rgba(255,255,255,0.2);border:none;width:28px;height:28px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:18px;color:white;transition:all 0.2s;flex-shrink:0} .close-prompt:active{transform:scale(0.9)}  @supports (-webkit-touch-callout:none){body{min-height:100vh;min-height:-webkit-fill-available} }  @media (max-width:380px){.header{padding:16px 16px 20px} h1{font-size:24px} .content-wrapper{padding:16px;gap:16px} .info-btn{font-size:13px;padding:10px 12px} .install-prompt{flex-direction:column;text-align:center} .install-prompt-icon{font-size:40px} }  @media (max-height:500px) and (orientation:landscape){.podcast-list{max-height:140px} .content-wrapper{gap:12px} .header{padding:12px 20px 16px} }  @media (prefers-color-scheme:dark){.container{background:rgba(30,30,30,0.98)} .podcast-selector, .info-section{background:#2a2a2a} .podcast-selector h3, .info-section h3, .podcast-name{color:#e0e0e0} .podcast-list, .info-info{background:#1a1a1a} .podcast-item{background:#2a2a2a;color:#e0e0e0} .info-info{color:#b0b0b0} .info-info strong{color:#e0e0e0} .info-btn{background:#1a1a1a;color:#8BB4D9} .search-container{background:#2a2a2a} #searchInput{color:#e0e0e0} }</style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <span class="beta-badge">Beta</span>
+            <h1>🎙️ FarmacoCasts</h1>
+            <p class="track-info">Els teus podcasts de Farmacologia Clínica</p>
+        </div>
+
+        <div class="content-wrapper">
+            <!-- Install prompt (shown when installable) -->
+            <div class="install-prompt" id="installPrompt">
+                <span class="install-prompt-icon">📲</span>
+                <div class="install-prompt-content">
+                    <div class="install-prompt-title">Instal·la FarmacoCasts</div>
+                    <div class="install-prompt-text">Accés ràpid des de la teva pantalla d'inici</div>
+                </div>
+                <button class="install-prompt-btn" id="installBtn">Instal·lar</button>
+                <button class="close-prompt" id="closePrompt">×</button>
+            </div>
+
+            <!-- Search bar -->
+            <div class="search-container">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="searchInput" placeholder="Cerca podcasts..." autocomplete="off">
+                <button class="clear-search" id="clearSearch">×</button>
+            </div>
+
+            <div class="podcast-selector">
+                <div class="section-header">
+                    <h3>☰ Tria el teu pòdcast</h3>
+                    <span class="podcast-count" id="podcastCount">2 podcasts</span>
+                </div>
+                <div class="podcast-list" id="podcastList">
+                    <a href="https://drive.google.com/file/d/1YL57C20XVQzqlIA6wLlVN0BxGXZu9VTq/view?usp=sharing" target="_player" class="podcast-item" data-keywords="ram farmacovigilància te8 tema 8">
+                        <span class="podcast-icon">🎧</span>
+                        <div class="podcast-content">
+                            <div class="podcast-name">RAM i farmacovigilància</div>
+                            <div class="podcast-meta">
+                                <span class="podcast-badge">Tema 8</span>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="https://drive.google.com/file/d/1_PvspKQyJQTqiPLowSjKjCvqq_z5QIBF/view?usp=sharing" target="_player" class="podcast-item" data-keywords="respiratory system sistema respiratori">
+                        <span class="podcast-icon">🎧</span>
+                        <div class="podcast-content">
+                            <div class="podcast-name">Farmacoepidemiologia</div>
+                            <div class="podcast-meta">
+                                <span class="podcast-badge">Tema 9</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="info-section">
+                <h3>ⓘ Quant a FarmacoCasts</h3>
+                <div class="info-options">
+                    <button class="info-btn active" data-info="active">Utilització</button>
+                    <button class="info-btn" data-info="compartir">Compartir</button>
+                    <button class="info-btn" data-info="license">Llicència</button>
+                </div>
+                <div class="info-info" id="infoInfo">
+                    <div id="info-active" class="info-content active">
+                        <p>Aquests podcasts són un complement didàctic per ajudar-vos a comprendre millor els continguts de farmacologia clínica.</p>
+                        <p><strong>⚠️ Important:</strong> Tot i que els podcasts segueixen fidelment el temari, poden existir petites diferències en l'explicació o matissos de dades. El <strong>material de referència oficial</strong> i la base exclusiva per a l'examen és sempre la <strong>presentació realitzada a classe</strong>.</p>
+                        <p><strong>💡 Consell:</strong> Utilitzeu aquests podcasts com a reforç auditiu mentre repasseu els apunts oficials o durant els desplaçaments.</p>
+                    </div>
+                    
+                    <div id="info-compartir" class="info-content">
+                        <p>FarmacoCasts és una <strong>webapp</strong> que podeu instal·lar al vostre mòbil com si fos una aplicació.</p>
+                        
+                        <p>Podeu utilitzar aquest codi QR per ajudar-vos mútuament a instal·lar o reinstal·lar FarmacoCasts de manera ràpida i senzilla.</p>
+                        
+                        <center>
+						  <img src='qr.png' alt="Codi QR per instal·lar FarmacoCasts"><br />
+						  <small><a href="#" rel="self" title="URL">https://montaneva.github.io/podcasts/</a></small>
+						</center>
+
+                        <ul>
+                            <li>
+                                <strong>ANDROID</strong>:
+                                <ul>
+                                    <li><strong>Amb Chrome:</strong> Premeu els tres punts de la part superior dreta, seleccioneu l'opció "<strong>Afegeix a la pantalla d'inici</strong>". Podeu introduir un nom personalitzat. Finalment, cliqueu "<strong>Afegeix</strong>".</li>
+                                    <li><strong>Amb Firefox:</strong> Obriu el mateix menú i seleccioneu l'opció "<strong>Afegeix a la pantalla d'inici</strong>".</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <strong>iOS</strong>: Si teniu un iPhone, premeu el botó de compartir (situat al centre de la barra inferior) i seleccioneu l'opció "<strong>Afegir a la pantalla d'inici</strong>".
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div id="info-license" class="info-content">
+						<p>
+						FarmacoCasts és un projecte generat completament amb intel·ligència artificial:<br />
+						- Disseny i programació de la webapp: <strong>Anthropic Claude Sonnet</strong><br />
+						- Generació dels podcasts educatius: <strong>Google NotebookLM</strong><br />
+						<p>					
+                        <p><strong>CC BY-NC-SA 4.0. Sou lliure de:</strong><br />
+                        Compartir — copiar i redistribuir el material en qualsevol mitjà i format.<br>
+                        Adaptar — remesclar, transformar i crear a partir del material.<br>
+                        Consulta la llicència completa a <a rel="external" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ca">Creativecommons.org</a>.</p>
+                        
+                        <p><strong>Copyright:</strong> Eva Montané. ✉ <a id="emailLink"></a></p>			
+						
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mailto reverse string obfuscation
+        const encoded = "tac.bau@enatnom.ave".split("").reverse().join("");
+        const link = document.getElementById("emailLink");
+        link.href = "mailto:" + encoded;
+        link.textContent = encoded;
+		
+        // Info tabs functionality
+        const infoButtons = document.querySelectorAll('.info-btn');
+        const infoContents = document.querySelectorAll('.info-content');
+
+        infoButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                infoButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const targetId = 'info-' + btn.dataset.info;
+                infoContents.forEach(content => {
+                    content.classList.remove('active');
+                    if (content.id === targetId) {
+                        content.classList.add('active');
+                    }
+                });
+            });
+        });
+
+        // Search functionality
+        const searchInput = document.getElementById('searchInput');
+        const clearSearch = document.getElementById('clearSearch');
+        const podcastList = document.getElementById('podcastList');
+        const podcastCount = document.getElementById('podcastCount');
+        const podcastItems = document.querySelectorAll('.podcast-item');
+
+        function filterPodcasts() {
+            const searchTerm = searchInput.value.toLowerCase().trim();
+            let visibleCount = 0;
+
+            if (searchTerm === '') {
+                clearSearch.classList.remove('visible');
+                podcastItems.forEach(item => {
+                    item.style.display = 'flex';
+                    visibleCount++;
+                });
+            } else {
+                clearSearch.classList.add('visible');
+                podcastItems.forEach(item => {
+                    const name = item.querySelector('.podcast-name').textContent.toLowerCase();
+                    const keywords = item.dataset.keywords ? item.dataset.keywords.toLowerCase() : '';
+                    
+                    if (name.includes(searchTerm) || keywords.includes(searchTerm)) {
+                        item.style.display = 'flex';
+                        visibleCount++;
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            }
+
+            // Update count
+            podcastCount.textContent = `${visibleCount} podcast${visibleCount !== 1 ? 's' : ''}`;
+
+            // Show no results message
+            if (visibleCount === 0) {
+                if (!document.querySelector('.no-results')) {
+                    const noResults = document.createElement('div');
+                    noResults.className = 'no-results';
+                    noResults.innerHTML = `
+                        <div class="no-results-icon">🔍</div>
+                        <div class="no-results-text">No s'han trobat podcasts</div>
+                    `;
+                    podcastList.appendChild(noResults);
+                }
+            } else {
+                const noResults = document.querySelector('.no-results');
+                if (noResults) {
+                    noResults.remove();
+                }
+            }
+        }
+
+        searchInput.addEventListener('input', filterPodcasts);
+
+        clearSearch.addEventListener('click', () => {
+            searchInput.value = '';
+            filterPodcasts();
+            searchInput.focus();
+        });
+
+        // PWA install prompt
+        let deferredPrompt;
+        const installPrompt = document.getElementById('installPrompt');
+        const installBtn = document.getElementById('installBtn');
+        const closePrompt = document.getElementById('closePrompt');
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            
+            // Check if user has previously dismissed the prompt
+            if (!localStorage.getItem('installPromptDismissed')) {
+                installPrompt.classList.add('visible');
+            }
+        });
+
+        installBtn.addEventListener('click', async () => {
+            if (!deferredPrompt) {
+                return;
+            }
+
+            deferredPrompt.prompt();
+            const { outcome } = await deferredPrompt.userChoice;
+            
+            deferredPrompt = null;
+            installPrompt.classList.remove('visible');
+        });
+
+        closePrompt.addEventListener('click', () => {
+            installPrompt.classList.remove('visible');
+            localStorage.setItem('installPromptDismissed', 'true');
+        });
+
+        // Track active podcast
+        podcastItems.forEach(item => {
+            item.addEventListener('click', function(e) {
+                // Remove active class from all items
+                podcastItems.forEach(i => i.classList.remove('active'));
+                // Add active class to clicked item
+                this.classList.add('active');
+            });
+        });
+
+    </script>
+</body>
+
+</html>
