@@ -676,7 +676,7 @@
                 keywords: ""
             },
             {
-                title: "Ús de medicaments en el sistema de salut. Implicacions econòmiques",
+                title: "Ús de medicaments en el sistema de salut.<br />Implicacions econòmiques",
                 theme: "Tema 10",
                 professor: "G. de la Rosa",
                 date: "19/02/26",
@@ -934,75 +934,8 @@
             });
         });
 
-        // PWA install prompt functionality
-        let deferredPrompt;
-        const installPrompt = document.getElementById('installPrompt');
-        const installBtn = document.getElementById('installBtn');
-        const closePrompt = document.getElementById('closePrompt');
-
-        // Listen for the beforeinstallprompt event
-        window.addEventListener('beforeinstallprompt', (e) => {
-            // Prevent the default mini-infobar from appearing on mobile
-            e.preventDefault();
-            // Save the event so it can be triggered later
-            deferredPrompt = e;
-
-            // Check if user has previously dismissed the prompt
-            if (!localStorage.getItem('installPromptDismissed')) {
-                installPrompt.classList.add('visible');
-            }
-        });
-
-        // Handle install button click
-        installBtn.addEventListener('click', async () => {
-            if (!deferredPrompt) {
-                return;
-            }
-
-            // Show the browser's install prompt
-            deferredPrompt.prompt();
-
-            // Wait for the user's response
-            const { outcome } = await deferredPrompt.userChoice;
-            console.log(`User response to install prompt: ${outcome}`);
-
-            // Clear the deferredPrompt for next time
-            deferredPrompt = null;
-
-            // Hide the install prompt
-            installPrompt.classList.remove('visible');
-        });
-
-        // Handle close button click
-        closePrompt.addEventListener('click', () => {
-            installPrompt.classList.remove('visible');
-            // Remember that user dismissed the prompt
-            localStorage.setItem('installPromptDismissed', 'true');
-        });
-
-        // Hide prompt if app is already installed
-        window.addEventListener('appinstalled', () => {
-            installPrompt.classList.remove('visible');
-            console.log('FarmacoCasts PWA was installed successfully');
-        });
-
-        // Track active podcast - Moved to renderPodcasts function for dynamic elements
-
-        // Service Worker registration for PWA
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('sw.js')
-                    .then(registration => {
-                        console.log('Service Worker registered successfully:', registration.scope);
-                    })
-                    .catch(error => {
-                        console.log('Service Worker registration failed:', error);
-                    });
-            });
-        }
     </script>
 </body>
 
 
 </html>
-
