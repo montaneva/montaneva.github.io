@@ -2,12 +2,19 @@
   "name": "FarmacoCasts",
   "short_name": "FarmacoCasts",
   "description": "Els teus podcasts de farmacologia clínica",
-  "start_url": "/",
+  "start_url": "https://montaneva.github.io/podcasts/",
+  "scope": "https://montaneva.github.io/podcasts/",
   "display": "standalone",
   "background_color": "#5B9BD5",
   "theme_color": "#5B9BD5",
   "orientation": "portrait-primary",
   "icons": [
+    {
+      "src": "/icon-180.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
     {
       "src": "/icon-192.png",
       "sizes": "192x192",

@@ -17,7 +17,7 @@
     <meta name="theme-color" content="#5B9BD5">
     <meta name="msapplication-TileColor" content="#5B9BD5">
     <meta name="apple-mobile-web-app-title" content="FarmacoCasts">
-    <link rel="manifest" href="manifest.json">
+	<link rel="manifest" href="https://montaneva.github.io/podcasts/manifest.json">
     <link rel="shortcut icon" type="image/png" sizes="24x24" href="icon-24.png" />
     <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="icon-180.png">
     <link rel="apple-touch-icon" type="image/png" sizes="192x192" href="icon-192.png">
@@ -934,6 +934,72 @@
             });
         });
 
+        // PWA install prompt functionality
+        let deferredPrompt;
+        const installPrompt = document.getElementById('installPrompt');
+        const installBtn = document.getElementById('installBtn');
+        const closePrompt = document.getElementById('closePrompt');
+
+        // Listen for the beforeinstallprompt event
+        window.addEventListener('beforeinstallprompt', (e) => {
+            // Prevent the default mini-infobar from appearing on mobile
+            e.preventDefault();
+            // Save the event so it can be triggered later
+            deferredPrompt = e;
+
+            // Check if user has previously dismissed the prompt
+            if (!localStorage.getItem('installPromptDismissed')) {
+                installPrompt.classList.add('visible');
+            }
+        });
+
+        // Handle install button click
+        installBtn.addEventListener('click', async () => {
+            if (!deferredPrompt) {
+                return;
+            }
+
+            // Show the browser's install prompt
+            deferredPrompt.prompt();
+
+            // Wait for the user's response
+            const { outcome } = await deferredPrompt.userChoice;
+            console.log(`User response to install prompt: ${outcome}`);
+
+            // Clear the deferredPrompt for next time
+            deferredPrompt = null;
+
+            // Hide the install prompt
+            installPrompt.classList.remove('visible');
+        });
+
+        // Handle close button click
+        closePrompt.addEventListener('click', () => {
+            installPrompt.classList.remove('visible');
+            // Remember that user dismissed the prompt
+            localStorage.setItem('installPromptDismissed', 'true');
+        });
+
+        // Hide prompt if app is already installed
+        window.addEventListener('appinstalled', () => {
+            installPrompt.classList.remove('visible');
+            console.log('FarmacoCasts PWA was installed successfully');
+        });
+
+        // Track active podcast - Moved to renderPodcasts function for dynamic elements
+
+        // Service Worker registration for PWA
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                    .then(registration => {
+                        console.log('Service Worker registered successfully:', registration.scope);
+                    })
+                    .catch(error => {
+                        console.log('Service Worker registration failed:', error);
+                    });
+            });
+        }
     </script>
 </body>
 
