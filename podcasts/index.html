@@ -129,7 +129,7 @@
                     <div class="section-header-right">
                         <button class="sort-toggle" id="sortToggle" title="Invertir ordre">
                             <span class="sort-icon">&#8645;</span>
-                            <span id="sortLabel">Últims podcats</span>
+                            <span id="sortLabel">Últims</span>
                         </button>
                         <span class="podcast-count" id="podcastCount">6 podcasts</span>
                     </div>
@@ -332,7 +332,7 @@
         sortToggle.addEventListener('click', () => {
             isReversed = !isReversed;
             sortToggle.classList.toggle('reversed', isReversed);
-            sortLabel.textContent = isReversed ? 'Primer podcast' : 'Últims podcats';
+            sortLabel.textContent = isReversed ? 'Primer' : 'Últims';
             renderPodcasts(getFilteredPodcasts());
         });
 
