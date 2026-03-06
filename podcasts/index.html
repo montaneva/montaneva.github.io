@@ -17,7 +17,7 @@
     <meta name="theme-color" content="#5B9BD5">
     <meta name="msapplication-TileColor" content="#5B9BD5">
     <meta name="apple-mobile-web-app-title" content="FarmacoCasts">
-	<link rel="manifest" href="https://montaneva.github.io/podcasts/manifest.json">
+    <link rel="manifest" href="https://montaneva.github.io/podcasts/manifest.json">
     <link rel="shortcut icon" type="image/png" sizes="24x24" href="icon-24.png" />
     <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="icon-180.png">
     <link rel="apple-touch-icon" type="image/png" sizes="192x192" href="icon-192.png">
@@ -82,7 +82,7 @@
                 date: "26/02/26",
                 url: "https://drive.google.com/file/d/1REcPclfC6kWB4-C-Ir7lJhO8ZLhlKvV3/view?usp=drive_link",
                 keywords: ""
-            },			
+            },
             {
                 title: "Farmacogenètica",
                 theme: "Tema 15",
@@ -92,7 +92,6 @@
                 keywords: ""
             }
         ];
-
     </script>
 </head>
 
@@ -128,10 +127,10 @@
                     <h3>☰ Tria el teu pòdcast</h3>
                     <div class="section-header-right">
                         <button class="sort-toggle" id="sortToggle" title="Invertir ordre">
-                            <span class="sort-icon">&#8645;</span>
-                            <span id="sortLabel">Últims</span>
+                            <span class="sort-icon">&#8645; &nbsp;</span>
+                            <span id="sortLabel"> </span>
                         </button>
-                        <span class="podcast-count" id="podcastCount">6 podcasts</span>
+                        <span class="podcast-count" id="podcastCount"> </span>
                     </div>
                 </div>
                 <div class="podcast-list" id="podcastList">
@@ -164,16 +163,13 @@
                     <div id="info-compartir" class="info-content">
                         <p>FarmacoCasts és una <strong>webapp</strong> que podeu instal·lar al vostre mòbil com si fos
                             una aplicació.</p>
-
                         <p>Podeu utilitzar aquest codi QR per ajudar-vos mútuament a instal·lar FarmacoCasts de manera
                             ràpida i senzilla.</p>
-
                         <center>
                             <img src='qr.png' alt="Codi QR per instal·lar FarmacoCasts"><br />
                             <small><a href="https://montaneva.github.io/podcasts/" rel="self"
                                     title="URL">https://montaneva.github.io/podcasts/</a></small>
                         </center>
-
                         <ul>
                             <li>
                                 <strong>ANDROID</strong>:
@@ -216,10 +212,13 @@
     </div>
 
     <script>
-
         // Podcast Data [2]
         const podcastList = document.getElementById('podcastList');
         const podcastCount = document.getElementById('podcastCount');
+        const sortToggle = document.getElementById('sortToggle');
+        const sortLabel = document.getElementById('sortLabel');
+        const searchInput = document.getElementById('searchInput');
+        const clearSearch = document.getElementById('clearSearch');
 
         // Sort state
         let isReversed = false;
@@ -248,6 +247,10 @@
 
             // Apply sort order
             const ordered = isReversed ? [...podcastsToRender].reverse() : podcastsToRender;
+
+            // Update label and count — ordered is in scope here
+			sortLabel.textContent = isReversed ? `${ordered.length}→1 ` : `1→${ordered.length} `;
+			podcastCount.textContent = `${ordered.length} 🎧 `;
 
             if (ordered.length === 0) {
                 const noResults = document.createElement('div');
@@ -281,7 +284,7 @@
                         </div>
                     `;
 
-                    link.addEventListener('click', function (e) {
+                    link.addEventListener('click', function () {
                         document.querySelectorAll('.podcast-item').forEach(i => i.classList.remove('active'));
                         this.classList.add('active');
                     });
@@ -289,14 +292,9 @@
                     podcastList.appendChild(link);
                 });
             }
-
-            podcastCount.textContent = `${ordered.length} podcast${ordered.length !== 1 ? 's' : ''}`;
         }
 
         // Search functionality
-        const searchInput = document.getElementById('searchInput');
-        const clearSearch = document.getElementById('clearSearch');
-
         function getFilteredPodcasts() {
             const searchTerm = searchInput.value.toLowerCase().trim();
             if (searchTerm === '') return podcasts;
@@ -309,11 +307,7 @@
 
         function filterPodcasts() {
             const searchTerm = searchInput.value.toLowerCase().trim();
-            if (searchTerm === '') {
-                clearSearch.classList.remove('visible');
-            } else {
-                clearSearch.classList.add('visible');
-            }
+            clearSearch.classList.toggle('visible', searchTerm !== '');
             renderPodcasts(getFilteredPodcasts());
         }
 
@@ -326,13 +320,9 @@
         });
 
         // Sort toggle
-        const sortToggle = document.getElementById('sortToggle');
-        const sortLabel = document.getElementById('sortLabel');
-
         sortToggle.addEventListener('click', () => {
             isReversed = !isReversed;
             sortToggle.classList.toggle('reversed', isReversed);
-            sortLabel.textContent = isReversed ? 'Primer' : 'Últims';
             renderPodcasts(getFilteredPodcasts());
         });
 
@@ -353,13 +343,9 @@
             btn.addEventListener('click', () => {
                 infoButtons.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
-
                 const targetId = 'info-' + btn.dataset.info;
                 infoContents.forEach(content => {
-                    content.classList.remove('active');
-                    if (content.id === targetId) {
-                        content.classList.add('active');
-                    }
+                    content.classList.toggle('active', content.id === targetId);
                 });
             });
         });
