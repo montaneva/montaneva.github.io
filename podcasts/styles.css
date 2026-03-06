@@ -1,8 +1,5 @@
- /*!
- * styles.css v1
- */
-
- * {
+/* FarmacoCasts CSS V.1 */
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -181,6 +178,12 @@
             font-weight: 600;
         }
 
+        .section-header-right {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
         .podcast-count {
             background: var(--bg-light);
             padding: 4px 10px;
@@ -188,6 +191,47 @@
             font-size: 12px;
             font-weight: 600;
             color: var(--text-secondary);
+        }
+
+        /* Sort toggle button */
+        .sort-toggle {
+            background: var(--bg-light);
+            border: none;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            touch-action: manipulation;
+            white-space: nowrap;
+        }
+
+        .sort-toggle:hover {
+            background: #e9ecef;
+            color: var(--primary-color);
+        }
+
+        .sort-toggle.reversed {
+            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+            color: white;
+        }
+
+        .sort-toggle:active {
+            transform: scale(0.95);
+        }
+
+        .sort-icon {
+            font-size: 13px;
+            transition: transform 0.3s ease;
+        }
+
+        .sort-toggle.reversed .sort-icon {
+            transform: scaleY(-1);
         }
 
         .podcast-list {
@@ -300,15 +344,36 @@
         }
 
         .podcast-badge {
-            background: rgba(91, 155, 213, 0.15);
             padding: 2px 8px;
             border-radius: 8px;
             font-size: 11px;
             font-weight: 600;
         }
 
+        .badge-theme {
+            background: rgba(91, 155, 213, 0.15);
+            color: var(--text-primary);
+        }
+
+        .badge-professor {
+            background: rgba(155, 89, 182, 0.15);
+            color: #8e44ad;
+        }
+
+        .badge-date {
+            background: rgba(243, 156, 18, 0.15);
+            color: #d35400;
+        }
+
+        .badge-new {
+            background: rgba(231, 76, 60, 0.15);
+            color: #c0392b;
+            font-weight: 700;
+        }
+
         .podcast-item.active .podcast-badge {
             background: rgba(255, 255, 255, 0.25);
+            color: white;
         }
 
         .no-results {
