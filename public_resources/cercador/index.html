@@ -1,0 +1,1019 @@
+<!--
+=============================================================================
+  Cercador de RAM i Fàrmacs
+  Idea original i concepte: @montaneva
+  Codificat al 100% per IA: Anthropic Claude Fable 5
+=============================================================================
+
+  DESCRIPCIÓ
+  ----------
+  Eina de consulta ràpida de termes mèdics en català, orientada a evitar
+  faltes ortogràfiques en redacció clínica i de farmacovigilància.
+  Permet cercar termes de dues bases de dades diferenciades:
+    · RAM  — Reaccions Adverses a Medicaments (ramDescripcio.csv)
+    · Fàrmacs — Noms de medicaments (farmacs.csv)
+
+  Les dades es descarreguen en temps real des del repositori GitHub:
+  https://github.com/montaneva/FVcsv
+
+  FUNCIONALITATS
+  --------------
+  · Cerca autocomplete amb coincidència parcial i insensible a accents
+  · Ressaltat de la paraula cercada als resultats del desplegable
+  · Còpia automàtica al porta-retalls en seleccionar un terme
+  · Commutador RAM / Fàrmacs per canviar de font de dades
+  · Etiqueta de font clicable que obre el fitxer CSV original en una nova finestra
+  · Comptador de termes carregats per a cada font
+  · Menú de navegació responsiu amb col·lapse en dispositius mòbils
+  · Enllaços de traducció/consulta que s'actualitzen dinàmicament amb el terme cercat
+  · Mode clar / fosc
+  · Notificacions toast lleugeres per a accions de l'usuari
+
+  DEPENDÈNCIES EXTERNES
+  ---------------------
+  · jQuery 3.7.1
+  · jQuery UI 1.13.3 (Autocomplete)
+  · Google Fonts — Outfit
+
+=============================================================================
+-->
+<!DOCTYPE html>
+<html lang="ca" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+	
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="theme-color" content="#0ea5e9">
+    <meta name="msapplication-TileColor" content="#0ea5e9">
+    <meta name="apple-mobile-web-app-title" content="Cercador">
+	
+    <meta name="description" content="  Eina de consulta ràpida de termes mèdics en català, orientada a evitar faltes ortogràfiques en redacció clínica i de farmacovigilància.">
+
+    <title>Cercador de RAM i fàrmacs en català</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- jQuery & jQuery UI -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.3/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.13.3/jquery-ui.min.js"></script>
+
+    <style>
+        :root {
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-color: #0f172a;
+            --text-muted: #64748b;
+            --primary-color: #0ea5e9;
+            --primary-hover: #0284c7;
+            --border-color: #e2e8f0;
+            --shadow-color: rgba(15, 23, 42, 0.04);
+            --topbar-bg: rgba(255, 255, 255, 0.95);
+            --btn-bg: #f1f5f9;
+            --btn-text: #475569;
+            --btn-active-bg: #ffffff;
+            --btn-active-text: #0ea5e9;
+            --toast-bg: #10b981;
+            --toast-text: #ffffff;
+            --input-focus-border: #38bdf8;
+            --input-focus-shadow: rgba(56, 189, 248, 0.12);
+            --dropdown-bg: #ffffff;
+            --font-family: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-color: #f8fafc;
+            --text-muted: #94a3b8;
+            --primary-color: #38bdf8;
+            --primary-hover: #0ea5e9;
+            --border-color: #334155;
+            --shadow-color: rgba(0, 0, 0, 0.2);
+            --topbar-bg: rgba(15, 23, 42, 0.95);
+            --btn-bg: #0f172a;
+            --btn-text: #94a3b8;
+            --btn-active-bg: #334155;
+            --btn-active-text: #38bdf8;
+            --toast-bg: #059669;
+            --toast-text: #ffffff;
+            --input-focus-border: #0ea5e9;
+            --input-focus-shadow: rgba(14, 165, 233, 0.2);
+            --dropdown-bg: #1e293b;
+        }
+
+        * {
+            box-sizing: border-box;
+            transition: background-color 0.2s ease, border-color 0.2s ease, color 0.15s ease;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: var(--font-family);
+            background: var(--bg-color);
+            color: var(--text-color);
+            min-height: 100vh;
+        }
+
+        /* ── Topbar ── */
+        .topbar {
+            position: sticky;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--topbar-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+        }
+
+        .topbar-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 52px;
+            gap: 12px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 700;
+            font-size: 15px;
+            color: var(--text-color);
+            text-decoration: none;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .logo svg {
+            width: 20px;
+            height: 20px;
+            color: var(--primary-color);
+            flex-shrink: 0;
+        }
+
+        /* ── Nav menu ── */
+        .nav-menu {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            flex: 1;
+        }
+
+        .nav-menu li a {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 6px 11px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--btn-text);
+            background: var(--btn-bg);
+            text-decoration: none;
+            white-space: nowrap;
+            border: 1px solid transparent;
+        }
+
+        .nav-menu li a:hover {
+            color: var(--primary-color);
+            background: var(--btn-active-bg);
+            border-color: var(--border-color);
+            box-shadow: 0 2px 4px var(--shadow-color);
+            transform: translateY(-1px);
+        }
+
+        .nav-menu li a svg {
+            width: 11px;
+            height: 11px;
+            opacity: 0.55;
+            flex-shrink: 0;
+        }
+
+        /* ── Right-side actions (theme toggle + hamburger) ── */
+        .topbar-actions {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-shrink: 0;
+        }
+
+        .topbar-actions button {
+            background: var(--btn-bg);
+            border: 1px solid transparent;
+            color: var(--btn-text);
+            padding: 7px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .topbar-actions button:hover {
+            background: var(--btn-active-bg);
+            border-color: var(--border-color);
+            color: var(--primary-color);
+            box-shadow: 0 2px 4px var(--shadow-color);
+        }
+
+        .topbar-actions button svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* ── Hamburger: hidden on wide screens ── */
+        #btn-nav-toggle {
+            display: none;
+        }
+
+        /* ── Collapsed nav on mobile ── */
+        @media (max-width: 700px) {
+
+            #btn-nav-toggle {
+                display: flex;
+            }
+
+            /* Hide the inline menu by default on mobile */
+            .nav-menu {
+                display: none;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0;
+                position: absolute;
+                top: 52px;
+                left: 0;
+                right: 0;
+                background: var(--card-bg);
+                border-bottom: 2px solid var(--border-color);
+                backdrop-filter: none;
+                -webkit-backdrop-filter: none;
+                z-index: 999;
+            }
+
+            .nav-menu.open {
+                display: flex;
+            }
+
+            /* Each item separated by a light border-top */
+            .nav-menu li {
+                border-top: 1px solid var(--border-color);
+            }
+
+            .nav-menu li a {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 13px 20px;
+                font-size: 14px;
+                font-weight: 500;
+                background: transparent;
+                border-radius: 0;
+                border: none;
+                color: var(--text-color);
+                box-shadow: none;
+                transform: none;
+            }
+
+            .nav-menu li a:hover {
+                background: var(--btn-bg);
+                color: var(--primary-color);
+                transform: none;
+                box-shadow: none;
+                border-color: transparent;
+            }
+
+            .nav-menu li a svg {
+                opacity: 0.35;
+            }
+        }
+
+        /* ── Container & Main App ── */
+        .container {
+            max-width: 680px;
+            margin: 60px auto 40px;
+            padding: 0 20px;
+        }
+
+        .search-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 18px;
+            padding: 26px;
+            box-shadow: 0 10px 25px -5px var(--shadow-color), 0 8px 10px -6px var(--shadow-color);
+        }
+
+        .card-header {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        @media (min-width: 480px) {
+            .card-header {
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+            }
+        }
+
+        .title-group h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .title-group .subtitle {
+            margin: 4px 0 0;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .switcher {
+            display: flex;
+            background: var(--btn-bg);
+            border-radius: 10px;
+            padding: 4px;
+            gap: 4px;
+            align-self: flex-start;
+        }
+
+        .switcher button {
+            border: none;
+            background: transparent;
+            padding: 8px 16px;
+            font-size: 13px;
+            font-weight: 600;
+            border-radius: 7px;
+            cursor: pointer;
+            color: var(--btn-text);
+            white-space: nowrap;
+        }
+
+        .switcher button.active {
+            background: var(--btn-active-bg);
+            color: var(--btn-active-text);
+            box-shadow: 0 1px 3px var(--shadow-color);
+        }
+
+        .switcher button:not(.active):hover {
+            color: var(--text-color);
+        }
+
+        /* ── Search input ── */
+        .search-box-wrapper {
+            margin-bottom: 16px;
+        }
+
+        .search-input-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+
+        .search-input-container input {
+            width: 100%;
+            padding: 16px 48px 16px 46px;
+            font-size: 16px;
+            font-family: var(--font-family);
+            background: var(--card-bg);
+            color: var(--text-color);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            outline: none;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.01);
+        }
+
+        .search-input-container input:focus {
+            border-color: var(--input-focus-border);
+            box-shadow: 0 0 0 4px var(--input-focus-shadow), 0 4px 6px -1px var(--shadow-color);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 16px;
+            width: 18px;
+            height: 18px;
+            color: var(--text-muted);
+            pointer-events: none;
+        }
+
+        .clear-icon {
+            position: absolute;
+            right: 16px;
+            background: none;
+            border: none;
+            padding: 4px;
+            cursor: pointer;
+            color: var(--text-muted);
+            border-radius: 50%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .clear-icon:hover {
+            background: var(--btn-bg);
+            color: var(--text-color);
+        }
+
+        .clear-icon svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .search-input-container .loader-spinner {
+            position: absolute;
+            right: 16px;
+        }
+
+        .loader-spinner {
+            width: 18px;
+            height: 18px;
+            border: 2px solid var(--border-color);
+            border-top: 2px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            display: none;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* ── Card Footer ── */
+        .card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 12px;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border-color);
+            padding-top: 14px;
+            margin-top: 18px;
+        }
+
+        #source-label {
+            min-height: 16px;
+            font-weight: 400;
+        }
+
+        #source-label[href] {
+            color: var(--primary-color);
+            text-decoration: none;
+            border-bottom: 1px dashed var(--primary-color);
+            transition: color 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
+        }
+
+        #source-label[href]:hover {
+            opacity: 0.75;
+        }
+
+        #item-count {
+            font-weight: 500;
+        }
+
+        /* ── QR block ── */
+        .qr-block {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            margin-top: 28px;
+            opacity: 0.85;
+        }
+
+        .qr-block a {
+            display: block;
+            padding: 10px;
+            background: #ffffff;
+            border-radius: 14px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 12px var(--shadow-color);
+            line-height: 0;
+            transition: box-shadow 0.2s ease, transform 0.2s ease;
+        }
+
+        .qr-block a:hover {
+            box-shadow: 0 8px 20px var(--shadow-color);
+            transform: translateY(-2px);
+        }
+
+        .qr-block img {
+            width: 96px;
+            height: 96px;
+            display: block;
+        }
+
+        .qr-block figcaption {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-align: center;
+            letter-spacing: 0.02em;
+        }
+
+        /* ── jQuery UI Autocomplete overrides ── */
+        .ui-autocomplete {
+            background: var(--dropdown-bg) !important;
+            border: 1px solid var(--border-color) !important;
+            border-radius: 12px !important;
+            box-shadow: 0 10px 25px -5px var(--shadow-color), 0 8px 10px -6px var(--shadow-color) !important;
+            padding: 8px !important;
+            max-height: 400px;
+            overflow-y: auto;
+            z-index: 99999 !important;
+            font-family: var(--font-family) !important;
+        }
+
+        .ui-menu-item {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .ui-menu-item-wrapper {
+            padding: 10px 14px !important;
+            border-radius: 8px !important;
+            color: var(--text-color) !important;
+            font-size: 15px !important;
+            cursor: pointer !important;
+            border: none !important;
+            background: transparent !important;
+        }
+
+        .ui-menu-item-wrapper.ui-state-active {
+            background: var(--primary-color) !important;
+            color: #ffffff !important;
+        }
+
+        .ui-menu-item-wrapper strong {
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        .ui-menu-item-wrapper.ui-state-active strong {
+            color: #ffffff;
+        }
+
+        /* ── Toast ── */
+        #toast {
+            position: fixed;
+            bottom: 120px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background: var(--toast-bg);
+            color: var(--toast-text);
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+            z-index: 99999;
+            opacity: 0;
+            pointer-events: none;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+
+        #toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* ── Helpers ── */
+        .icon-hidden { display: none; }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- Topbar -->
+    <header class="topbar">
+        <div class="topbar-content">
+
+            <a href="#" class="logo">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="7"/>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                </svg>
+                <span style="display:none">Cercador de RAM i Fàrmacs</span>
+            </a>
+
+            <!-- Navigation menu: static <ul>, items updated by JS for query injection -->
+            <nav>
+                <ul class="nav-menu" id="nav-menu">
+                    <li><a id="nav-google"   href="https://translate.google.com/?sl=ca&tl=es" target="_blank" rel="noopener noreferrer">Google Traductor <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/></svg></a></li>
+                    <li><a id="nav-optimot"  href="https://aplicacions.llengua.gencat.cat/llc/AppJava/index.html?action=Principal&method=cerca_generica&tipusCerca=cerca.tot" target="_blank" rel="noopener noreferrer">Optimot <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/></svg></a></li>
+                    <li><a id="nav-termcat"  href="https://www.termcat.cat/ca/cercaterm/?type=basic&thematic_area=Ciències de la salut&language=ca" target="_blank" rel="noopener noreferrer">Termcat <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/></svg></a></li>
+                    <li><a id="nav-softcatala"   href="https://www.softcatala.org/traductor/" target="_blank" rel="noopener noreferrer">Softcatalà <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/></svg></a></li>
+                    <li><a id="nav-corrector"    href="https://www.softcatala.org/corrector/" target="_blank" rel="noopener noreferrer">Softcatalà (corrector) <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/></svg></a></li>
+                </ul>
+            </nav>
+
+            <div class="topbar-actions">
+                <!-- Dark/light toggle -->
+                <button id="btn-theme-toggle" title="Canviar tema visual">
+                    <svg id="theme-moon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                    </svg>
+                    <svg id="theme-sun-svg" class="icon-hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"/>
+                        <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                        <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                    </svg>
+                </button>
+                <!-- Hamburger: visible only on small screens via CSS -->
+                <button id="btn-nav-toggle" title="Menú de navegació" aria-expanded="false" aria-controls="nav-menu">
+                    <svg id="hamburger-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="6"  x2="21" y2="6"/>
+                        <line x1="3" y1="12" x2="21" y2="12"/>
+                        <line x1="3" y1="18" x2="21" y2="18"/>
+                    </svg>
+                    <svg id="close-svg" class="icon-hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6"  y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="container">
+        <div class="search-card">
+            <div class="card-header">
+                <div class="title-group">
+                    <h1>Cercador de RAM i fàrmacs</h1>
+                    <p class="subtitle">...per evitar faltes ortogràfiques en català</p>
+                </div>
+                <div class="switcher">
+                    <button id="btn-ram" class="active" data-source="ram">RAM</button>
+                    <button id="btn-farmacs" data-source="farmacs">Fàrmacs</button>
+                </div>
+            </div>
+
+            <div class="search-box-wrapper">
+                <div class="search-input-container">
+                    <svg class="search-icon" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                    </svg>
+                    <input id="search" type="text" placeholder="Carregant dades..." disabled autocomplete="off">
+                    <button id="btn-clear" class="clear-icon" title="Netejar text">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                        </svg>
+                    </button>
+                    <div class="loader-spinner" id="search-spinner"></div>
+                </div>
+            </div>
+
+            <div class="card-footer">
+                <div>Font: <a id="source-label" href="#" target="_blank" rel="noopener noreferrer"></a></div>
+                <div id="item-count">Carregant termes...</div>
+            </div>
+        </div>
+
+        <!-- QR Code -->
+        <figure class="qr-block">
+            <a href="https://montaneva.github.io" target="_blank" rel="noopener noreferrer" title="Obre l'eina">
+                <img src="qr.png"
+                     alt="Codi QR de l'eina Cercador de RAM i Fàrmacs"
+                     width="96" height="96">
+            </a>
+            <figcaption>montaneva.github.io</figcaption>
+        </figure>
+    </main>
+
+    <!-- Toast Notification -->
+    <div id="toast"></div>
+
+    <!-- JS Logic -->
+    <script>
+        $(document).ready(function() {
+
+            const SOURCES = {
+                ram: {
+                    url: 'https://raw.githubusercontent.com/montaneva/FVcsv/refs/heads/master/ramDescripcio.csv',
+                    label: 'ramDescripcio.csv'
+                },
+                farmacs: {
+                    url: 'https://raw.githubusercontent.com/montaneva/FVcsv/refs/heads/master/farmacs.csv',
+                    label: 'farmacs.csv'
+                }
+            };
+
+            // Nav links: maps DOM anchor id → base URL with optional {query} placeholder
+            const NAV_LINKS = {
+                'nav-google':    'https://translate.google.com/?sl=ca&tl=es&text={query}',
+                'nav-optimot':   'https://aplicacions.llengua.gencat.cat/llc/AppJava/index.html?action=Principal&method=cerca_generica&input_cercar={query}&tipusCerca=cerca.tot',
+                'nav-termcat':   'https://www.termcat.cat/ca/cercaterm/{query}?type=basic&thematic_area=Ciències de la salut&language=ca',
+                'nav-softcatala':  'https://www.softcatala.org/traductor/',
+                'nav-corrector':   'https://www.softcatala.org/corrector/'
+            };
+
+            let currentSource = 'ram';
+            let cache = { ram: null, farmacs: null };
+            let suggest = [];
+            let toastTimeout;
+
+            // ── Normalize (accent-insensitive) ──
+            function normalize(str) {
+                return (str || "")
+                    .normalize("NFD")
+                    .replace(/[\u0300-\u036f]/g, "")
+                    .toLowerCase();
+            }
+
+            // ── Escape HTML ──
+            function escapeHTML(str) {
+                return str
+                    .replace(/&/g, '&amp;')
+                    .replace(/</g, '&lt;')
+                    .replace(/>/g, '&gt;')
+                    .replace(/"/g, '&quot;')
+                    .replace(/'/g, '&#039;');
+            }
+
+            // ── Highlight match (accent/case insensitive) ──
+            function getHighlightedText(text, search) {
+                if (!search || !search.trim()) return escapeHTML(text);
+                const searchNormalized = normalize(search);
+                const textNormalized   = normalize(text);
+                const searchLen = searchNormalized.length;
+                if (searchLen === 0) return escapeHTML(text);
+
+                const charMap = [];
+                let currentNormPos = 0;
+                for (let i = 0; i < text.length; i++) {
+                    const normChar = normalize(text[i]);
+                    charMap.push({ start: currentNormPos, end: currentNormPos + normChar.length });
+                    currentNormPos += normChar.length;
+                }
+
+                let startIdx = 0;
+                const matches = [];
+                while (true) {
+                    const matchIdx = textNormalized.indexOf(searchNormalized, startIdx);
+                    if (matchIdx === -1) break;
+                    matches.push({ start: matchIdx, end: matchIdx + searchLen });
+                    startIdx = matchIdx + searchLen;
+                }
+                if (matches.length === 0) return escapeHTML(text);
+
+                const origMatches = [];
+                matches.forEach(m => {
+                    let origStart = -1, origEnd = -1;
+                    for (let i = 0; i < charMap.length; i++) {
+                        const map = charMap[i];
+                        if (origStart === -1 && map.start >= m.start) origStart = i;
+                        if (map.end <= m.end) origEnd = i + 1;
+                    }
+                    if (origStart !== -1 && origEnd !== -1 && origStart < origEnd)
+                        origMatches.push({ start: origStart, end: origEnd });
+                });
+
+                let lastOrigPos = 0, htmlResult = '';
+                origMatches.forEach(m => {
+                    if (m.start > lastOrigPos) htmlResult += escapeHTML(text.substring(lastOrigPos, m.start));
+                    htmlResult += '<strong>' + escapeHTML(text.substring(m.start, m.end)) + '</strong>';
+                    lastOrigPos = m.end;
+                });
+                if (lastOrigPos < text.length) htmlResult += escapeHTML(text.substring(lastOrigPos));
+                return htmlResult;
+            }
+
+            // ── Toast ──
+            function showToast(text) {
+                const $toast = $('#toast');
+                $toast.html(`
+                    <svg style="width:16px;height:16px" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path>
+                    </svg>
+                    <span>${escapeHTML(text)}</span>
+                `);
+                $toast.addClass('show');
+                clearTimeout(toastTimeout);
+                toastTimeout = setTimeout(() => $toast.removeClass('show'), 1800);
+            }
+
+            // ── Clipboard ──
+            function copyToClipboard(text) {
+                if (navigator.clipboard && window.isSecureContext) {
+                    navigator.clipboard.writeText(text)
+                        .then(() => showToast('Copiat al porta-retalls!'))
+                        .catch(() => fallbackCopy(text));
+                } else {
+                    fallbackCopy(text);
+                }
+            }
+
+            function fallbackCopy(text) {
+                const $temp = $('<input>');
+                $('body').append($temp);
+                $temp.val(text).select();
+                try {
+                    document.execCommand('copy');
+                    showToast('Copiat al porta-retalls!');
+                } catch (err) {
+                    showToast('Error al copiar');
+                }
+                $temp.remove();
+            }
+
+            // ── CSV parser ──
+            function processCSV(data) {
+                if (!data) return [];
+                const lines = data.split(/\r?\n/);
+                const itemsSet = new Set();
+                for (let i = 0; i < lines.length; i++) {
+                    let line = lines[i].trim();
+                    if (!line) continue;
+                    if (line.endsWith(',')) line = line.slice(0, -1).trim();
+                    if (line.startsWith('"') && line.endsWith('"')) line = line.slice(1, -1).trim();
+                    line = line.replace(/""/g, '"');
+                    const val = $.trim(line.slice(0, 120));
+                    if (val) itemsSet.add(val);
+                }
+                return Array.from(itemsSet)
+                    .sort((a, b) => a.localeCompare(b, 'ca', { sensitivity: 'base' }))
+                    .map(item => ({ original: item, normalized: normalize(item) }));
+            }
+
+            // ── Update nav link hrefs with current search term ──
+            function updateNavLinks(term) {
+                const query = term ? encodeURIComponent(term) : '';
+                Object.entries(NAV_LINKS).forEach(([id, baseUrl]) => {
+                    let href = query ? baseUrl.replace('{query}', query) : baseUrl.replace('{query}', '');
+                    $('#' + id).attr('href', href);
+                });
+            }
+
+            // ── Theme toggle (session only, no localStorage) ──
+            function toggleTheme() {
+                const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+                const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+                document.documentElement.setAttribute('data-theme', newTheme);
+                if (newTheme === 'dark') {
+                    $('#theme-moon-svg').addClass('icon-hidden');
+                    $('#theme-sun-svg').removeClass('icon-hidden');
+                } else {
+                    $('#theme-sun-svg').addClass('icon-hidden');
+                    $('#theme-moon-svg').removeClass('icon-hidden');
+                }
+            }
+
+            // ── Switch data source ──
+            function switchSource(source) {
+                currentSource = source;
+                $('.switcher button').removeClass('active');
+                $('#btn-' + source).addClass('active');
+                $('#source-label')
+                    .text(SOURCES[source].label)
+                    .attr('href', SOURCES[source].url);
+                $('#search').val('').autocomplete('close');
+                $('#btn-clear').hide();
+                updateNavLinks('');
+                if (cache[source]) {
+                    suggest = cache[source];
+                    $('#item-count').text(`${suggest.length.toLocaleString('ca')} termes carregats`);
+                    $('#search')
+                        .prop('disabled', false)
+                        .attr('placeholder', 'Comença a escriure i selecciona el terme...')
+                        .focus();
+                } else {
+                    suggest = [];
+                    $('#item-count').text('Dades no disponibles.');
+                    $('#search').prop('disabled', true).attr('placeholder', 'Error en carregar la font.');
+                }
+            }
+
+            // ── Load CSV data ──
+            function loadData() {
+                $('#search-spinner').show();
+                $('#item-count').text('Descarregant fonts...');
+
+                const fetchRAM = $.get(SOURCES.ram.url)
+                    .done(data => { cache.ram = processCSV(data); })
+                    .fail(() => showToast('Error descarregant base de dades RAM'));
+
+                const fetchFarmacs = $.get(SOURCES.farmacs.url)
+                    .done(data => { cache.farmacs = processCSV(data); })
+                    .fail(() => showToast('Error descarregant base de dades Fàrmacs'));
+
+                Promise.allSettled([fetchRAM, fetchFarmacs]).then(() => {
+                    $('#search-spinner').hide();
+                    switchSource('ram');
+                });
+            }
+
+            // ── Autocomplete ──
+            function initAutocomplete() {
+                $('#search').autocomplete({
+                    minLength: 2,
+                    source: function(request, response) {
+                        const term = normalize(request.term);
+                        const results = [];
+                        for (let i = 0; i < suggest.length; i++) {
+                            const item = suggest[i];
+                            if (item.normalized.includes(term)) {
+                                results.push({ label: item.original, value: item.original });
+                                if (results.length >= 100) break;
+                            }
+                        }
+                        response(results);
+                    },
+                    select: function(event, ui) {
+                        const $input = $(this);
+                        $input.val(ui.item.value);
+                        copyToClipboard(ui.item.value);
+                        updateNavLinks(ui.item.value);
+                        $('#btn-clear').show();
+                        setTimeout(() => { $input.focus(); $input.select(); }, 80);
+                        return false;
+                    }
+                });
+
+                $.ui.autocomplete.prototype._renderItem = function(ul, item) {
+                    const highlighted = getHighlightedText(item.label, this.term);
+                    return $("<li>").append($("<div>").html(highlighted)).appendTo(ul);
+                };
+            }
+
+            // ── Event bindings ──
+
+            // Source switcher
+            $('.switcher button').on('click', function() {
+                const source = $(this).data('source');
+                if (source !== currentSource) switchSource(source);
+            });
+
+            // Search input
+            $('#search').on('input', function() {
+                const val = $(this).val();
+                val.trim() ? $('#btn-clear').css('display', 'flex') : $('#btn-clear').hide();
+                updateNavLinks(val);
+            });
+
+            // Clear button
+            $('#btn-clear').on('click', function() {
+                $('#search').val('').focus().autocomplete('close');
+                $(this).hide();
+                updateNavLinks('');
+            });
+
+            // Theme toggle
+            $('#btn-theme-toggle').on('click', toggleTheme);
+
+            // Hamburger toggle
+            $('#btn-nav-toggle').on('click', function() {
+                const $menu = $('#nav-menu');
+                const isOpen = $menu.hasClass('open');
+                $menu.toggleClass('open');
+                $(this).attr('aria-expanded', !isOpen);
+                $('#hamburger-svg').toggleClass('icon-hidden', !isOpen);
+                $('#close-svg').toggleClass('icon-hidden', isOpen);
+            });
+
+            // Close nav menu when a link is clicked on mobile
+            $('#nav-menu a').on('click', function() {
+                $('#nav-menu').removeClass('open');
+                $('#btn-nav-toggle').attr('aria-expanded', false);
+                $('#hamburger-svg').removeClass('icon-hidden');
+                $('#close-svg').addClass('icon-hidden');
+            });
+
+            // ── Init ──
+            initAutocomplete();
+            updateNavLinks('');
+            loadData();
+
+        });
+    </script>
+</body>
+</html>
