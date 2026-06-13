@@ -332,8 +332,8 @@
 				padding: 0 15px;
 			}
         }
-		
-        @media (min-width: 480px) {
+
+        @media (min-width: 480px) {	
             .card-header {
                 flex-direction: row;
                 align-items: center;
@@ -676,7 +676,7 @@
         <div class="search-card">
             <div class="card-header">
                 <div class="title-group">
-                    <h1>Cercador de RAM i fàrmacs</h1>
+                    <h1 id="title-label" >Cercador de RAM i fàrmacs</h1>
                     <p class="subtitle">...per evitar faltes ortogràfiques en català</p>
                 </div>
                 <div class="switcher">
@@ -726,10 +726,12 @@
 
             const SOURCES = {
                 ram: {
+                    title: 'Cercador de RAM',
                     url: 'https://raw.githubusercontent.com/montaneva/FVcsv/refs/heads/master/ramDescripcio.csv',
                     label: 'ramDescripcio.csv'
                 },
                 farmacs: {
+                    title: 'Cercador de fàrmacs',
                     url: 'https://raw.githubusercontent.com/montaneva/FVcsv/refs/heads/master/farmacs.csv',
                     label: 'farmacs.csv'
                 }
@@ -902,7 +904,10 @@
                 $('#btn-' + source).addClass('active');
                 $('#source-label')
                     .text(SOURCES[source].label)
-                    .attr('href', SOURCES[source].url);
+                    .attr('href', SOURCES[source].url);				
+	            $('#title-label')
+                    .text(SOURCES[source].title)
+					
                 $('#search').val('').autocomplete('close');
                 $('#btn-clear').hide();
                 updateNavLinks('');
