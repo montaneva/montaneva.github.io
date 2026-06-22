@@ -41,6 +41,9 @@
 <html lang="ca" data-theme="light">
 <head>
     <meta charset="UTF-8">
+
+    <meta name="referrer" content="no-referrer">
+    <meta http-equiv="Referrer-Policy" content="no-referrer">
 	
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -632,10 +635,10 @@
             <!-- Navigation menu: static <ul>, items updated by JS for query injection -->
             <nav>
                 <ul class="nav-menu" id="nav-menu">
-                    <li><a id="nav-google"   href="https://translate.google.com/?sl=ca&tl=es" target="_blank" rel="noopener noreferrer">Google Traductor <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/></svg></a></li>
+                    <li><a id="nav-google"   href="https://translate.google.com/?hl=ca&sl=ca&tl=es" target="_blank" rel="noopener noreferrer">Google Traductor <svg fill="none" stroke="red" stroke-width="3" viewBox="0 0 22 20" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5L6 9H3a1 1 0 00-1 1v4a1 1 0 001 1h3l5 4V5z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15.54 8.46a5 5 0 010 7.07"/><path stroke-linecap="round" stroke-linejoin="round" d="M18.36 5.64a9 9 0 010 12.72"/></svg> <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/></svg></a></li>
+                    <li><a id="nav-apertium"   href="https://www.apertium.org/index.cat.html#?dir=cat-spa" target="_blank" rel="noopener noreferrer">Apertium <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/></svg></a></li>
                     <li><a id="nav-optimot"  href="https://aplicacions.llengua.gencat.cat/llc/AppJava/index.html?action=Principal&method=cerca_generica&tipusCerca=cerca.tot" target="_blank" rel="noopener noreferrer">Optimot <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/></svg></a></li>
                     <li><a id="nav-termcat"  href="https://www.termcat.cat/ca/cercaterm/?type=basic&thematic_area=Ciències de la salut&language=ca" target="_blank" rel="noopener noreferrer">Termcat <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/></svg></a></li>
-                    <li><a id="nav-softcatala"   href="https://www.softcatala.org/traductor/" target="_blank" rel="noopener noreferrer">Softcatalà <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/></svg></a></li>
                     <li><a id="nav-corrector"    href="https://www.softcatala.org/corrector/" target="_blank" rel="noopener noreferrer">Softcatalà (corrector) <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/></svg></a></li>
                 </ul>
             </nav>
@@ -739,10 +742,10 @@
 
             // Nav links: maps DOM anchor id → base URL with optional {query} placeholder
             const NAV_LINKS = {
-                'nav-google':    'https://translate.google.com/?sl=ca&tl=es&text={query}',
+                'nav-google':    'https://translate.google.com/?hl=ca&sl=ca&tl=es&text={query}',
+                'nav-apertium':  'https://www.apertium.org/index.cat.html#?dir=cat-spa&q={query}',
                 'nav-optimot':   'https://aplicacions.llengua.gencat.cat/llc/AppJava/index.html?action=Principal&method=cerca_generica&input_cercar={query}&tipusCerca=cerca.tot',
                 'nav-termcat':   'https://www.termcat.cat/ca/cercaterm/{query}?type=basic&thematic_area=Ciències de la salut&language=ca',
-                'nav-softcatala':  'https://www.softcatala.org/traductor/',
                 'nav-corrector':   'https://www.softcatala.org/corrector/'
             };
 
