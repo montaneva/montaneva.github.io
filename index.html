@@ -28,6 +28,11 @@
     <meta property="twitter:description" content="Eva MONTANE, Clinical Pharmacologist, MD. PhD. Head of Clinical Pharmacology Department.">
     <meta property="twitter:image" content="https://montaneva.github.io/imgs/eme/200x200.png">
 
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
     <!-- Font Awesome 6 CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <!-- Bootstrap 5 CDN -->
@@ -35,32 +40,95 @@
  
 	<style>
 
-		 html{ font-family:Arial,sans-serif; scroll-behavior:smooth}
-		 body{ font-family:Arial,sans-serif}
+		 html{ font-family: 'Outfit', sans-serif; scroll-behavior:smooth}
+		 body{ font-family: 'Outfit', sans-serif; background-color: #fcfdfd; color: #2b3a38; }
 		 section[id] { scroll-margin-top: 70px; }
-		 a{ color:#70B9B0}
-		 a:hover{ color:#4e817b}
+		 a{ color:#2c786c; text-decoration: none; transition: color 0.2s ease; }
+		 a:hover{ color:#1e564d }
 		 a i:hover{ opacity:0.8}
-		 h2{ color:#4e817b; font-weight:bold; font-size:200%}
-		 h5{ line-height:0.9em}
-		 h6 { color:#999; padding:25px 40px 8px ; font-weight:bold}
-		 footer{ position:relative; background-color:#444}
-		 #cover h3, #cover p{ color:#fafafa}
-		 #interests p{ color:#999}
+		 h2{ color:#2c786c; font-weight:700; font-size:220%; margin-bottom: 30px; }
+		 h5{ line-height:1.2em; font-weight:600; }
+		 h6 { color:#666; padding:25px 40px 8px ; font-weight:700; text-transform: uppercase; font-size: 85%; letter-spacing: 1px; }
+		 footer{ position:relative; background-color:#1e3532; color: #a3c2be; }
+		 #cover h3, #cover p{ color:#ffffff}
+		 #interests p{ color:#666; font-size: 95%; }
 		 #nav{ width:75%; margin:10px auto}
-		 #profileImg{ margin-top:90px; border-radius:50%}
-		 #research{ background-color:#f8f8f8}
+		 #profileImg{ margin-top:90px; border-radius:50%; box-shadow: 0 8px 24px rgba(0,0,0,0.15); border: 4px solid rgba(255,255,255,0.2); }
+		 #research{ background-color:#f4f9f8}
 		 #research figure{ margin:0}
 		 #research h5{ font-size:110%}
-		 #research img{ border-radius:50%}
-		 #research img:hover{ opacity:0.8}
-		 #scrollTopBtn:hover{ background-color: #4e817b}
-		 #scrollTopBtn{ display:none; position:fixed; bottom:20px; right:20px; z-index:100; font-size:18px; background-color:#70B9B0; color:white; border:none; padding:8px 15px; border-radius:50%; cursor:pointer}
-		 .fa-check{ color:#70B9B0;}
-		 .navbar li a{ color:#fafafa}
-		 .navbar{ width:100%; position:fixed !important; background-color:#4e817b}
-		 .social-links a{ font-size:220%; color:#444}
+		 #research img{ border-radius:8px; transition: all 0.3s ease; }
+		 #scrollTopBtn:hover{ background-color: #1e564d}
+		 #scrollTopBtn{ display:none; position:fixed; bottom:20px; right:20px; z-index:100; font-size:18px; background-color:#2c786c; color:white; border:none; padding:8px 15px; border-radius:50%; cursor:pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.15); transition: background-color 0.2s ease; }
+		 .fa-check{ color:#2c786c;}
+		 .navbar li a{ color:#fafafa; font-weight: 500; font-size: 90%; letter-spacing: 0.5px; transition: opacity 0.2s ease; }
+		 .navbar li a:hover { opacity: 0.9; }
+		 .navbar{ width:100%; position:fixed !important; background-color:#2c786c; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+		 .social-links a{ font-size:220%; color:#333333; opacity: 0.9; transition: transform 0.2s ease, opacity 0.2s ease; display: inline-block; }
+		 .social-links a:hover { transform: translateY(-3px); opacity: 1; }
 		 .social-links{ margin-top:25px}
+
+		 /* Modern Card Styling */
+		 .interest-card {
+			 background: #ffffff;
+			 border-radius: 16px;
+			 padding: 35px 25px;
+			 height: 100%;
+			 transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+			 border: 1px solid rgba(0,0,0,0.05);
+			 box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+		 }
+		 .interest-card:hover {
+			 transform: translateY(-6px);
+			 box-shadow: 0 15px 30px rgba(44, 120, 108, 0.1);
+			 border-color: rgba(44, 120, 108, 0.2);
+		 }
+		 
+		 .portal-card {
+			 background: #ffffff;
+			 border-radius: 16px;
+			 padding: 25px 15px;
+			 height: 100%;
+			 display: flex;
+			 flex-direction: column;
+			 justify-content: center;
+			 align-items: center;
+			 transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+			 border: 1px solid rgba(0,0,0,0.05);
+			 box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+		 }
+		 .portal-card:hover {
+			 transform: translateY(-6px);
+			 box-shadow: 0 15px 30px rgba(44, 120, 108, 0.1);
+			 border-color: rgba(44, 120, 108, 0.2);
+		 }
+		 .portal-card img {
+			 max-height: 55px;
+			 object-fit: contain;
+		 }
+
+		 .award-card {
+			 background: #ffffff;
+			 border-radius: 16px;
+			 padding: 30px 20px;
+			 height: 100%;
+			 transition: all 0.3s ease;
+			 border: 1px solid rgba(0,0,0,0.05);
+			 box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+			 display: flex;
+			 flex-direction: column;
+			 align-items: center;
+			 justify-content: space-between;
+		 }
+		 .award-card:hover {
+			 transform: translateY(-4px);
+			 box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+		 }
+		 .award-card img {
+			 max-height: 60px;
+			 object-fit: contain;
+			 margin: 15px 0;
+		 }
 
 		/* Media Queries for Smaller Screens */
 		 @media (max-width:768px){ 
@@ -68,12 +136,11 @@
 			#profileImg{ margin-top:60px}
 			.navbar{ padding-bottom:0}
 			.navbar a{ padding-left:15px}
-			.navbar-toggler:hover{ background-color:#70B9B0}
+			.navbar-toggler:hover{ background-color:#358f84}
 			.navbar div{ padding-right:0; padding-left:0; margin-bottom:0}
-			.navbar-collapse ul{ margin-top:15px; border-top:1px solid #aaa}
-			.navbar-collapse li{ background-color:#666; border-bottom:1px solid #aaa}
-			.navbar-nav li:hover{ background-color:#4e817b}
-
+			.navbar-collapse ul{ margin-top:15px; border-top:1px solid rgba(255,255,255,0.1)}
+			.navbar-collapse li{ background-color:#204640; border-bottom:1px solid rgba(255,255,255,0.1)}
+			.navbar-nav li:hover{ background-color:#2c786c}
 		 }
 
 	</style>
@@ -114,7 +181,7 @@
 
 
     <!-- Cover  -->
-    <section id="cover" class="featured text-center py-5"  style="background-color: #70B9B0">
+    <section id="cover" class="featured text-center py-5" style="background: linear-gradient(135deg, #70B9B0 0%, #70B9B0 100%);">
         <div class="container py-4">
             <img id="profileImg" src="imgs/eme/200x200.png" alt="Eva Montané" class="rounded-circle img-fluid mb-4" fetchpriority="high" loading="eager">
             <h3 class="my-1">Head of Clinical Pharmacology Department</h3>
@@ -139,38 +206,50 @@
 				<h2 class="section-heading">Fields of Interests</h2>
 			</div>
 			<div class="row">
-				<div class="col-lg-4 col-md-6 text-center mb-4">
-					<i class="fa-solid fa-triangle-exclamation fa-5x mb-3" style="color:#70B9B0;"></i>
-					<h5 class="mb-3">Pharmacovigilance<br>-<br>Pharmacoepidemiology</h5>
-					<p>Drug-induced Death<br>Drug-induced Hepatitis<br>Severe Cutaneous ADRs</p>
+				<div class="col-lg-4 col-md-6 mb-4">
+					<div class="interest-card text-center">
+						<i class="fa-solid fa-triangle-exclamation fa-3x mb-3" style="color:#2c786c;"></i>
+						<h5 class="mb-3">Pharmacovigilance<br>-<br>Pharmacoepidemiology</h5>
+						<p class="mb-0">Drug-induced Death<br>Drug-induced Hepatitis<br>Severe Cutaneous ADRs</p>
+					</div>
 				</div>
-				<div class="col-lg-4 col-md-6 text-center mb-4">
-					<i class="fa-solid fa-pills fa-5x mb-3" style="color:#70B9B0;"></i>
-					<h5 class="mb-3">Prescription<br>-<br>Deprescription</h5>
-					<p>Benefit-Risk Assessment<br>NNT / NNH Approach<br>Cost Effectiveness</p>
+				<div class="col-lg-4 col-md-6 mb-4">
+					<div class="interest-card text-center">
+						<i class="fa-solid fa-pills fa-3x mb-3" style="color:#2c786c;"></i>
+						<h5 class="mb-3">Prescription<br>-<br>Deprescription</h5>
+						<p class="mb-0">Benefit-Risk Assessment<br>NNT / NNH Approach<br>Cost Effectiveness</p>
+					</div>
 				</div>
-				<div class="col-lg-4 col-md-6 text-center mb-4">
-					<i class="fa fa-university fa-5x mb-3" style="color:#70B9B0;"></i>
-					<h5 class="mb-3">Academy<br>-<br>Teaching</h5>
-					<p>Coordinator of the UAB<br>Germans Trias Hospital Teaching Unit<br>Tenured Professor<br>Thesis/Master Supervision</p>
+				<div class="col-lg-4 col-md-6 mb-4">
+					<div class="interest-card text-center">
+						<i class="fa fa-university fa-3x mb-3" style="color:#2c786c;"></i>
+						<h5 class="mb-3">Academy<br>-<br>Teaching</h5>
+						<p class="mb-0">Coordinator of the UAB<br>Germans Trias Hospital Teaching Unit<br>Tenured Professor<br>Thesis/Master Supervision</p>
+					</div>
 				</div>
-				<div class="col-lg-4 col-md-6 text-center mb-4">
-					<i class="fa-solid fa-chart-simple fa-5x mb-3" style="color:#70B9B0;"></i>
-					<h5 class="mb-3">Data Collection<br>-<br>Data Analysis<br></h5>
-					<p>Data Wrangling<br>Descriptive Statistics<br>SQL, SPSS, R, Python<br></p>
+				<div class="col-lg-4 col-md-6 mb-4">
+					<div class="interest-card text-center">
+						<i class="fa-solid fa-chart-simple fa-3x mb-3" style="color:#2c786c;"></i>
+						<h5 class="mb-3">Data Collection<br>-<br>Data Analysis</h5>
+						<p class="mb-0">Data Wrangling<br>Descriptive Statistics<br>SQL, SPSS, R, Python</p>
+					</div>
 				</div>
-				<div class="col-lg-4 col-md-6 text-center mb-4">
-					<i class="fa fa-cogs fa-5x mb-3" style="color:#70B9B0;"></i>
-					<h5 class="mb-3">Prediction Models<br>-<br>Drug Safety AI</h5>
-					<p>Hospital PV Automation<br>AI-Driven ADR Detection<br>
-						Member of <a href="https://www.evidencio.com/contributors" target="external"
-							rel="noopener">EVIDENCIO</a> Scientific <span class="d-none d-sm-inline">Advisory</span> Board
-					</p>
+				<div class="col-lg-4 col-md-6 mb-4">
+					<div class="interest-card text-center">
+						<i class="fa fa-cogs fa-3x mb-3" style="color:#2c786c;"></i>
+						<h5 class="mb-3">Prediction Models<br>-<br>Drug Safety AI</h5>
+						<p class="mb-0">Hospital PV Automation<br>AI-Driven ADR Detection<br>
+							Member of <a href="https://www.evidencio.com/contributors" target="external"
+								rel="noopener">EVIDENCIO</a> Scientific <span class="d-none d-sm-inline">Advisory</span> Board
+						</p>
+					</div>
 				</div>
-				<div class="col-lg-4 col-md-6 text-center mb-4">
-					<i class="fa-brands fa-creative-commons fa-5x mb-3" style="color:#70B9B0;"></i>
-					<h5 class="mb-3">Collaborative Science<br>-<br>Knowledge Sharing</h5>
-					<p>Open Source Approach<br>Method & Tools Sharing<br>Open Repositories</p>
+				<div class="col-lg-4 col-md-6 mb-4">
+					<div class="interest-card text-center">
+						<i class="fa-brands fa-creative-commons fa-3x mb-3" style="color:#2c786c;"></i>
+						<h5 class="mb-3">Collaborative Science<br>-<br>Knowledge Sharing</h5>
+						<p class="mb-0">Open Source Approach<br>Method & Tools Sharing<br>Open Repositories</p>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -185,68 +264,83 @@
 			</div>
 
 			<div class="row">
-				<div class="col-lg-4 col-md-6 text-center mb-4">
-					<figure>
-						<a href="https://pubmed.ncbi.nlm.nih.gov/?term=+montane+E%5BAuthor%5D+OR+montane+E%5BInvestigator%5D+OR+montaner+E%5BInvestigator%5D+OR+17678607+OR+12392644+NOT+Toulouse+%5BAffiliation%5D&sort=pubdate" target="external" title="PubMed">
-							<img src="imgs/portals/pubmed.png" alt="PubMed" class="img-fluid mb-3" loading="lazy" />
-						</a>
-					</figure>
-					<h5 class="mb-3"><a href="https://pubmed.ncbi.nlm.nih.gov/?term=+montane+E%5BAuthor%5D+OR+montane+E%5BInvestigator%5D+OR+montaner+E%5BInvestigator%5D+OR+17678607+OR+12392644+NOT+Toulouse+%5BAffiliation%5D&sort=pubdate" target="_blank" rel="noopener noreferrer" title="PubMed">PubMed</a></h5>
+				<div class="col-lg-4 col-md-6 mb-4">
+					<div class="portal-card">
+						<figure class="mb-2">
+							<a href="https://pubmed.ncbi.nlm.nih.gov/?term=+montane+E%5BAuthor%5D+OR+montane+E%5BInvestigator%5D+OR+montaner+E%5BInvestigator%5D+OR+17678607+OR+12392644+NOT+Toulouse+%5BAffiliation%5D&sort=pubdate" target="external" title="PubMed">
+								<img src="imgs/portals/pubmed.png" alt="PubMed" class="img-fluid" loading="lazy" />
+							</a>
+						</figure>
+						<h5 class="mb-0"><a href="https://pubmed.ncbi.nlm.nih.gov/?term=+montane+E%5BAuthor%5D+OR+montane+E%5BInvestigator%5D+OR+montaner+E%5BInvestigator%5D+OR+17678607+OR+12392644+NOT+Toulouse+%5BAffiliation%5D&sort=pubdate" target="_blank" rel="noopener noreferrer" title="PubMed">PubMed</a></h5>
+					</div>
 				</div>
 
-				<div class="col-lg-4 col-md-6 text-center mb-4">
-					<figure>
-						<a href="https://www.researchgate.net/profile/Eva_Montane" target="_blank" rel="noopener noreferrer" title="ResearchGate">
-							<img src="imgs/portals/rg.png" alt="ResearchGate" class="img-fluid mb-3" loading="lazy" />
-						</a>
-					</figure>
-					<h5 class="mb-3"><a href="https://www.researchgate.net/profile/Eva_Montane" target="_blank" rel="noopener noreferrer"  title="ResearchGate">ResearchGate</a></h5>
+				<div class="col-lg-4 col-md-6 mb-4">
+					<div class="portal-card">
+						<figure class="mb-2">
+							<a href="https://www.researchgate.net/profile/Eva_Montane" target="_blank" rel="noopener noreferrer" title="ResearchGate">
+								<img src="imgs/portals/rg.png" alt="ResearchGate" class="img-fluid" loading="lazy" />
+							</a>
+						</figure>
+						<h5 class="mb-0"><a href="https://www.researchgate.net/profile/Eva_Montane" target="_blank" rel="noopener noreferrer"  title="ResearchGate">ResearchGate</a></h5>
+					</div>
 				</div>
 
-				<div class="col-lg-4 col-md-6 text-center mb-4">
-					<figure>
-						<a href="https://orcid.org/0000-0002-1691-7652" target="_blank" rel="noopener noreferrer" title="ORCID">
-							<img src="imgs/portals/orcid.png" alt="ORCID" class="img-fluid mb-3" loading="lazy" />
-						</a>
-					</figure>
-					<h5 class="mb-3"><a href="https://orcid.org/0000-0002-1691-7652" target="_blank" rel="noopener noreferrer" title="ORCID">ORCID</a></h5>
+				<div class="col-lg-4 col-md-6 mb-4">
+					<div class="portal-card">
+						<figure class="mb-2">
+							<a href="https://orcid.org/0000-0002-1691-7652" target="_blank" rel="noopener noreferrer" title="ORCID">
+								<img src="imgs/portals/orcid.png" alt="ORCID" class="img-fluid" loading="lazy" />
+							</a>
+						</figure>
+						<h5 class="mb-0"><a href="https://orcid.org/0000-0002-1691-7652" target="_blank" rel="noopener noreferrer" title="ORCID">ORCID</a></h5>
+					</div>
 				</div>
 
-				<div class="col-lg-4 col-md-6 text-center mb-4">
-					<figure>
-						<a href="https://scholar.google.com/citations?user=a8WNeTcAAAAJ" target="external" rel="external" title="Google Scholar">
-							<img src="imgs/portals/scholar.png" alt="Google Scholar" class="img-fluid mb-3" loading="lazy" />
-						</a>
-					</figure>
-					<h5 class="mb-3"><a href="https://scholar.google.com/citations?user=a8WNeTcAAAAJ" target="external" rel="external" title="Google Scholar">Google Scholar</a></h5>
+				<div class="col-lg-4 col-md-6 mb-4">
+					<div class="portal-card">
+						<figure class="mb-2">
+							<a href="https://scholar.google.com/citations?user=a8WNeTcAAAAJ" target="external" rel="external" title="Google Scholar">
+								<img src="imgs/portals/scholar.png" alt="Google Scholar" class="img-fluid" loading="lazy" />
+							</a>
+						</figure>
+						<h5 class="mb-0"><a href="https://scholar.google.com/citations?user=a8WNeTcAAAAJ" target="external" rel="external" title="Google Scholar">Google Scholar</a></h5>
+					</div>
 				</div>
 
-				<div class="col-lg-4 col-md-6 text-center mb-4">
-					<figure>
-						<a href="https://portalrecerca.uab.cat/en/persons/eva-montane-esteva-2/publications/" target="_blank" rel="noopener noreferrer" title="Portal UAB">
-							<img src="imgs/portals/uab.png" alt="Portal UAB" class="img-fluid mb-3" loading="lazy" />
-						</a>
-					</figure>
-					<h5 class="mb-3"><a href="https://portalrecerca.uab.cat/en/persons/eva-montane-esteva-2/publications/" target="_blank" rel="noopener noreferrer" title="Portal UAB">Portal UAB</a></h5>
+				<div class="col-lg-4 col-md-6 mb-4">
+					<div class="portal-card">
+						<figure class="mb-2">
+							<a href="https://portalrecerca.uab.cat/en/persons/eva-montane-esteva-2/publications/" target="_blank" rel="noopener noreferrer" title="Portal UAB">
+								<img src="imgs/portals/uab.png" alt="Portal UAB" class="img-fluid" loading="lazy" />
+							</a>
+						</figure>
+						<h5 class="mb-0"><a href="https://portalrecerca.uab.cat/en/persons/eva-montane-esteva-2/publications/" target="_blank" rel="noopener noreferrer" title="Portal UAB">Portal UAB</a></h5>
+					</div>
 				</div>
 
-				<div class="col-lg-4 col-md-6 text-center mb-4">
-					<figure>
-						<a href="https://portalrecerca.csuc.cat/orcid/0000-0002-1691-7652?locale=en" target="external" title="Portal CORA-CSUC">
-							<img src="imgs/portals/cora.png" alt="Portal CORA-CSUC" class="img-fluid mb-3" loading="lazy" />
-						</a>
-					</figure>
-					<h5 class="mb-3"><a href="https://portalrecerca.csuc.cat/orcid/0000-0002-1691-7652?locale=en" title="Portal CORAL(Consorci de Serveis Universitaris de Catalunya)" target="_blank" rel="noopener noreferrer">Portal CORA-CSUC</a></h5>
+				<div class="col-lg-4 col-md-6 mb-4">
+					<div class="portal-card">
+						<figure class="mb-2">
+							<a href="https://portalrecerca.csuc.cat/orcid/0000-0002-1691-7652?locale=en" target="external" title="Portal CORA-CSUC">
+								<img src="imgs/portals/cora.png" alt="Portal CORA-CSUC" class="img-fluid" loading="lazy" />
+							</a>
+						</figure>
+						<h5 class="mb-0"><a href="https://portalrecerca.csuc.cat/orcid/0000-0002-1691-7652?locale=en" title="Portal CORAL(Consorci de Serveis Universitaris de Catalunya)" target="_blank" rel="noopener noreferrer">Portal CORA-CSUC</a></h5>
+					</div>
 				</div>
 
-				<div class="col-lg-4 col-md-6 text-center mb-4">
-					<figure>
-						<a href="https://ddd.uab.cat/search?c=Dip%C3%B2sit+Digital+de+Documents+de+la+UAB&ln=en&of=hb&p=eva+montane&rg=10&so=d&sc=1" target="_blank" rel="noopener noreferrer" title="UAB Digital Repository">
-							<img src="imgs/portals/ddd.png" alt="UAB Digital Repository" class="img-fluid mb-3" loading="lazy" />
-						</a>
-					</figure>
-					<h5 class="mb-3"><a href="https://ddd.uab.cat/search?c=Dip%C3%B2sit+Digital+de+Documents+de+la+UAB&ln=en&of=hb&p=eva+montane&rg=10&so=d&sc=1" target="_blank" rel="noopener noreferrer" title="UAB Digital Repository">UAB Digital Repository</a></h5>
+				<div class="col-lg-4 col-md-6 mb-4">
+					<div class="portal-card">
+						<figure class="mb-2">
+							<a href="https://ddd.uab.cat/search?c=Dip%C3%B2sit+Digital+de+Documents+de+la+UAB&ln=en&of=hb&p=eva+montane&rg=10&so=d&sc=1" target="_blank" rel="noopener noreferrer" title="UAB Digital Repository">
+								<img src="imgs/portals/ddd.png" alt="UAB Digital Repository" class="img-fluid" loading="lazy" />
+							</a>
+						</figure>
+						<h5 class="mb-0"><a href="https://ddd.uab.cat/search?c=Dip%C3%B2sit+Digital+de+Documents+de+la+UAB&ln=en&of=hb&p=eva+montane&rg=10&so=d&sc=1" target="_blank" rel="noopener noreferrer" title="UAB Digital Repository">UAB Digital Repository</a></h5>
+					</div>
 				</div>
+			</div>
 			</div>
 		</div>
 	</section>
@@ -282,29 +376,33 @@
 				<h2>Awards & Recognition</h2>
 			</div>
 
-			<div class="row">
-				<div class="col">              
-					<h6>Pharmacovigilance Award</h6>
-					<p><img src="imgs/logos/aemps.png" alt="AEMPS logo" loading="lazy"></p>
-					<p><i class="fa-solid fa-check"></i> <a href="https://www.aemps.gob.es/la-aemps/xiii-jornadas-de-farmacovigilancia-40o-aniversario-del-sefv-h" target="external" rel="noopener noreferrer">2024 Edition</a></p>
-
+			<div class="row justify-content-center">
+				<div class="col-lg-4 col-md-6 mb-4">              
+					<div class="award-card">
+						<h6>Pharmacovigilance Award</h6>
+						<img src="imgs/logos/aemps.png" alt="AEMPS logo" loading="lazy">
+						<p class="mb-0"><i class="fa-solid fa-check"></i> <a href="https://www.aemps.gob.es/la-aemps/xiii-jornadas-de-farmacovigilancia-40o-aniversario-del-sefv-h" target="external" rel="noopener noreferrer">2024 Edition</a></p>
+					</div>
 				</div>
-				<div class="col">       
-				<h6>Professional Excellence Award</h6>
-					<p><img src="imgs/logos/comb.png" alt="CoMB logo" loading="lazy"></p>
-					<p><i class="fa-solid fa-check"></i> <a href="https://www.comb.cat/ca/comb/premis-excelencia/any-edicio-2023/Eva-Montan%C3%A9" target="external" rel="noopener noreferrer">2023 Edition</a></p>
-
+				<div class="col-lg-4 col-md-6 mb-4">       
+					<div class="award-card">
+						<h6>Professional Excellence Award</h6>
+						<img src="imgs/logos/comb.png" alt="CoMB logo" loading="lazy">
+						<p class="mb-0"><i class="fa-solid fa-check"></i> <a href="https://www.comb.cat/ca/comb/premis-excelencia/any-edicio-2023/Eva-Montan%C3%A9" target="external" rel="noopener noreferrer">2023 Edition</a></p>
+					</div>
 				</div>
-			</div>
-			<div class="row mb-4 lh-1">
-				<div class="col">         
-					<h6>Honored Speaker – Medical Graduation</h6>
-					<p><img src="imgs/logos/medicina_uab.png" alt="UAB Medicina logo" loading="lazy"></p>
-					<p><i class="fa-solid fa-check"></i> <a href="https://www.linkedin.com/feed/update/urn:li:activity:7304935621851017217/" target="external" rel="noopener noreferrer">2019/25 Promotion</a></p>
-					<p><i class="fa-solid fa-check"></i> <a href="https://www.linkedin.com/feed/update/urn:li:activity:6942001059632451584/" target="external" rel="noopener noreferrer">2016/22 Promotion</a></p>
-					<p><i class="fa-solid fa-check"></i> <a href="https://x.com/montaneva/status/1005715346161065984" target="external" rel="noopener noreferrer">2012/18 Promotion</a></p>
-					<p><img class="img-fluid rounded"  src="imgs/misc/uab-2018.jpg" alt="Graduacio 2018 UAB Medicina" style="width:270px" loading="lazy"></p>
-				</div>			
+				<div class="col-lg-4 col-md-6 mb-4">         
+					<div class="award-card text-center">
+						<h6>Honored Speaker – Medical Graduation</h6>
+						<img src="imgs/logos/medicina_uab.png" alt="UAB Medicina logo" loading="lazy">
+						<div class="text-start w-100 px-3 mb-3">
+							<p class="mb-2"><i class="fa-solid fa-check"></i> <a href="https://www.linkedin.com/feed/update/urn:li:activity:7304935621851017217/" target="external" rel="noopener noreferrer">2019/25 Promotion</a></p>
+							<p class="mb-2"><i class="fa-solid fa-check"></i> <a href="https://www.linkedin.com/feed/update/urn:li:activity:6942001059632451584/" target="external" rel="noopener noreferrer">2016/22 Promotion</a></p>
+							<p class="mb-0"><i class="fa-solid fa-check"></i> <a href="https://x.com/montaneva/status/1005715346161065984" target="external" rel="noopener noreferrer">2012/18 Promotion</a></p>
+						</div>
+						<img class="img-fluid rounded" src="imgs/misc/uab-2018.jpg" alt="Graduacio 2018 UAB Medicina" style="width:270px; max-height: unset;" loading="lazy">
+					</div>
+				</div>
 			</div>
 		</div>
 	</section>
