@@ -1,16 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+    <!-- Preconnect to external CDNs -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+
     <meta charset="utf-8">
     <title>Eva MONTAN&Eacute;, MD, PhD.</title>
     <meta name="robots" content="noarchive" />
-    <meta name="description" content="Eva MONTANE, Clinical Pharmacologist, MD. PhD." />
+    <meta name="description" content="Eva MONTANE, Clinical Pharmacologist, MD. PhD. Head of Clinical Pharmacology Department." />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
     <link rel="canonical" href="https://montaneva.github.io" />
 	<link rel="shortcut icon" type="image/png" sizes="24x24" href="imgs/eme/24x24.png" />
 	<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="imgs/eme/180x180.png" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://montaneva.github.io/">
+    <meta property="og:title" content="Eva MONTANÉ, MD, PhD.">
+    <meta property="og:description" content="Eva MONTANE, Clinical Pharmacologist, MD. PhD. Head of Clinical Pharmacology Department.">
+    <meta property="og:image" content="https://montaneva.github.io/imgs/eme/200x200.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary">
+    <meta property="twitter:url" content="https://montaneva.github.io/">
+    <meta property="twitter:title" content="Eva MONTANÉ, MD, PhD.">
+    <meta property="twitter:description" content="Eva MONTANE, Clinical Pharmacologist, MD. PhD. Head of Clinical Pharmacology Department.">
+    <meta property="twitter:image" content="https://montaneva.github.io/imgs/eme/200x200.png">
 
     <!-- Font Awesome 6 CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
@@ -19,7 +35,9 @@
  
 	<style>
 
-		 html, body{ font-family:Arial,sans-serif}
+		 html{ font-family:Arial,sans-serif; scroll-behavior:smooth}
+		 body{ font-family:Arial,sans-serif}
+		 section[id] { scroll-margin-top: 70px; }
 		 a{ color:#70B9B0}
 		 a:hover{ color:#4e817b}
 		 a i:hover{ opacity:0.8}
@@ -98,7 +116,7 @@
     <!-- Cover  -->
     <section id="cover" class="featured text-center py-5"  style="background-color: #70B9B0">
         <div class="container py-4">
-            <img id="profileImg" src="imgs/eme/200x200.png" alt="Eva Montané" class="rounded-circle img-fluid mb-4">
+            <img id="profileImg" src="imgs/eme/200x200.png" alt="Eva Montané" class="rounded-circle img-fluid mb-4" fetchpriority="high" loading="eager">
             <h3 class="my-1">Head of Clinical Pharmacology Department</h3>
             <p>Hospital Universitari Germans Trias i Pujol</p>
             <p class="fw-bold" style="line-height:0.5em"><span style="color:#4e817b">&</span></p>
@@ -134,7 +152,7 @@
 				<div class="col-lg-4 col-md-6 text-center mb-4">
 					<i class="fa fa-university fa-5x mb-3" style="color:#70B9B0;"></i>
 					<h5 class="mb-3">Academy<br>-<br>Teaching</h5>
-					<p>Associate Dean, UAB Student Exchange Program<br>Tenured Professor<br>Thesis/Master Supervision</p>
+					<p>Coordinator of the UAB<br>Germans Trias Hospital Teaching Unit<br>Tenured Professor<br>Thesis/Master Supervision</p>
 				</div>
 				<div class="col-lg-4 col-md-6 text-center mb-4">
 					<i class="fa-solid fa-chart-simple fa-5x mb-3" style="color:#70B9B0;"></i>
@@ -170,7 +188,7 @@
 				<div class="col-lg-4 col-md-6 text-center mb-4">
 					<figure>
 						<a href="https://pubmed.ncbi.nlm.nih.gov/?term=+montane+E%5BAuthor%5D+OR+montane+E%5BInvestigator%5D+OR+montaner+E%5BInvestigator%5D+OR+17678607+OR+12392644+NOT+Toulouse+%5BAffiliation%5D&sort=pubdate" target="external" title="PubMed">
-							<img src="imgs/portals/pubmed.png" alt="PubMed" class="img-fluid mb-3" />
+							<img src="imgs/portals/pubmed.png" alt="PubMed" class="img-fluid mb-3" loading="lazy" />
 						</a>
 					</figure>
 					<h5 class="mb-3"><a href="https://pubmed.ncbi.nlm.nih.gov/?term=+montane+E%5BAuthor%5D+OR+montane+E%5BInvestigator%5D+OR+montaner+E%5BInvestigator%5D+OR+17678607+OR+12392644+NOT+Toulouse+%5BAffiliation%5D&sort=pubdate" target="_blank" rel="noopener noreferrer" title="PubMed">PubMed</a></h5>
@@ -179,7 +197,7 @@
 				<div class="col-lg-4 col-md-6 text-center mb-4">
 					<figure>
 						<a href="https://www.researchgate.net/profile/Eva_Montane" target="_blank" rel="noopener noreferrer" title="ResearchGate">
-							<img src="imgs/portals/rg.png" alt="ResearchGate" class="img-fluid mb-3" />
+							<img src="imgs/portals/rg.png" alt="ResearchGate" class="img-fluid mb-3" loading="lazy" />
 						</a>
 					</figure>
 					<h5 class="mb-3"><a href="https://www.researchgate.net/profile/Eva_Montane" target="_blank" rel="noopener noreferrer"  title="ResearchGate">ResearchGate</a></h5>
@@ -188,7 +206,7 @@
 				<div class="col-lg-4 col-md-6 text-center mb-4">
 					<figure>
 						<a href="https://orcid.org/0000-0002-1691-7652" target="_blank" rel="noopener noreferrer" title="ORCID">
-							<img src="imgs/portals/orcid.png" alt="ORCID" class="img-fluid mb-3" />
+							<img src="imgs/portals/orcid.png" alt="ORCID" class="img-fluid mb-3" loading="lazy" />
 						</a>
 					</figure>
 					<h5 class="mb-3"><a href="https://orcid.org/0000-0002-1691-7652" target="_blank" rel="noopener noreferrer" title="ORCID">ORCID</a></h5>
@@ -196,17 +214,17 @@
 
 				<div class="col-lg-4 col-md-6 text-center mb-4">
 					<figure>
-						<a href="https://scholar.google.com/citations?user=a8WNeTcAAAAJ" target="external" rel="external" title="Google Schola">
-							<img src="imgs/portals/scholar.png" alt="Google Scholar" class="img-fluid mb-3" />
+						<a href="https://scholar.google.com/citations?user=a8WNeTcAAAAJ" target="external" rel="external" title="Google Scholar">
+							<img src="imgs/portals/scholar.png" alt="Google Scholar" class="img-fluid mb-3" loading="lazy" />
 						</a>
 					</figure>
-					<h5 class="mb-3"><a href="https://scholar.google.com/citations?user=a8WNeTcAAAAJ" target="external" rel="external" title="ORCID">Google Scholar</a></h5>
+					<h5 class="mb-3"><a href="https://scholar.google.com/citations?user=a8WNeTcAAAAJ" target="external" rel="external" title="Google Scholar">Google Scholar</a></h5>
 				</div>
 
 				<div class="col-lg-4 col-md-6 text-center mb-4">
 					<figure>
 						<a href="https://portalrecerca.uab.cat/en/persons/eva-montane-esteva-2/publications/" target="_blank" rel="noopener noreferrer" title="Portal UAB">
-							<img src="imgs/portals/uab.png" alt="Portal UAB" class="img-fluid mb-3" />
+							<img src="imgs/portals/uab.png" alt="Portal UAB" class="img-fluid mb-3" loading="lazy" />
 						</a>
 					</figure>
 					<h5 class="mb-3"><a href="https://portalrecerca.uab.cat/en/persons/eva-montane-esteva-2/publications/" target="_blank" rel="noopener noreferrer" title="Portal UAB">Portal UAB</a></h5>
@@ -215,7 +233,7 @@
 				<div class="col-lg-4 col-md-6 text-center mb-4">
 					<figure>
 						<a href="https://portalrecerca.csuc.cat/orcid/0000-0002-1691-7652?locale=en" target="external" title="Portal CORA-CSUC">
-							<img src="imgs/portals/cora.png" alt="Portal CORA-CSUC" class="img-fluid mb-3" />
+							<img src="imgs/portals/cora.png" alt="Portal CORA-CSUC" class="img-fluid mb-3" loading="lazy" />
 						</a>
 					</figure>
 					<h5 class="mb-3"><a href="https://portalrecerca.csuc.cat/orcid/0000-0002-1691-7652?locale=en" title="Portal CORAL(Consorci de Serveis Universitaris de Catalunya)" target="_blank" rel="noopener noreferrer">Portal CORA-CSUC</a></h5>
@@ -224,7 +242,7 @@
 				<div class="col-lg-4 col-md-6 text-center mb-4">
 					<figure>
 						<a href="https://ddd.uab.cat/search?c=Dip%C3%B2sit+Digital+de+Documents+de+la+UAB&ln=en&of=hb&p=eva+montane&rg=10&so=d&sc=1" target="_blank" rel="noopener noreferrer" title="UAB Digital Repository">
-							<img src="imgs/portals/ddd.png" alt="UAB Digital Repository" class="img-fluid mb-3" />
+							<img src="imgs/portals/ddd.png" alt="UAB Digital Repository" class="img-fluid mb-3" loading="lazy" />
 						</a>
 					</figure>
 					<h5 class="mb-3"><a href="https://ddd.uab.cat/search?c=Dip%C3%B2sit+Digital+de+Documents+de+la+UAB&ln=en&of=hb&p=eva+montane&rg=10&so=d&sc=1" target="_blank" rel="noopener noreferrer" title="UAB Digital Repository">UAB Digital Repository</a></h5>
@@ -267,13 +285,13 @@
 			<div class="row">
 				<div class="col">              
 					<h6>Pharmacovigilance Award</h6>
-					<p><img src="imgs/logos/aemps.png" alt="AEMPS logo"></p>
+					<p><img src="imgs/logos/aemps.png" alt="AEMPS logo" loading="lazy"></p>
 					<p><i class="fa-solid fa-check"></i> <a href="https://www.aemps.gob.es/la-aemps/xiii-jornadas-de-farmacovigilancia-40o-aniversario-del-sefv-h" target="external" rel="noopener noreferrer">2024 Edition</a></p>
 
 				</div>
 				<div class="col">       
 				<h6>Professional Excellence Award</h6>
-					<p><img src="imgs/logos/comb.png" alt="CoMB logo"></p>
+					<p><img src="imgs/logos/comb.png" alt="CoMB logo" loading="lazy"></p>
 					<p><i class="fa-solid fa-check"></i> <a href="https://www.comb.cat/ca/comb/premis-excelencia/any-edicio-2023/Eva-Montan%C3%A9" target="external" rel="noopener noreferrer">2023 Edition</a></p>
 
 				</div>
@@ -281,11 +299,11 @@
 			<div class="row mb-4 lh-1">
 				<div class="col">         
 					<h6>Honored Speaker – Medical Graduation</h6>
-					<p><img src="imgs/logos/medicina_uab.png" alt="UAB Medicina logo"></p>
+					<p><img src="imgs/logos/medicina_uab.png" alt="UAB Medicina logo" loading="lazy"></p>
 					<p><i class="fa-solid fa-check"></i> <a href="https://www.linkedin.com/feed/update/urn:li:activity:7304935621851017217/" target="external" rel="noopener noreferrer">2019/25 Promotion</a></p>
 					<p><i class="fa-solid fa-check"></i> <a href="https://www.linkedin.com/feed/update/urn:li:activity:6942001059632451584/" target="external" rel="noopener noreferrer">2016/22 Promotion</a></p>
 					<p><i class="fa-solid fa-check"></i> <a href="https://x.com/montaneva/status/1005715346161065984" target="external" rel="noopener noreferrer">2012/18 Promotion</a></p>
-					<p><img class="img-fluid rounded"  src="imgs/misc/uab-2018.jpg" alt="Graduacio 2018 UAB Medicina" style="width:270px"></p>
+					<p><img class="img-fluid rounded"  src="imgs/misc/uab-2018.jpg" alt="Graduacio 2018 UAB Medicina" style="width:270px" loading="lazy"></p>
 				</div>			
 			</div>
 		</div>
@@ -339,7 +357,7 @@
 				
 		
 				<div class="col-md-3">
-					<img class="img-fluid rounded mb-4" alt="QR code to evamontane.com" src="imgs/qr/default.png" />
+					<img class="img-fluid rounded mb-4" alt="QR code to evamontane.com" src="imgs/qr/default.png" loading="lazy" />
 				</div>
 	
 			</div>
@@ -358,71 +376,70 @@
     <!-- Footer -->
     <footer class="text-light text-center py-4">
         <p class="fs-6">&copy; <a href="http://evamontane.com" class="me-4" rel="self" title="wwww.evamontane.com" style="color:#fff;text-decoration:none">evamontane.com</a></p>
-        <p class="fs-6 pb-5">Last update: Sept 3, 2025</p>
+        <p class="fs-6 pb-5">Last update: July 13, 2026</p>
     </footer>
 
     <button id="scrollTopBtn"><i class="fas fa-arrow-up"></i></button>
-	
-	
-    <!-- jQuery CDN -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <!-- Bootstrap JavaScript CDN -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js" integrity="sha512-ykZ1QQr0Jy/4ZkvKuqWn4iF3lqPZyij9iRv6sGqLRdTPkY69YX6+7wvVGmsdBbiIfN/8OdsI7HABjvEok6ZopQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
  
-	<!-- JavaScript for smooth scrolling functionality -->
-	
+	<!-- JavaScript for page functionality (Vanilla JS) -->
 	<script>
-	
-	  $(function () {
-
-		const $scrollTopBtn = $('#scrollTopBtn');
-		const $window = $(window);
-		const $navbarToggler = $('.navbar-toggler');
+	  document.addEventListener('DOMContentLoaded', () => {
+		const scrollTopBtn = document.getElementById('scrollTopBtn');
+		const navbarToggler = document.querySelector('.navbar-toggler');
 		const SCROLL_THRESHOLD = 600;
-		let isScrolling;
 
 		// Show/Hide the Scroll to Top button
 		const toggleScrollTopBtn = () => {
-		  $scrollTopBtn.toggle($window.scrollTop() > SCROLL_THRESHOLD);
+		  if (window.scrollY > SCROLL_THRESHOLD) {
+			scrollTopBtn.style.display = 'block';
+		  } else {
+			scrollTopBtn.style.display = 'none';
+		  }
 		};
 
-		// Debounced scroll event to improve performance
-		$window.on('scroll', function () {
-		  clearTimeout(isScrolling);
-		  isScrolling = setTimeout(toggleScrollTopBtn, 600);
-		});
+		// Throttled scroll event using requestAnimationFrame
+		let ticking = false;
+		window.addEventListener('scroll', () => {
+		  if (!ticking) {
+			window.requestAnimationFrame(() => {
+			  toggleScrollTopBtn();
+			  ticking = false;
+			});
+			ticking = true;
+		  }
+		}, { passive: true });
 
 		// Scroll to top when button is clicked
-		$scrollTopBtn.on('click', function () {
-		  $('html, body').animate({ scrollTop: 0 }, 600);
+		scrollTopBtn.addEventListener('click', () => {
+		  window.scrollTo({
+			top: 0,
+			behavior: 'smooth'
+		  });
 		});
 
-		// Smooth scroll for navigation links
-		$('nav').on('click', 'a', function (event) {
-		  const hash = this.hash;
-		  if (hash) {
-			event.preventDefault();
-			$('html, body').animate({
-			  scrollTop: $(hash).offset().top
-			}, 600, function () {
-			  window.location.hash = hash;
-			});
-		  }
-		});
+		// Auto-collapse mobile navbar on link click
+		const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+		const navbarCollapse = document.getElementById('navbarNav');
+		
+		let bsCollapse = null;
+		if (navbarCollapse && typeof bootstrap !== 'undefined') {
+		  bsCollapse = new bootstrap.Collapse(navbarCollapse, { toggle: false });
+		}
 
-		// Collapses the menu when an anchor is clicked
-		$('.navbar-nav').on('click', '.nav-link', function () {
-		  if ($navbarToggler.is(':visible')) {
-			$navbarToggler.click();
-		  }
+		navLinks.forEach(link => {
+		  link.addEventListener('click', () => {
+			if (window.getComputedStyle(navbarToggler).display !== 'none' && bsCollapse) {
+			  bsCollapse.hide();
+			}
+		  });
 		});
 
 		// Initial call to handle page load
 		toggleScrollTopBtn();
-
 	  });
-  
 	</script>
 
 </body>
