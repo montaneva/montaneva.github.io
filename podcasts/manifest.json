@@ -1,7 +1,9 @@
+
+
 {
   "name": "FarmacoCasts",
   "short_name": "FarmacoCasts",
-  "description": "Els teus podcasts de farmacologia clínica",
+  "description": "Els teus podcasts de farmacologia",
   "start_url": "https://montaneva.github.io/podcasts/",
   "scope": "https://montaneva.github.io/podcasts/",
   "display": "standalone",
@@ -10,19 +12,19 @@
   "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "/icon-180.png",
+      "src": "icon-180.png",
       "sizes": "180x180",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "/icon-192.png",
+      "src": "icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "/icon-512.png",
+      "src": "icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
